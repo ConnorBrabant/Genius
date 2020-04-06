@@ -1,14 +1,12 @@
 import React from 'react';
-import { HashRoute } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { HashRouter } from 'react-router-dom';
+import App from './app';
 
-export default (store) => {
-    render () {
-        return (
-            <Provider store={store} >
-                <HashRoute>
-                    <App />
-                </HashRoute>
-            </Provider>
-        )
-    }
-} 
+export default ({ store }) => (
+    <Provider store={store} >
+        <HashRouter>
+            <App />
+        </HashRouter>
+    </Provider>
+);
