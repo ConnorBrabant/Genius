@@ -39,3 +39,10 @@ Migrating to CreateUsers (20200406161148)
   ↳ bin/rails:9
   [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   ↳ /Users/Connor/.rbenv/versions/2.5.1/bin/annotate:23
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (4.6ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Connor"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Connor"], ["LIMIT", 1]]
+  [1m[36mUser Create (1.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "Connor"], ["email", "connor@gmail"], ["password_digest", "$2a$12$F8HleRJKbtdkGX951EDeqOXho0C76SIPPn9NrsBsdtTbFcf6.AlPi"], ["session_token", "25jo8kGtOhfgzKhxLgy3gQ"], ["created_at", "2020-04-06 17:17:50.537418"], ["updated_at", "2020-04-06 17:17:50.537418"]]
+  [1m[35m (7.4ms)[0m  [1m[35mCOMMIT[0m
