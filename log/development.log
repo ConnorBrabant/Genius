@@ -46,3 +46,100 @@ Migrating to CreateUsers (20200406161148)
   [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Connor"], ["LIMIT", 1]]
   [1m[36mUser Create (1.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "Connor"], ["email", "connor@gmail"], ["password_digest", "$2a$12$F8HleRJKbtdkGX951EDeqOXho0C76SIPPn9NrsBsdtTbFcf6.AlPi"], ["session_token", "25jo8kGtOhfgzKhxLgy3gQ"], ["created_at", "2020-04-06 17:17:50.537418"], ["updated_at", "2020-04-06 17:17:50.537418"]]
   [1m[35m (7.4ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/" for ::1 at 2020-04-06 13:40:11 -0400
+  [1m[35m (2.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/Connor/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.2/lib/active_record/log_subscriber.rb:98
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/Connor/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/railties-5.2.4.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/Connor/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/railties-5.2.4.2/lib/rails/templates/rails/welcome/index.html.erb (4.7ms)
+Completed 200 OK in 34ms (Views: 23.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-04-06 13:40:19 -0400
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/Connor/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/railties-5.2.4.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/Connor/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/railties-5.2.4.2/lib/rails/templates/rails/welcome/index.html.erb (5.2ms)
+Completed 200 OK in 19ms (Views: 12.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-04-06 13:41:42 -0400
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/Connor/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/railties-5.2.4.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/Connor/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/railties-5.2.4.2/lib/rails/templates/rails/welcome/index.html.erb (4.1ms)
+Completed 200 OK in 20ms (Views: 13.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-04-06 13:42:51 -0400
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/Connor/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/railties-5.2.4.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/Connor/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/railties-5.2.4.2/lib/rails/templates/rails/welcome/index.html.erb (4.2ms)
+Completed 200 OK in 23ms (Views: 13.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-04-06 13:42:52 -0400
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/Connor/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/railties-5.2.4.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/Connor/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/railties-5.2.4.2/lib/rails/templates/rails/welcome/index.html.erb (2.6ms)
+Completed 200 OK in 15ms (Views: 8.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-04-06 13:43:46 -0400
+
+NameError - uninitialized constant RootController:
+
+Started POST "/__better_errors/d88bd933120e769f/variables" for ::1 at 2020-04-06 13:43:46 -0400
+Started GET "/" for ::1 at 2020-04-06 13:44:41 -0400
+
+NameError - uninitialized constant RootController:
+
+Started POST "/__better_errors/c63c48b4a74e9f96/variables" for ::1 at 2020-04-06 13:44:41 -0400
+Started GET "/" for ::1 at 2020-04-06 13:45:51 -0400
+
+SyntaxError - syntax error, unexpected ']', expecting ')'
+...token: session[:session_token]])
+...                              ^
+/Users/Connor/Desktop/Ludicrous/app/controllers/application_controller.rb:21: syntax error, unexpected end-of-input, expecting keyword_end:
+  app/controllers/application_controller.rb:6:in `'
+  app/controllers/root_controller.rb:1:in `<top (required)>'
+
+Started POST "/__better_errors/9f75bbb1f1bcec28/variables" for ::1 at 2020-04-06 13:45:52 -0400
+Started GET "/" for ::1 at 2020-04-06 13:45:54 -0400
+
+SyntaxError - syntax error, unexpected ']', expecting ')'
+...token: session[:session_token]])
+...                              ^
+/Users/Connor/Desktop/Ludicrous/app/controllers/application_controller.rb:21: syntax error, unexpected end-of-input, expecting keyword_end:
+  app/controllers/application_controller.rb:6:in `'
+  app/controllers/root_controller.rb:1:in `<top (required)>'
+
+Started POST "/__better_errors/74402584e2fd856a/variables" for ::1 at 2020-04-06 13:45:54 -0400
+Started GET "/" for ::1 at 2020-04-06 13:46:06 -0400
+
+SyntaxError - syntax error, unexpected end-of-input, expecting keyword_end:
+  app/controllers/application_controller.rb:21:in `'
+  app/controllers/root_controller.rb:1:in `<top (required)>'
+
+Started POST "/__better_errors/a22e8c7be1683250/variables" for ::1 at 2020-04-06 13:46:06 -0400
+Started GET "/" for ::1 at 2020-04-06 13:46:11 -0400
+Processing by RootController#root as HTML
+  Rendering root/root.html.erb within layouts/application
+  Rendered root/root.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 1708ms (Views: 1698.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-04-06 13:46:15 -0400
+Processing by RootController#root as HTML
+  Rendering root/root.html.erb within layouts/application
+  Rendered root/root.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 34ms (Views: 30.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-04-06 13:49:14 -0400
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/Connor/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.2/lib/active_record/log_subscriber.rb:98
+Processing by RootController#root as HTML
+  Rendering root/root.html.erb within layouts/application
+  Rendered root/root.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 1297ms (Views: 1287.0ms | ActiveRecord: 0.0ms)
+
+
