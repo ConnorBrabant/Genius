@@ -2,7 +2,6 @@
     -add terms of service link, sign in here.
     - google signup button?
     - render header/footer for page 
-    - add ul of errors
     */
 
 
@@ -17,7 +16,7 @@ class SignUp extends React.Component {
             password: ''
         }
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.resetUser = this.resetUser.bind(this);
+        this.resetInput = this.resetInput.bind(this);
     }
 
     update(type) {
@@ -26,10 +25,10 @@ class SignUp extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.createUser(this.state).then(this.resetUser);
+        this.props.createUser(this.state).then(this.resetInput);
     }
 
-    resetUser() {
+    resetInput() {
         this.setState({
             username: '',
             password: '',
@@ -38,12 +37,13 @@ class SignUp extends React.Component {
     }
 
     render() {
-        // const errors = this.props.errors.map((error, i) => <li key={i}>{error}</li>)
+        const errors = this.props.errors.map((error, i) => <li key={i}>{error}</li>)
         return (
             <>
                 <h1 className='signup main'>SIGN UP</h1>
                 <h2 className='signup second'>and show off your genius</h2>
                 <button id='signup form'>Sign up with email</button>
+                <ul>{errors}</ul>
                 <form onSubmit={this.handleSubmit} >
                     <label>Ludicrous Nickname
                         <input type='text' onChange={this.update('username')} value={this.state.username}  />
