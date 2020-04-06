@@ -13,8 +13,9 @@
 class User < ApplicationRecord
     validates :username, uniqueness: true
     validates :username, :session_token, :password_digest, presence: true
-    validate :password, length: { minimum: 8}, allow_nil: true 
+    validates :password, length: { minimum: 8}, allow_nil: true 
 
+    attr_reader :password
     after_initialize :ensure_session_token
 
     #FIGVAPER 
