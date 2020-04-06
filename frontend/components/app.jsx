@@ -1,7 +1,11 @@
 import React from 'react';
-import SignUpContainter from './session/signup_container'
+import SignUpContainer from './session/signup_container';
+import Homepage from './homepage';
+import { Route } from 'react-router-dom';
+
 export default () => (
     <div>
-        <SignUpContainter />
+        <Homepage />
+        <Route path='/signup' component={SignUpContainer} />
     </div>
 )
