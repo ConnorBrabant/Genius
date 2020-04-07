@@ -292,9 +292,80 @@ var mdp = function mdp(dispatch) {
   !*** ./frontend/components/modal.jsx ***!
   \***************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/Connor/Desktop/Ludicrous/frontend/components/modal.jsx: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment <>...</>? (29:8)\n\n\u001b[0m \u001b[90m 27 | \u001b[39m                \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 28 | \u001b[39m            \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 29 | \u001b[39m        \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 30 | \u001b[39m    )\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 31 | \u001b[39m}\u001b[0m\n\u001b[0m \u001b[90m 32 | \u001b[39m\u001b[0m\n    at Object._raise (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:742:17)\n    at Object.raiseWithData (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:735:17)\n    at Object.raise (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:729:17)\n    at Object.jsxParseElementAt (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:4592:18)\n    at Object.jsxParseElement (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:4602:17)\n    at Object.parseExprAtom (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:4609:19)\n    at Object.parseExprSubscripts (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:9602:23)\n    at Object.parseMaybeUnary (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:9582:21)\n    at Object.parseExprOps (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:9452:23)\n    at Object.parseMaybeConditional (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:9425:23)\n    at Object.parseMaybeAssign (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:9380:21)\n    at Object.parseParenAndDistinguishExpression (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:10193:28)\n    at Object.parseExprAtom (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:9947:21)\n    at Object.parseExprAtom (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:4614:20)\n    at Object.parseExprSubscripts (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:9602:23)\n    at Object.parseMaybeUnary (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:9582:21)\n    at Object.parseExprOps (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:9452:23)\n    at Object.parseMaybeConditional (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:9425:23)\n    at Object.parseMaybeAssign (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:9380:21)\n    at Object.parseExpression (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:9332:23)\n    at Object.parseReturnStatement (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:11448:28)\n    at Object.parseStatementContent (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:11129:21)\n    at Object.parseStatement (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:11081:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:11656:25)\n    at Object.parseBlockBody (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:11642:10)\n    at Object.parseBlock (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:11626:10)\n    at Object.parseFunctionBody (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:10634:24)\n    at Object.parseFunctionBodyAndFinish (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:10617:10)\n    at withTopicForbiddingContext (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:11796:12)\n    at Object.withTopicForbiddingContext (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:10956:14)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _session_signin_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./session/signin_container */ "./frontend/components/session/signin_container.js");
+/* harmony import */ var _session_signup_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./session/signup_container */ "./frontend/components/session/signup_container.js");
+
+
+
+
+
+
+function Modal(_ref) {
+  var modal = _ref.modal,
+      closeModal = _ref.closeModal;
+
+  if (!modal) {
+    return null;
+  }
+
+  var component;
+
+  switch (modal) {
+    case 'signin':
+      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-form"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_signin_container__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+      break;
+
+    case 'signup':
+      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-form"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_signup_container__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+      ;
+      break;
+
+    default:
+      return null;
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-background",
+    onClick: closeModal
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-relative"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-x"
+  }, "\u2715"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-child",
+    onClick: function onClick(e) {
+      return e.stopPropagation();
+    }
+  }, component)));
+}
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    modal: state.ui.modal
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    closeModal: function closeModal() {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__["closeModal"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, mapDispatchToProps)(Modal));
 
 /***/ }),
 
