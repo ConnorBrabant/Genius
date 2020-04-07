@@ -1,0 +1,19 @@
+.session-forms {
+    background-color: #000;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+.signup-main, .signup-second {
+    color: #ffff64;
+}
+
+.signup-form {
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
