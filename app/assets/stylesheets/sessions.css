@@ -1,6 +1,5 @@
 .session-forms-page {
     background-color: #000;
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,7 +22,7 @@
 
 }
 
-.signup-secondary {
+.signup-secondary, .signin-main {
     font-size: 30px;
     font-weight: 400;
     margin: 0px 0px 20px;
@@ -49,10 +48,9 @@ h1, h2 {
     font-size: 16px;
     width: 100%;
     max-width: 370px;
-    font-weight: 3000;
 }
 
-.signup-form {
+.signup-form, .signin-form {
     width: 100%;
     max-width: 370px;
     color: #ede8e9;
@@ -61,7 +59,7 @@ h1, h2 {
     flex-direction: column;
     align-content: left;
     border-radius: 2px;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     max-width: 370px;
     border-top: 1px solid rgba(153,153,153,.18);
     font-family: Programme,sans-serif;
@@ -69,7 +67,7 @@ h1, h2 {
     margin: 10px 301px
 }
 
-label {
+.signin-label, .signup-label {
     font-size: 14px;
     font-weight: 400;
     margin-bottom: 4px;
@@ -83,7 +81,7 @@ input {
     min-width: 120px;
     min-height: 100%;
     font-size: 15px;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     margin-bottom: 13px;
     padding: 5px;
 }
@@ -95,7 +93,7 @@ input {
     margin-bottom: 1em;
 }
 
-.signup-button {
+.signup-button, .signin-button {
     color: #ccc;
     background-color: #262626;
     font-size: 13px;
@@ -105,9 +103,15 @@ input {
     border-radius: 2px;
     padding: 5px 9px;
     margin: 3px 4px 5px 0;
-    width: 110px;
+   
+}
+.signin-button {
+    width: 55px;
 }
 
+.signup-button {
+    width: 110px;
+}
 .signup-signin {
     line-height: 1.5em;
     font-family: Programme,sans-serif;

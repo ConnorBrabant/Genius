@@ -86,6 +86,35 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./frontend/actions/modal_actions.js":
+/*!*******************************************!*\
+  !*** ./frontend/actions/modal_actions.js ***!
+  \*******************************************/
+/*! exports provided: OPEN_MODAL, CLOSE_MODAL, openModal, closeModal */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OPEN_MODAL", function() { return OPEN_MODAL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLOSE_MODAL", function() { return CLOSE_MODAL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "openModal", function() { return openModal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "closeModal", function() { return closeModal; });
+var OPEN_MODAL = 'OPEN_MODAL';
+var CLOSE_MODAL = 'CLOSE_MODAL';
+var openModal = function openModal(modal) {
+  return {
+    type: OPEN_MODAL,
+    modal: modal
+  };
+};
+var closeModal = function closeModal() {
+  return {
+    type: CLOSE_MODAL
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/sessions/session_actions.jsx":
 /*!*******************************************************!*\
   !*** ./frontend/actions/sessions/session_actions.jsx ***!
@@ -173,6 +202,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _session_signin_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./session/signin_container */ "./frontend/components/session/signin_container.js");
 /* harmony import */ var _homepage_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./homepage_container */ "./frontend/components/homepage_container.js");
 /* harmony import */ var _navbar_navbar_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./navbar/navbar_container */ "./frontend/components/navbar/navbar_container.js");
+/* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modal */ "./frontend/components/modal.jsx");
+
 
 
 
@@ -182,7 +213,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "application"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modal__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: "/",
     component: _navbar_navbar_container__WEBPACK_IMPORTED_MODULE_5__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
@@ -215,7 +246,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = (function (props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Home Page");
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
+    className: "homepage"
+  }, "Home Page");
 });
 
 /***/ }),
@@ -254,6 +287,17 @@ var mdp = function mdp(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/modal.jsx":
+/*!***************************************!*\
+  !*** ./frontend/components/modal.jsx ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/Connor/Desktop/Ludicrous/frontend/components/modal.jsx: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment <>...</>? (29:8)\n\n\u001b[0m \u001b[90m 27 | \u001b[39m                \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 28 | \u001b[39m            \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 29 | \u001b[39m        \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 30 | \u001b[39m    )\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 31 | \u001b[39m}\u001b[0m\n\u001b[0m \u001b[90m 32 | \u001b[39m\u001b[0m\n    at Object._raise (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:742:17)\n    at Object.raiseWithData (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:735:17)\n    at Object.raise (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:729:17)\n    at Object.jsxParseElementAt (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:4592:18)\n    at Object.jsxParseElement (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:4602:17)\n    at Object.parseExprAtom (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:4609:19)\n    at Object.parseExprSubscripts (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:9602:23)\n    at Object.parseMaybeUnary (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:9582:21)\n    at Object.parseExprOps (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:9452:23)\n    at Object.parseMaybeConditional (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:9425:23)\n    at Object.parseMaybeAssign (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:9380:21)\n    at Object.parseParenAndDistinguishExpression (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:10193:28)\n    at Object.parseExprAtom (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:9947:21)\n    at Object.parseExprAtom (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:4614:20)\n    at Object.parseExprSubscripts (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:9602:23)\n    at Object.parseMaybeUnary (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:9582:21)\n    at Object.parseExprOps (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:9452:23)\n    at Object.parseMaybeConditional (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:9425:23)\n    at Object.parseMaybeAssign (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:9380:21)\n    at Object.parseExpression (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:9332:23)\n    at Object.parseReturnStatement (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:11448:28)\n    at Object.parseStatementContent (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:11129:21)\n    at Object.parseStatement (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:11081:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:11656:25)\n    at Object.parseBlockBody (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:11642:10)\n    at Object.parseBlock (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:11626:10)\n    at Object.parseFunctionBody (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:10634:24)\n    at Object.parseFunctionBodyAndFinish (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:10617:10)\n    at withTopicForbiddingContext (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:11796:12)\n    at Object.withTopicForbiddingContext (/Users/Connor/Desktop/Ludicrous/node_modules/@babel/parser/lib/index.js:10956:14)");
+
+/***/ }),
+
 /***/ "./frontend/components/navbar/navbar.jsx":
 /*!***********************************************!*\
   !*** ./frontend/components/navbar/navbar.jsx ***!
@@ -271,9 +315,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (function (props) {
   return props.currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
     className: "navbar-main"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "search"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "search"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    exact: true,
+    to: "/",
     className: "navbar-title"
-  }, "LUDICROUS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+  }, "LUDICROUS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "login-options"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "nav iq"
   }, "EARN IQ"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "nav messages"
@@ -287,7 +335,8 @@ __webpack_require__.r(__webpack_exports__);
     onClick: props.logoutUser
   }, "Logout")))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
     className: "navbar-main"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "search"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "search"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/",
     className: "navbar-title"
   }, "LUDICROUS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "navbar-links"
@@ -453,36 +502,51 @@ var SignIn = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       var errors = this.props.errors.map(function (error, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: i
         }, error);
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "session-forms signup"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "session-forms-page signin"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         className: "signin-main"
-      }, "SIGN IN"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, errors), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, "Sign In"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, errors), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
-        className: "signup-form"
+        className: "signin-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        className: "signin-child"
-      }, "Ludicrous login or email", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        htmlFor: "login",
+        className: "signin-child signin-label"
+      }, "Ludicrous login or email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "login",
         className: "signin-child",
         type: "text",
         onChange: this.update('username'),
         value: this.state.username
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        className: "signin-child"
-      }, "Password", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "password",
+        className: "signin-child signin-label"
+      }, "Password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "password",
         className: "signin-child",
         type: "text",
         onChange: this.update('password'),
         value: this.state.password
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "signin-child",
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "signin-button signin-child",
         type: "submit"
-      }, "Login")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Don't have an account? Sign up here."));
+      }, "Login")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-modal"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "signup-signin"
+      }, "Don't have an account? "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "signup-signin modal-link",
+        onClick: function onClick() {
+          return _this3.props.openModal('signup');
+        }
+      }, " Sign up here.")));
     }
   }]);
 
@@ -505,6 +569,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_sessions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/sessions/session_actions */ "./frontend/actions/sessions/session_actions.jsx");
 /* harmony import */ var _signin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./signin */ "./frontend/components/session/signin.jsx");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
 
 
 
@@ -519,6 +585,9 @@ var mdp = function mdp(dispatch) {
   return {
     loginUser: function loginUser(user) {
       return dispatch(Object(_actions_sessions_session_actions__WEBPACK_IMPORTED_MODULE_1__["loginUser"])(user));
+    },
+    openModal: function openModal(modal) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])(modal));
     }
   };
 };
@@ -623,7 +692,7 @@ var SignUp = /*#__PURE__*/function (_React$Component) {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "username",
-        className: "signin-child"
+        className: "signin-child signin-label"
       }, "Ludicrous Nickname"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         id: "username",
         className: "signin-child",
@@ -632,7 +701,7 @@ var SignUp = /*#__PURE__*/function (_React$Component) {
         value: this.state.username
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "email",
-        className: "signup-child"
+        className: "signup-child signin-label"
       }, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         id: "email",
         className: "signup-child",
@@ -641,7 +710,7 @@ var SignUp = /*#__PURE__*/function (_React$Component) {
         value: this.state.email
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "password",
-        className: "signup-child"
+        className: "signup-child signin-label"
       }, "Password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         id: "password",
         className: "signup-child",
@@ -680,9 +749,16 @@ var SignUp = /*#__PURE__*/function (_React$Component) {
             formPresent: true
           });
         }
-      }, "Sign up with email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, errors), this.state.formPresent ? this.showForm() : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }, "Sign up with email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, errors), this.state.formPresent ? this.showForm() : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-form"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "signup-signin"
-      }, "Already have an account? Sign in here."));
+      }, "Already have an account? "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "signup-signin modal-link",
+        onClick: function onClick() {
+          return _this3.props.openModal('signin');
+        }
+      }, "Sign in here.")));
     }
   }]);
 
@@ -705,6 +781,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_sessions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/sessions/session_actions */ "./frontend/actions/sessions/session_actions.jsx");
 /* harmony import */ var _signup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./signup */ "./frontend/components/session/signup.jsx");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
 
 
 
@@ -719,6 +797,9 @@ var mdp = function mdp(dispatch) {
   return {
     createUser: function createUser(user) {
       return dispatch(Object(_actions_sessions_session_actions__WEBPACK_IMPORTED_MODULE_1__["createUser"])(user));
+    },
+    openModal: function openModal(modal) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])(modal));
     }
   };
 };
@@ -884,6 +965,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _session__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./session */ "./frontend/reducers/session.js");
 /* harmony import */ var _errors_errors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./errors/errors */ "./frontend/reducers/errors/errors.js");
 /* harmony import */ var _entities_entities__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./entities/entities */ "./frontend/reducers/entities/entities.js");
+/* harmony import */ var _ui_ui__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ui/ui */ "./frontend/reducers/ui/ui.js");
+
 
 
 
@@ -891,7 +974,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   session: _session__WEBPACK_IMPORTED_MODULE_1__["default"],
   errors: _errors_errors__WEBPACK_IMPORTED_MODULE_2__["default"],
-  entities: _entities_entities__WEBPACK_IMPORTED_MODULE_3__["default"]
+  entities: _entities_entities__WEBPACK_IMPORTED_MODULE_3__["default"],
+  ui: _ui_ui__WEBPACK_IMPORTED_MODULE_4__["default"]
 }));
 
 /***/ }),
@@ -929,6 +1013,54 @@ var _nullSession = {
       return state;
   }
 });
+
+/***/ }),
+
+/***/ "./frontend/reducers/ui/modals.js":
+/*!****************************************!*\
+  !*** ./frontend/reducers/ui/modals.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// import { OPEN_MODAL, CLOSE_MODAL } from '../actions/modal_actions'
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case 'OPEN_MODAL':
+      return action.modal;
+
+    case 'CLOSE_MODAL':
+      return null;
+
+    default:
+      return state;
+  }
+});
+
+/***/ }),
+
+/***/ "./frontend/reducers/ui/ui.js":
+/*!************************************!*\
+  !*** ./frontend/reducers/ui/ui.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _modals__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modals */ "./frontend/reducers/ui/modals.js");
+
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
+  modal: _modals__WEBPACK_IMPORTED_MODULE_1__["default"]
+}));
 
 /***/ }),
 

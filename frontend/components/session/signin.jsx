@@ -35,19 +35,20 @@ class SignIn extends React.Component{
     render() {
         const errors = this.props.errors.map((error, i) => <li key={i}>{error}</li>)
         return (
-            <div className='session-forms signup'>
-                <h1 className='signin-main'>SIGN IN</h1>
+            <div className='session-forms-page signin'>
+                <h2 className='signin-main'>Sign In</h2>
                 <ul>{errors}</ul>
-                <form onSubmit={this.handleSubmit} className='signup-form'>
-                    <label className='signin-child'>Ludicrous login or email
-                        <input className='signin-child' type='text' onChange={this.update('username')} value={this.state.username} />
-                    </label>
-                    <label className='signin-child'>Password
-                        <input className='signin-child' type='text' onChange={this.update('password')} value={this.state.password} />
-                    </label>
-                    <button className='signin-child' type='submit' >Login</button>
+                <form onSubmit={this.handleSubmit} className='signin-form'>
+                    <label htmlFor='login' className='signin-child signin-label'>Ludicrous login or email</label>
+                    <input id='login' className='signin-child' type='text' onChange={this.update('username')} value={this.state.username} />
+                    <label htmlFor='password' className='signin-child signin-label'>Password</label>
+                    <input id='password' className='signin-child' type='text' onChange={this.update('password')} value={this.state.password} />
+                    <button className='signin-button signin-child' type='submit' >Login</button>
                 </form>
-                <p>Don't have an account? Sign up here.</p>
+                <div className='form-modal'>
+                    <span className='signup-signin'>Don't have an account? </span>
+                    <span className='signup-signin modal-link' onClick={() => this.props.openModal('signup')}> Sign up here.</span>
+                </div>
             </div>
         )
     }

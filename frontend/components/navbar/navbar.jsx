@@ -7,8 +7,8 @@ export default (props) => {
         <>
             <section className='navbar-main'>
                 <p>search</p>
-                <p className='navbar-title'>LUDICROUS</p>
-                <ul>
+                <Link exact to='/' className='navbar-title'>LUDICROUS</Link>
+                <ul className='login-options'>
                     <li className='nav iq'>EARN IQ</li>
                     <li className='nav messages'>MESSAGES</li>
                     <li className='nav me'>ME</li>
@@ -22,7 +22,7 @@ export default (props) => {
         <>
             <section className='navbar-main'>
                 <p>search</p>
-                <p className='navbar-title'>LUDICROUS</p>
+                <Link to='/' className='navbar-title'>LUDICROUS</Link>
                 <div className='navbar-links'>
                     <Link to='/signup' className='session-link'>SIGN UP</Link>
                     <Link to='/login' className='session-link'>SIGN IN</Link>
