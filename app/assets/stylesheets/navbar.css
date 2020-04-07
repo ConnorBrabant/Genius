@@ -5,9 +5,10 @@
    align-items: center;
    height: 41px;
    width: 100%;
+   position: relative;
 }
 
-.session-link {
+.session-link{
     text-decoration: none;
     font-size: .75em;
     font-family: Programme, sans-serif;
@@ -17,3 +18,14 @@
     padding-left: 0.5rem;
 }
 
+.navbar-title {
+    text-decoration: none;
+}
+
+.login-options {
+    display: flex;
+}
+
+#root {
+    min-height: 100%;
+}
