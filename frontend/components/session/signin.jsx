@@ -10,7 +10,7 @@ class SignIn extends React.Component{
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.resetInput = this.resetInput.bind(this);
@@ -22,7 +22,7 @@ class SignIn extends React.Component{
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.loginUser(this.state).then(this.resetInput);
+        this.props.loginUser({ 'username': this.state['username'], password: this.state['password'] }).then(this.resetInput);
     }
 
     resetInput() {
@@ -36,16 +36,16 @@ class SignIn extends React.Component{
         const errors = this.props.errors.map((error, i) => <li key={i}>{error}</li>)
         return (
             <div className='session-forms signup'>
-                <h1 className='signin main'>Sign In</h1>
+                <h1 className='signin-main'>SIGN IN</h1>
                 <ul>{errors}</ul>
-                <form onSubmit={this.handleSubmit} >
-                    <label>Ludicrous login or email
-                        <input type='text' onChange={this.update('username')} value={this.state.username} />
+                <form onSubmit={this.handleSubmit} className='signup-form'>
+                    <label className='signin-child'>Ludicrous login or email
+                        <input className='signin-child' type='text' onChange={this.update('username')} value={this.state.username} />
                     </label>
-                    <label>Password (I forgot my password)
-                        <input type='text' onChange={this.update('password')} value={this.state.password} />
+                    <label className='signin-child'>Password
+                        <input className='signin-child' type='text' onChange={this.update('password')} value={this.state.password} />
                     </label>
-                    <button type='submit'>Login</button>
+                    <button className='signin-child' type='submit' >Login</button>
                 </form>
                 <p>Don't have an account? Sign up here.</p>
             </div>

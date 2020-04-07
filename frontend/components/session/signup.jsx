@@ -13,7 +13,8 @@ class SignUp extends React.Component {
         this.state = {
             username: '',
             email: '',
-            password: ''
+            password: '',
+            formPresent: false
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.resetInput = this.resetInput.bind(this);
@@ -37,33 +38,35 @@ class SignUp extends React.Component {
     }
 
     showForm() {
-        
+        return (
+            <form className='signup-form' onSubmit={this.handleSubmit} >
+                <label className='signup-child'>Ludicrous Nickname
+                        <input className='signin-child' type='text' onChange={this.update('username')} value={this.state.username} />
+                </label>
+                <label className='signup-child'>Email
+                        <input className='signup-child' type='text' onChange={this.update('email')} value={this.state.emailup} />
+                </label>
+                <label className='signup-child' >Password (I forgot my password)
+                        <input className='signup-child' type='text' onChange={this.update('password')} value={this.state.password} />
+                </label>
+                <button className='signup-child' type='submit'>Login</button>
+            </form>
+        )
     }
+
+
+
 
     render() {
         const errors = this.props.errors.map((error, i) => <li key={i}>{error}</li>)
         return (
-            <div className='session-forms signup'>
-                <h1 className='signup-main'>SIGN UP</h1>
-                <h2 className='signup-second'>and show off your genius</h2>
-                <button id='signup-form' onClick={this.showForm()}>Sign up with email</button>
+            <div className='session-forms signin'>
+                <h1 className='signin main'>Sign Up</h1>
+                <h2 className='sign in secondary'>and show off your genius</h2>
+                <button onClick={() => this.state.formPresent ? this.setState({ formPresent: false }) : this.setState({ formPresent: true })}>Sign up with email</button>
                 <ul>{errors}</ul>
-                <form onSubmit={this.handleSubmit} className='signup-form'>
-                    <label>Ludicrous Nickname
-                        <input type='text' onChange={this.update('username')} value={this.state.username}  />
-                    </label>
-                    <label>Email
-                        <input type='text' onChange={this.update('email')} value={this.state.email}  />
-                    </label>
-                    <label>Password 
-                        <input type='text' onChange={this.update('password')} value={this.state.password}  />
-                    </label>
-                    <p>By clicking "Create Account", you are indicating that 
-                        have read and agree to the Terms of Service.
-                    </p>
-                    <button type='submit' >Create Account</button>
-                </form>
-                <p>Already have an account? Sign in here.</p>
+                {this.state.formPresent ? this.showForm() : null}
+                <p>Don't have an account? Sign up here.</p>
             </div>
         )
     }

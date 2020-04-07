@@ -12,8 +12,30 @@
 }
 
 .signup-form {
-    background-color: red;
+    background-color: rgba(153,153,153,.09);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-content: center;
 }
+
+.signup-child, .signin-child {
+    display: block;
+    margin: auto;
+}
+
+.signup-main, .signup-second {
+    color: #ffff64;
+}
+
+.signup-form {
+    background-color: rgba(153,153,153,.09);
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.signin-child {
+    display: block;
+    margin: auto;
+}
+
