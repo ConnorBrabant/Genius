@@ -1,4 +1,4 @@
-.session-forms {
+.session-forms-page {
     background-color: #000;
     height: 100%;
     display: flex;
@@ -7,35 +7,113 @@
     color: white;
 }
 
-.signup-main, .signup-second {
+.signup-main, .signup-secondary {
     color: #ffff64;
-}
-
-.signup-form {
-    background-color: rgba(153,153,153,.09);
-    display: flex;
-    flex-direction: column;
-    align-content: center;
 }
 
 .signup-child, .signin-child {
     display: block;
-    margin: auto;
 }
 
-.signup-main, .signup-second {
-    color: #ffff64;
+.signup-main {
+    -webkit-font-smoothing: antialiased;
+    font-size: 62px;
+    line-height: 100%;
+    padding: 1px 0px 0px;
+
+}
+
+.signup-secondary {
+    font-size: 30px;
+    font-weight: 400;
+    margin: 0px 0px 20px;
+    padding: 1px 0px 0px;
+}
+
+h1, h2 {
+    font-family: DinCondensed,sans-serif;
+    font-weight: 700;
+}
+
+.button {
+    border-radius: 2px;
+    font: normal 15px/1.2rem Programme,sans-serif;
+    padding: 7px 12px 5px 16px;
+    margin: 0 auto 20px;
+}
+
+.form-button {
+    color: #eee;
+    background-color: #444;
+    border: 1px solid #444;
+    font-size: 16px;
+    width: 100%;
+    max-width: 370px;
+    font-weight: 3000;
 }
 
 .signup-form {
+    width: 100%;
+    max-width: 370px;
+    color: #ede8e9;
     background-color: rgba(153,153,153,.09);
     display: flex;
     flex-direction: column;
-    align-content: center;
+    align-content: left;
+    border-radius: 2px;
+    box-sizing: border-box;
+    max-width: 370px;
+    border-top: 1px solid rgba(153,153,153,.18);
+    font-family: Programme,sans-serif;
+    padding: 10px;
+    margin: 10px 301px
 }
 
-.signin-child {
-    display: block;
-    margin: auto;
+label {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 4px;
+}
+input {
+    background-color: #363636;
+    border-color: #555;
+    color: #ccc;
+    border: 1px solid #bbb;
+    border-radius: 2px;
+    min-width: 120px;
+    min-height: 100%;
+    font-size: 15px;
+    box-sizing: border-box;
+    margin-bottom: 13px;
+    padding: 5px;
 }
 
+.terms-p {
+    margin-bottom: 13px;
+    font-size: 13px;
+    line-height: 1.5em;
+    margin-bottom: 1em;
+}
+
+.signup-button {
+    color: #ccc;
+    background-color: #262626;
+    font-size: 13px;
+    margin-right: 10px;
+    border: 1px solid #444;
+    font: normal 13px/1rem Programme,sans-serif;
+    border-radius: 2px;
+    padding: 5px 9px;
+    margin: 3px 4px 5px 0;
+    width: 110px;
+}
+
+.signup-signin {
+    line-height: 1.5em;
+    font-family: Programme,sans-serif;
+    font-size: 15px;
+}
+
+.session-forms-page.signin {
+    padding: 20px 20px 50px;
+}
