@@ -36,15 +36,19 @@ class SignUp extends React.Component {
         })
     }
 
+    showForm() {
+        
+    }
+
     render() {
         const errors = this.props.errors.map((error, i) => <li key={i}>{error}</li>)
         return (
-            <>
-                <h1 className='signup main'>SIGN UP</h1>
-                <h2 className='signup second'>and show off your genius</h2>
-                <button id='signup form'>Sign up with email</button>
+            <div className='session-forms signup'>
+                <h1 className='signup-main'>SIGN UP</h1>
+                <h2 className='signup-second'>and show off your genius</h2>
+                <button id='signup-form' onClick={this.showForm()}>Sign up with email</button>
                 <ul>{errors}</ul>
-                <form onSubmit={this.handleSubmit} >
+                <form onSubmit={this.handleSubmit} className='signup-form'>
                     <label>Ludicrous Nickname
                         <input type='text' onChange={this.update('username')} value={this.state.username}  />
                     </label>
@@ -57,11 +61,10 @@ class SignUp extends React.Component {
                     <p>By clicking "Create Account", you are indicating that 
                         have read and agree to the Terms of Service.
                     </p>
-                    <button type='submit'>Create Account</button>
+                    <button type='submit' >Create Account</button>
                 </form>
                 <p>Already have an account? Sign in here.</p>
-
-            </>
+            </div>
         )
     }
 }

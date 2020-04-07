@@ -1,0 +1,19 @@
+.navbar-main {
+    background-color: #ffff64;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   height: 41px;
+   width: 100%;
+}
+
+.session-link {
+    text-decoration: none;
+    font-size: .75em;
+    font-family: Programme, sans-serif;
+    padding-top: 0.75rem;
+    padding-right: 0.5rem;
+    padding-bottom: 0px;
+    padding-left: 0.5rem;
+}
+
