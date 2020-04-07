@@ -32,3 +32,13 @@
   color: #ffff64;
   text-transform: uppercase;
 }
+
+.modal-x {
+  position: relative;
+  top: 12.5%;
+  left: 95%;
+  z-index: 2;
+  color: #444;
+  font-size: 15px;
+  font-weight: 2000;
+}
