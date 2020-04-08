@@ -322,16 +322,11 @@ function Modal(_ref) {
 
   switch (modal) {
     case 'signin':
-      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "modal-form"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_signin_container__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_signin_container__WEBPACK_IMPORTED_MODULE_3__["default"], null);
       break;
 
     case 'signup':
-      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "modal-form"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_signup_container__WEBPACK_IMPORTED_MODULE_4__["default"], null));
-      ;
+      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_signup_container__WEBPACK_IMPORTED_MODULE_4__["default"], null);
       break;
 
     default:
@@ -536,6 +531,7 @@ var SignIn = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, SignIn);
 
+    debugger;
     _this = _super.call(this, props);
     _this.state = {
       username: '',
@@ -571,6 +567,7 @@ var SignIn = /*#__PURE__*/function (_React$Component) {
         username: '',
         password: ''
       });
+      this.props.closeModal();
     }
   }, {
     key: "renderErrors",
@@ -672,6 +669,9 @@ var mdp = function mdp(dispatch) {
     },
     openModal: function openModal(modal) {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])(modal));
+    },
+    closeModal: function closeModal() {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["closeModal"])());
     }
   };
 };
@@ -767,6 +767,7 @@ var SignUp = /*#__PURE__*/function (_React$Component) {
         password: '',
         email: ''
       });
+      this.props.closeModal();
     }
   }, {
     key: "showForm",
@@ -891,6 +892,9 @@ var mdp = function mdp(dispatch) {
     },
     openModal: function openModal(modal) {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])(modal));
+    },
+    closeModal: function closeModal() {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["closeModal"])());
     }
   };
 };
