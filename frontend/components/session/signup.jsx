@@ -35,6 +35,7 @@ class SignUp extends React.Component {
             password: '',
             email: '',
         })
+        this.props.closeModal();
     }
 
     showForm(errors) {
