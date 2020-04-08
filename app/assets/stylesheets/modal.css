@@ -26,6 +26,7 @@
 
 .modal-link {
     color: #5ba7c2;
+    cursor: pointer;
 }
 
 .modal-child .signin-main {
@@ -35,10 +36,11 @@
 
 .modal-x {
   position: relative;
-  top: 12.5%;
+  top: 14%;
   left: 95%;
   z-index: 2;
   color: #444;
   font-size: 15px;
   font-weight: 2000;
+  cursor: pointer;
 }

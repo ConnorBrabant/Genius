@@ -18,6 +18,7 @@ class SignUp extends React.Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.resetInput = this.resetInput.bind(this);
+        this.demoUser = this.demoUser.bind(this);
     }
 
     update(type) {
@@ -36,6 +37,10 @@ class SignUp extends React.Component {
             email: '',
         })
         this.props.closeModal();
+    }
+
+    demoUser() {
+        this.props.loginUser({ 'username': 'demo', 'password': 'demopassword' }).then(this.resetInput);
     }
 
     showForm(errors) {
@@ -60,7 +65,10 @@ class SignUp extends React.Component {
                 <label htmlFor='password' className='signup-child signin-label' >Password</label>
                 <input id='password' className='signup-child' type='text' onChange={this.update('password')} value={this.state.password} />
                 <p className='terms-p'>By clicking "Create Account", you are indicating that you have read and agree to the Terms of Service.</p>
-                <button className='signup-button signup-child' type='submit'>Create Account</button>
+                <div className='align-demo'>
+                    <button className='signup-button signup-child' type='submit'>Create Account</button>
+                    <button className='signup-button' onClick={this.demoUser} >Demo</button>
+                </div>
             </form>
         )
     }

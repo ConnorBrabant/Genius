@@ -15,6 +15,7 @@ class SignIn extends React.Component{
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.resetInput = this.resetInput.bind(this);
+        this.demoUser = this.demoUser.bind(this);
     }
 
     update(type) {
@@ -49,6 +50,10 @@ class SignIn extends React.Component{
             )
         )
     }
+
+    demoUser() {
+        this.props.loginUser({ 'username': 'demo', password: 'demopassword' }).then(this.resetInput);
+    }
     
     render() {
         const errors = this.props.errors.map((error, i) => <li key={i}>{error}</li>)
@@ -61,7 +66,10 @@ class SignIn extends React.Component{
                     <input id='login' className='signin-child' type='text' onChange={this.update('username')} value={this.state.username} />
                     <label htmlFor='password' className='signin-child signin-label'>Password</label>
                     <input id='password' className='signin-child' type='text' onChange={this.update('password')} value={this.state.password} />
-                    <button className='signin-button signin-child' type='submit' >Login</button>
+                    <div className='align-demo'>
+                        <button className='signin-button signin-child' type='submit' >Login</button>
+                        <button className='signin-button' onClick={this.demoUser} >Demo</button>
+                    </div>
                 </form>
                 <div className='form-modal'>
                     <span className='signup-signin'>Don't have an account? </span>
