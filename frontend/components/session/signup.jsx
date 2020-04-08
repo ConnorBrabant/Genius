@@ -37,9 +37,21 @@ class SignUp extends React.Component {
         })
     }
 
-    showForm() {
+    showForm(errors) {
+        const errorsSection = (errors.length > 0) ? (
+            <section className='errors'>
+                <div className='errors-header'>Whoops</div>
+                <div className='errors-list'>
+                    <p>There must be some mistake</p>
+                    <ul>{errors}</ul>
+                </div>
+            </section>
+        ) : (
+            null
+        )
         return (
             <form className='signup-form' onSubmit={this.handleSubmit} >
+                {errorsSection}
                 <label htmlFor='username' className='signin-child signin-label'>Ludicrous Nickname</label>
                 <input id='username' className='signin-child' type='text' onChange={this.update('username')} value={this.state.username} />
                 <label htmlFor='email' className='signup-child signin-label'>Email</label>
@@ -52,9 +64,6 @@ class SignUp extends React.Component {
         )
     }
 
-
-
-
     render() {
         const errors = this.props.errors.map((error, i) => <li key={i}>{error}</li>)
         return (
@@ -62,8 +71,7 @@ class SignUp extends React.Component {
                 <h1 className='signup-main'>SIGN UP</h1>
                 <h2 className='signup-secondary'>and show off your genius</h2>
                 <button className='button form-button' onClick={() => this.state.formPresent ? this.setState({ formPresent: false }) : this.setState({ formPresent: true })}>Sign up with email</button>
-                <ul>{errors}</ul>
-                {this.state.formPresent ? this.showForm() : null}
+                {this.state.formPresent ? this.showForm(errors) : null}
                 <div className='modal-form'>
                     <span className='signup-signin'>Already have an account? </span>
                     <span className='signup-signin modal-link' onClick={() => this.props.openModal('signin')}>Sign in here.</span>
