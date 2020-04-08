@@ -121,3 +121,39 @@ input {
 .session-forms-page.signin {
     padding: 20px 20px 50px;
 }
+
+.errors {
+    padding-bottom: 8px;
+    margin-bottom: 24px;
+    background-color: #262626;
+    width: 100%;
+}
+
+.errors-header {
+    background-color: #990120;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    padding: 8px 32px;
+
+}
+
+.errors-list {
+    font-family: sans-serif;
+}
+
+.errors-list > p {
+    font-size: 13px;
+    padding: 8px 32px;
+}
+
+.errors-list > ul {
+    font-size: 15px;
+    padding: 8px 32px;
+}
+
+.errors-list > ul > li {
+    margin: 7.5px;
+    list-style-type: disc;
+}

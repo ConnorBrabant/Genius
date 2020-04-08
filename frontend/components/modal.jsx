@@ -11,10 +11,10 @@ function Modal({ modal, closeModal }) {
     let component;
     switch (modal) {
         case 'signin':
-            component = <div className='modal-form'><SigninContainer /></div>;
+            component = <SigninContainer />;
             break;
         case 'signup':
-            component = <div className='modal-form'><SignupContainer /></div>;;
+            component = <SignupContainer />;
             break;
         default:
             return null;
