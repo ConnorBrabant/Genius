@@ -32,13 +32,29 @@ class SignIn extends React.Component{
         })
     }
 
+    renderErrors(errors) {
+        return (
+        (errors.length > 0) ? (
+            <section className='errors'>
+                <div className='errors-header'>Whoops</div>
+                <div className='errors-list'>
+                    <p>There must be some mistake</p>
+                    <ul>{errors}</ul>
+                </div>
+            </section>
+        ) : (
+                null
+            )
+        )
+    }
+    
     render() {
         const errors = this.props.errors.map((error, i) => <li key={i}>{error}</li>)
         return (
             <div className='session-forms-page signin'>
                 <h2 className='signin-main'>Sign In</h2>
-                <ul>{errors}</ul>
                 <form onSubmit={this.handleSubmit} className='signin-form'>
+                    {this.renderErrors(errors)}
                     <label htmlFor='login' className='signin-child signin-label'>Ludicrous login or email</label>
                     <input id='login' className='signin-child' type='text' onChange={this.update('username')} value={this.state.username} />
                     <label htmlFor='password' className='signin-child signin-label'>Password</label>
