@@ -7709,3 +7709,150 @@ Processing by Api::SessionsController#destroy as JSON
 Completed 200 OK in 11ms (Views: 0.2ms | ActiveRecord: 3.7ms)
 
 
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(888442568904494100)[0m
+  ↳ bin/rails:9
+  [1m[35m (2.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateJokes (20200408142037)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (65.7ms)[0m  [1m[35mCREATE TABLE "jokes" ("id" bigserial primary key, "title" character varying, "comedian_id" integer, "joke" text, "user_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20200408142037_create_jokes.rb:3
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE  INDEX  "index_jokes_on_comedian_id" ON "jokes"  ("comedian_id")[0m
+  ↳ db/migrate/20200408142037_create_jokes.rb:10
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE  INDEX  "index_jokes_on_user_id" ON "jokes"  ("user_id")[0m
+  ↳ db/migrate/20200408142037_create_jokes.rb:11
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200408142037"]]
+  ↳ bin/rails:9
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (4.8ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(888442568904494100)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(888442568904494100)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateJokes (20200408142037)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (6.2ms)[0m  [1m[35mDROP INDEX  "index_jokes_on_user_id"[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mDROP INDEX  "index_jokes_on_comedian_id"[0m
+  ↳ bin/rails:9
+  [1m[35m (7.6ms)[0m  [1m[35mDROP TABLE "jokes"[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.7ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20200408142037"]]
+  ↳ bin/rails:9
+  [1m[35m (6.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(888442568904494100)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(888442568904494100)[0m
+  ↳ bin/rails:9
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateJokes (20200408142037)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (12.0ms)[0m  [1m[35mCREATE TABLE "jokes" ("id" bigserial primary key, "title" character varying NOT NULL, "comedian_id" integer NOT NULL, "joke" text NOT NULL, "user_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20200408142037_create_jokes.rb:3
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE  INDEX  "index_jokes_on_comedian_id" ON "jokes"  ("comedian_id")[0m
+  ↳ db/migrate/20200408142037_create_jokes.rb:10
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE  INDEX  "index_jokes_on_user_id" ON "jokes"  ("user_id")[0m
+  ↳ db/migrate/20200408142037_create_jokes.rb:11
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_jokes_on_title_and_comedian_id" ON "jokes"  ("title", "comedian_id")[0m
+  ↳ db/migrate/20200408142037_create_jokes.rb:12
+  [1m[36mActiveRecord::SchemaMigration Create (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200408142037"]]
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(888442568904494100)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/Connor/.rbenv/versions/2.5.1/bin/annotate:23
+  [1m[36mJoke Load (4.5ms)[0m  [1m[34mSELECT "jokes".* FROM "jokes"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mJoke Create (4.9ms)[0m  [1m[32mINSERT INTO "jokes" ("title", "comedian_id", "joke", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "First Joke"], ["comedian_id", 1], ["joke", "Funny joke haha"], ["user_id", 1], ["created_at", "2020-04-08 14:35:18.585940"], ["updated_at", "2020-04-08 14:35:18.585940"]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mJoke Load (0.5ms)[0m  [1m[34mSELECT  "jokes".* FROM "jokes" ORDER BY "jokes"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mJoke Load (0.4ms)[0m  [1m[34mSELECT  "jokes".* FROM "jokes" ORDER BY "jokes"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mJoke Update (0.5ms)[0m  [1m[33mUPDATE "jokes" SET "joke" = $1, "updated_at" = $2 WHERE "jokes"."id" = $3[0m  [["joke", "Really funny joke haha"], ["updated_at", "2020-04-08 14:40:16.331295"], ["id", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mJoke Load (0.5ms)[0m  [1m[34mSELECT  "jokes".* FROM "jokes" ORDER BY "jokes"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mJoke Create (0.7ms)[0m  [1m[32mINSERT INTO "jokes" ("title", "comedian_id", "joke", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Delete"], ["comedian_id", 1], ["joke", "not funny"], ["user_id", 1], ["created_at", "2020-04-08 14:50:15.551880"], ["updated_at", "2020-04-08 14:50:15.551880"]]
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mJoke Load (0.4ms)[0m  [1m[34mSELECT  "jokes".* FROM "jokes" ORDER BY "jokes"."id" ASC LIMIT $1 OFFSET $2[0m  [["LIMIT", 1], ["OFFSET", 1]]
+  [1m[36mJoke Load (0.5ms)[0m  [1m[34mSELECT  "jokes".* FROM "jokes" ORDER BY "jokes"."id" ASC LIMIT $1 OFFSET $2[0m  [["LIMIT", 1], ["OFFSET", 1]]
+  [1m[36mJoke Destroy (8.8ms)[0m  [1m[31mDELETE FROM "jokes" WHERE "jokes"."id" = $1[0m  [["id", 2]]
+  [1m[36mJoke Load (0.5ms)[0m  [1m[34mSELECT "jokes".* FROM "jokes"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mJoke Create (1.5ms)[0m  [1m[32mINSERT INTO "jokes" ("title", "comedian_id", "joke", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "second joke"], ["comedian_id", 1], ["joke", "second is the best"], ["user_id", 1], ["created_at", "2020-04-08 16:20:23.533708"], ["updated_at", "2020-04-08 16:20:23.533708"]]
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mJoke Load (11.8ms)[0m  [1m[34mSELECT "jokes".* FROM "jokes"[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(888442568904494100)[0m
+  ↳ bin/rails:9
+  [1m[35m (3.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateComedians (20200408193828)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (38.3ms)[0m  [1m[35mCREATE TABLE "comedians" ("id" bigserial primary key, "name" character varying NOT NULL, "description" text NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20200408193828_create_comedians.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200408193828"]]
+  ↳ bin/rails:9
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (2.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(888442568904494100)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/Connor/.rbenv/versions/2.5.1/bin/annotate:23
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mComedian Create (3.2ms)[0m  [1m[32mINSERT INTO "comedians" ("name", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Connor Brabant"], ["description", "funniest guy alive"], ["created_at", "2020-04-08 19:46:29.383307"], ["updated_at", "2020-04-08 19:46:29.383307"]]
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mComedian Load (0.6ms)[0m  [1m[34mSELECT  "comedians".* FROM "comedians" ORDER BY "comedians"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mJoke Load (2.4ms)[0m  [1m[34mSELECT "jokes".* FROM "jokes" WHERE "jokes"."comedian_id" = $1[0m  [["comedian_id", 1]]
+  [1m[36mJoke Load (0.7ms)[0m  [1m[34mSELECT  "jokes".* FROM "jokes" ORDER BY "jokes"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mJoke Load (0.6ms)[0m  [1m[34mSELECT  "jokes".* FROM "jokes" ORDER BY "jokes"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mComedian Load (0.3ms)[0m  [1m[34mSELECT  "comedians".* FROM "comedians" WHERE "comedians"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mJoke Load (0.5ms)[0m  [1m[34mSELECT  "jokes".* FROM "jokes" ORDER BY "jokes"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mComedian Load (0.5ms)[0m  [1m[34mSELECT  "comedians".* FROM "comedians" WHERE "comedians"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
