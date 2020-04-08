@@ -7677,3 +7677,35 @@ Processing by RootController#root as HTML
 Completed 200 OK in 78ms (Views: 74.9ms | ActiveRecord: 0.3ms)
 
 
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (1.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "demo"], ["LIMIT", 1]]
+  [1m[36mUser Create (1.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "demo"], ["email", "email@email.com"], ["password_digest", "$2a$12$ic8FSkV1CdoINPEG6lFS7e14XKnBR2i3aZe.5W.6LeVoOoT//TU56"], ["session_token", "UVspm96EUGddLfIYRu9PYA"], ["created_at", "2020-04-08 03:17:41.663301"], ["updated_at", "2020-04-08 03:17:41.663301"]]
+  [1m[35m (3.6ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/" for ::1 at 2020-04-08 09:49:38 -0400
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/Connor/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.2/lib/active_record/log_subscriber.rb:98
+Processing by RootController#root as HTML
+  Rendering root/root.html.erb within layouts/application
+  Rendered root/root.html.erb within layouts/application (7.9ms)
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "hj_x0yAHG_p9v-ntlHuRSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered api/users/_user.json.jbuilder (0.6ms)
+Completed 200 OK in 2329ms (Views: 2311.2ms | ActiveRecord: 14.0ms)
+
+
+Started DELETE "/api/session" for ::1 at 2020-04-08 09:49:43 -0400
+Processing by Api::SessionsController#destroy as JSON
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "hj_x0yAHG_p9v-ntlHuRSw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:40
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "demo"], ["id", 20], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40
+  [1m[36mUser Update (1.1ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "uIOYwgCEYyzG7gDzT6Jw9Q"], ["updated_at", "2020-04-08 13:49:43.567030"], ["id", 20]]
+  ↳ app/models/user.rb:40
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:40
+Completed 200 OK in 11ms (Views: 0.2ms | ActiveRecord: 3.7ms)
+
+

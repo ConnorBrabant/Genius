@@ -112,6 +112,7 @@ input {
 .signup-button {
     width: 110px;
 }
+
 .signup-signin {
     line-height: 1.5em;
     font-family: Programme,sans-serif;
@@ -156,4 +157,9 @@ input {
 .errors-list > ul > li {
     margin: 7.5px;
     list-style-type: disc;
+}
+
+.align-demo {
+    display: flex;
+    justify-content: space-between;
 }
