@@ -7,7 +7,6 @@ import React from 'react';
 
 class SignIn extends React.Component{
     constructor(props) {
-        debugger
         super(props);
         this.state = {
             username: '',

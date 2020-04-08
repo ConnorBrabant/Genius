@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export default (props) => {
     return (
     props.currentUser ? 
-        <>
+        <div className='navbar'>
             <section className='navbar-main'>
                 <p>search</p>
                 <Link exact to='/' className='navbar-title'>LUDICROUS</Link>
@@ -17,9 +17,20 @@ export default (props) => {
                     <button onClick={props.logoutUser}>Logout</button>
                 </ul>
             </section>
-        </>
+            <section className='navbar-menu'>
+                <ul>
+                    <li>FEATURED</li>
+                    <li>CHARTS</li>
+                    <li>VIDEOS</li>
+                    <li>SHOP</li>
+                    <li>FORUMS</li>
+                    <li>ADD A SONG</li>
+                    <li>ICONS</li>
+                </ul>
+            </section>
+        </div>
         :
-        <>
+        <div className='navbar'>
             <section className='navbar-main'>
                 <p>search</p>
                 <Link to='/' className='navbar-title'>LUDICROUS</Link>
@@ -28,6 +39,8 @@ export default (props) => {
                     <Link to='/login' className='session-link'>SIGN IN</Link>
                 </div>
             </section>
-        </>
+        </div>
     )
+
+
 }
