@@ -7,14 +7,13 @@ import React from 'react';
 
 class SignIn extends React.Component{
     constructor(props) {
-        debugger
         super(props);
         this.state = {
             username: '',
             password: '',
         }
         this.handleSubmit = this.handleSubmit.bind(this)
-        this.resetInput = this.resetInput.bind(this);
+        // this.resetInput = this.resetInput.bind(this);
         this.demoUser = this.demoUser.bind(this);
     }
 
@@ -24,15 +23,7 @@ class SignIn extends React.Component{
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.loginUser({ 'username': this.state['username'], password: this.state['password'] }).then(this.resetInput);
-    }
-
-    resetInput() {
-        this.setState({
-            username: '',
-            password: '',
-        })
-        this.props.closeModal();
+        this.props.loginUser({ username: this.state['username'], password: this.state['password'] }).then(this.props.closeModal);
     }
 
     renderErrors(errors) {
@@ -51,8 +42,9 @@ class SignIn extends React.Component{
         )
     }
 
-    demoUser() {
-        this.props.loginUser({ 'username': 'demo', password: 'demopassword' }).then(this.resetInput);
+    demoUser(e) {
+        e.preventDefault();
+        this.props.loginUser({ username: 'demo', password: 'demopassword' }).then(this.props.closeModal)
     }
     
     render() {
@@ -65,10 +57,10 @@ class SignIn extends React.Component{
                     <label htmlFor='login' className='signin-child signin-label'>Ludicrous login or email</label>
                     <input id='login' className='signin-child' type='text' onChange={this.update('username')} value={this.state.username} />
                     <label htmlFor='password' className='signin-child signin-label'>Password</label>
-                    <input id='password' className='signin-child' type='text' onChange={this.update('password')} value={this.state.password} />
+                    <input id='password' className='signin-child' type='password' onChange={this.update('password')} value={this.state.password} />
                     <div className='align-demo'>
                         <button className='signin-button signin-child' type='submit' >Login</button>
-                        <button className='signin-button' onClick={this.demoUser} >Demo</button>
+                        <button className='signin-button' onClick={(e) => this.demoUser(e)} >Demo</button>
                     </div>
                 </form>
                 <div className='form-modal'>
