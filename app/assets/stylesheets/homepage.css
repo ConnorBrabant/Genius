@@ -1,3 +1,38 @@
 .homepage {
-    color: white;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+.homepage-title {
+    letter-spacing: 2px;
+    font-size: 85px;
+}
+
+.chart-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chart-jokes {
+    height: 74px;
+    width: 800px;
+    display: grid;
+    grid-template-columns: 2fr 3fr 3fr;
+    /* border: 1px solid black; */
+    align-items: center;
+    border-bottom: 0.15rem solid rgb(233, 233, 233);
+}
+
+a {
+    text-decoration: none;
+}
+
+.chart-element {
+    font-size: 25px;
+    color: black;
+}
+

@@ -21,25 +21,29 @@ class Homepage extends React.Component {
     } 
 
     render() {
-        const jokesLI = this.props.jokes.map(joke => {
+        const jokesLI = this.props.jokes.map((joke, i) => {
             let route = this.formatRoute(joke.title, joke.comedian.name);
             return (
-            <li key={joke.id}>
-                <Link to={{
+            <Link to={{
                     pathname: `/${route}`, 
                     state: {id: joke.id}
-                }
-            }>{joke.title}</Link>
-            </li>
+                }}>
+            <ul className='chart-jokes' key={joke.id}>
+            <li className='chart-element'>{joke.id}</li>
+            <li className='chart-element'>{joke.title}</li>
+            <li className='chart-element'>{joke.comedian.name}</li>
+            </ul>
+            </Link>
+            
         )});
 
         return (
-            <>
-                <h1 className='homepage'>CHARTS</h1>
-                <ul>
+            <div className='homepage'>
+                <h1 className='homepage-title'>CHARTS</h1>
+                <div className='chart-list'>
                     {jokesLI}
-                </ul>
-            </>
+                </div>
+            </div>
         )
     }
     
