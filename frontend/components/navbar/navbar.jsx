@@ -30,7 +30,7 @@ export default (props) => {
             </section>
         </div>
         )
-    } else if (props.location.pathname === '/signup' || props.location.pathname === '/signin') {
+    } else if (props.location.pathname === '/signup' || props.location.pathname === '/login') {
         return (
             <div className='navbar'>
                 <section className='navbar-main'>
