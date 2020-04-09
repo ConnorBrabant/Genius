@@ -1,7 +1,6 @@
 .navbar-main {
-    background-color: #ffff64;
+   background-color: #ffff64;
    display: flex;
-   justify-content: space-between;
    align-items: center;
    height: 41px;
    width: 100%;
@@ -19,7 +18,15 @@
 }
 
 .navbar-title {
+    margin: auto;
     text-decoration: none;
+    text-shadow: -2px 2px black;
+    font-weight: bold;
+    color: #ffff64;
+    font-size: 20px;
+    font-family: sans-serif;
+    letter-spacing: 4px;
+    align-self: flex-end;
 }
 
 .login-options {
@@ -28,4 +35,24 @@
 
 #root {
     min-height: 100%;
+}
+
+
+.navbar-menu ul{
+    height: 41px;
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-menu li {
+    border-right: 1px solid white;
+    padding: 0px 36px;
+    font-family: sans-serif;
+    font-size: 13px;
+}
+
+.navbar-menu li:last-of-type {
+    border: none;
 }
