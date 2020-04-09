@@ -33,7 +33,7 @@ consonants in a row. Did you ever see some of the letters in these names?
 What is the “O” with a line through it, by the way? What planet is that from? 
 You need a chart of the elements if you wanna report the guy. “Yes, officer, 
 his name was Amal and then the symbol for Boron.” “No, it’s not Manganese. 
-I had the periodic chart with me at the time.”", user_id: 2)
+I had the periodic chart with me at the time.”", user_id: 2, image: 'https://m.media-amazon.com/images/M/MV5BYTlmYzI2NTMtYmZmOS00ZTYzLTg2ZTUtZDhkZjhkZDVjMWQwXkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_SY1000_CR0,0,675,1000_AL_.jpg')
 
 Joke.create(title: "Relatable", comedian_id: 2, 
 joke: 'When I’m in traffic, here’s the thing. I love to drive and I like to 
@@ -68,13 +68,13 @@ They’re looking at me, and I’m looking at them and… I get back in the car�
 I pull around. Now, it’s still on the wrong side… because I’ve just pulled around. 
 And they’re still looking at me… And I’m like: “I don’t wanna look like an idiot.” 
 So, I just filled up the back seat. I just… I’ll buy a new car, I don’t care.',
-user_id: 2)
+user_id: 2, image: 'https://m.media-amazon.com/images/M/MV5BYTlmYzI2NTMtYmZmOS00ZTYzLTg2ZTUtZDhkZjhkZDVjMWQwXkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_SY1000_CR0,0,675,1000_AL_.jpg')
 
-Joke.create(title: 'Dummy Joke 1', joke: 'Dummy Joke 1', comedian_id: 1, user_id: 1)
-Joke.create(title: 'Dummy Joke 2', joke: 'Dummy Joke 2', comedian_id: 1, user_id: 1)
-Joke.create(title: 'Dummy Joke 3', joke: 'Dummy Joke 3', comedian_id: 1, user_id: 1)
-Joke.create(title: 'Dummy Joke 4', joke: 'Dummy Joke 4', comedian_id: 1, user_id: 1)
-Joke.create(title: 'Dummy Joke 5', joke: 'Dummy Joke 5', comedian_id: 1, user_id: 1)
-Joke.create(title: 'Dummy Joke 6', joke: 'Dummy Joke 6', comedian_id: 1, user_id: 1)
-Joke.create(title: 'Dummy Joke 7', joke: 'Dummy Joke 7', comedian_id: 1, user_id: 1)
-Joke.create(title: 'Dummy Joke 8', joke: 'Dummy Joke 8', comedian_id: 1, user_id: 1)
+Joke.create(title: 'Dummy Joke 1', joke: 'Dummy Joke 1', comedian_id: 1, user_id: 1, image: 'https://m.media-amazon.com/images/M/MV5BYTlmYzI2NTMtYmZmOS00ZTYzLTg2ZTUtZDhkZjhkZDVjMWQwXkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_SY1000_CR0,0,675,1000_AL_.jpg')
+Joke.create(title: 'Dummy Joke 2', joke: 'Dummy Joke 2', comedian_id: 1, user_id: 1, image: 'https://m.media-amazon.com/images/M/MV5BYTlmYzI2NTMtYmZmOS00ZTYzLTg2ZTUtZDhkZjhkZDVjMWQwXkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_SY1000_CR0,0,675,1000_AL_.jpg')
+Joke.create(title: 'Dummy Joke 3', joke: 'Dummy Joke 3', comedian_id: 1, user_id: 1, image: 'https://m.media-amazon.com/images/M/MV5BYTlmYzI2NTMtYmZmOS00ZTYzLTg2ZTUtZDhkZjhkZDVjMWQwXkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_SY1000_CR0,0,675,1000_AL_.jpg')
+Joke.create(title: 'Dummy Joke 4', joke: 'Dummy Joke 4', comedian_id: 1, user_id: 1, image: 'https://m.media-amazon.com/images/M/MV5BYTlmYzI2NTMtYmZmOS00ZTYzLTg2ZTUtZDhkZjhkZDVjMWQwXkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_SY1000_CR0,0,675,1000_AL_.jpg')
+Joke.create(title: 'Dummy Joke 5', joke: 'Dummy Joke 5', comedian_id: 1, user_id: 1, image: 'https://m.media-amazon.com/images/M/MV5BYTlmYzI2NTMtYmZmOS00ZTYzLTg2ZTUtZDhkZjhkZDVjMWQwXkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_SY1000_CR0,0,675,1000_AL_.jpg')
+Joke.create(title: 'Dummy Joke 6', joke: 'Dummy Joke 6', comedian_id: 1, user_id: 1, image: 'https://m.media-amazon.com/images/M/MV5BYTlmYzI2NTMtYmZmOS00ZTYzLTg2ZTUtZDhkZjhkZDVjMWQwXkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_SY1000_CR0,0,675,1000_AL_.jpg')
+Joke.create(title: 'Dummy Joke 7', joke: 'Dummy Joke 7', comedian_id: 1, user_id: 1, image: 'https://m.media-amazon.com/images/M/MV5BYTlmYzI2NTMtYmZmOS00ZTYzLTg2ZTUtZDhkZjhkZDVjMWQwXkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_SY1000_CR0,0,675,1000_AL_.jpg')
+Joke.create(title: 'Dummy Joke 8', joke: 'Dummy Joke 8', comedian_id: 1, user_id: 1, image: 'https://m.media-amazon.com/images/M/MV5BYTlmYzI2NTMtYmZmOS00ZTYzLTg2ZTUtZDhkZjhkZDVjMWQwXkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_SY1000_CR0,0,675,1000_AL_.jpg')

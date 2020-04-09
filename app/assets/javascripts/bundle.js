@@ -378,6 +378,11 @@ var Homepage = /*#__PURE__*/function (_React$Component) {
       this.props.fetchJokes();
     }
   }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      localStorage.removeItem('joke');
+    }
+  }, {
     key: "formatRoute",
     value: function formatRoute(title, comedian) {
       var routeStart = comedian + " " + title;
@@ -410,20 +415,33 @@ var Homepage = /*#__PURE__*/function (_React$Component) {
           className: "chart-jokes",
           key: joke.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+          key: "".concat(i, "-id"),
           className: "chart-element"
         }, joke.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+          key: "".concat(i, "-img")
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+          className: "chart-image",
+          src: joke.image,
+          alt: "homepage pics"
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+          key: "".concat(i, "-title"),
           className: "chart-element"
         }, joke.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+          key: "".concat(i, "-comedian"),
           className: "chart-element"
         }, joke.comedian.name)));
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "homepage"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "chart-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
         className: "homepage-title"
-      }, "CHARTS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      }, "CHARTS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", {
+        className: "homepage-trending"
+      }, "trending on ludicrous"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "chart-list"
-      }, jokesLI));
+      }, jokesLI)));
     }
   }]);
 
@@ -516,16 +534,60 @@ var Joke = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(Joke);
 
-  function Joke() {
+  function Joke(props) {
+    var _this;
+
     _classCallCheck(this, Joke);
 
-    return _super.apply(this, arguments);
+    _this = _super.call(this, props);
+    _this.state = {
+      joke: {
+        image: '',
+        title: '',
+        comedian: '',
+        joke: ''
+      }
+    };
+    return _this;
   }
 
   _createClass(Joke, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      if (!localStorage.getItem('joke')) {
+        localStorage.setItem('joke', JSON.stringify(this.props.joke));
+        this.setState({
+          joke: this.props.joke
+        });
+      } else {
+        this.setState({
+          joke: JSON.parse(localStorage.getItem('joke'))
+        });
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "ShowPage");
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "show-whole"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "show-header"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "show-image",
+        src: this.state.joke.image
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "show-info"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "show-title"
+      }, this.state.joke.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "show-comedian"
+      }, this.state.joke.comedian.name))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "show-content"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "show-description"
+      }, this.state.joke.joke), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "show-comments"
+      }, "Comments go here")));
     }
   }]);
 
@@ -553,9 +615,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state, ownProps) {
-  return {
-    joke: state.entities.jokes[ownProps.location.state.id]
-  };
+  if (Object.keys(state.entities.jokes).length) {
+    return {
+      joke: state.entities.jokes[ownProps.location.state.id]
+    };
+  } else {
+    return null;
+  }
 };
 
 var mdp = function mdp(dispatch) {
@@ -708,12 +774,12 @@ __webpack_require__.r(__webpack_exports__);
       onClick: function onClick() {
         return props.openModal('signup');
       },
-      className: "session-link"
+      className: "session-link session-hover"
     }, "SIGN UP"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       onClick: function onClick() {
         return props.openModal('signin');
       },
-      className: "session-link"
+      className: "session-link session-hover"
     }, "SIGN IN"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
       className: "navbar-menu"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "FEATURED"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "CHARTS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "VIDEOS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "SHOP"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "FORUMS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "ADD A JOKE"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "ICONS"))));
@@ -1274,11 +1340,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 document.addEventListener('DOMContentLoaded', function () {
-  //TESTING
-  window.fetchJoke = _util_jokes__WEBPACK_IMPORTED_MODULE_4__["fetchJoke"];
-  window.fetchJokes = _util_jokes__WEBPACK_IMPORTED_MODULE_4__["fetchJokes"]; //
-
-  var store;
+  var store; // if (window.currentUser && window.currentJoke) {
+  //     const preloadedState = {
+  //         entities: {
+  //             users: { [window.currentUser.id]: window.currentUser }
+  //         },
+  //         session: { id: window.currentUser.id },
+  //         currentJoke: window.currentJoke
+  //         };
+  //     store = configureStore(preloadedState);
+  //     delete window.currentUser;
 
   if (window.currentUser) {
     var preloadedState = {
@@ -1300,6 +1371,30 @@ document.addEventListener('DOMContentLoaded', function () {
     store: store
   }), root);
 });
+
+/***/ }),
+
+/***/ "./frontend/reducers/currentjoke.js":
+/*!******************************************!*\
+  !*** ./frontend/reducers/currentjoke.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// import { RECEIVE_JOKE, RECEIVE_JOKES } from '../actions/jokes_actions'
+// const noJoke = null;
+// export default (state = noJoke, action) => {
+//     Object.freeze(state);
+//     switch (action.type) {
+//         case RECEIVE_JOKE: 
+//             debugger
+//             return action.joke;
+//         case RECEIVE_JOKES:
+//             return noJoke;
+//         default:
+//             return state
+//     }
+// }
 
 /***/ }),
 
@@ -1460,6 +1555,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _errors_errors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./errors/errors */ "./frontend/reducers/errors/errors.js");
 /* harmony import */ var _entities_entities__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./entities/entities */ "./frontend/reducers/entities/entities.js");
 /* harmony import */ var _ui_ui__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ui/ui */ "./frontend/reducers/ui/ui.js");
+/* harmony import */ var _currentjoke__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./currentjoke */ "./frontend/reducers/currentjoke.js");
+/* harmony import */ var _currentjoke__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_currentjoke__WEBPACK_IMPORTED_MODULE_5__);
+
 
 
 

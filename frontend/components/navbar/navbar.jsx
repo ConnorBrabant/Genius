@@ -37,8 +37,8 @@ export default (props) => {
                     <p>search</p>
                     <Link to='/' className='navbar-title'>LUDICROUS</Link>
                     <div className='navbar-links'>
-                        <a onClick={() => props.openModal('signup')} className='session-link'>SIGN UP</a>
-                        <a onClick={() => props.openModal('signin')} className='session-link'>SIGN IN</a>
+                        <a onClick={() => props.openModal('signup')} className='session-link session-hover'>SIGN UP</a>
+                        <a onClick={() => props.openModal('signin')} className='session-link session-hover'>SIGN IN</a>
                     </div>
                 </section>
                 <section className='navbar-menu'>

@@ -180,7 +180,7 @@ input {
     margin-right: 5px;
 }
 
-.session-link:hover {
+.session-hover:hover {
     border-bottom: 6.5px solid red;
     padding-bottom: 5.5px;
 }
