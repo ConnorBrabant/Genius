@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2020_04_08_193828) do
     t.datetime "updated_at", null: false
     t.index ["password_digest"], name: "index_users_on_password_digest"
     t.index ["session_token"], name: "index_users_on_session_token"
-    t.index ["username"], name: "index_users_on_username"
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
 end

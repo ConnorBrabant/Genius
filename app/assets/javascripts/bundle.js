@@ -396,23 +396,34 @@ var Homepage = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this = this;
 
-      var jokesLI = this.props.jokes.map(function (joke) {
+      var jokesLI = this.props.jokes.map(function (joke, i) {
         var route = _this.formatRoute(joke.title, joke.comedian.name);
 
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
-          key: joke.id
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Link"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Link"], {
           to: {
             pathname: "/".concat(route),
             state: {
               id: joke.id
             }
           }
-        }, joke.title));
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
+          className: "chart-jokes",
+          key: joke.id
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+          className: "chart-element"
+        }, joke.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+          className: "chart-element"
+        }, joke.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+          className: "chart-element"
+        }, joke.comedian.name)));
       });
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "homepage"
-      }, "CHARTS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", null, jokesLI));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
+        className: "homepage-title"
+      }, "CHARTS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "chart-list"
+      }, jokesLI));
     }
   }]);
 

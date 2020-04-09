@@ -8817,3 +8817,608 @@ Completed 200 OK in 68ms (Views: 61.9ms | ActiveRecord: 0.3ms)
   [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
   [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "demo"], ["LIMIT", 1]]
   [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "demo"], ["LIMIT", 1]]
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (2.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (119.7ms)[0m  [1m[35mDROP DATABASE IF EXISTS "Ludicrous_development"[0m
+  ↳ bin/rails:9
+  [1m[35m (77.7ms)[0m  [1m[35mDROP DATABASE IF EXISTS "Ludicrous_test"[0m
+  ↳ bin/rails:9
+  [1m[35m (422.6ms)[0m  [1m[35mCREATE DATABASE "Ludicrous_development" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (153.4ms)[0m  [1m[35mCREATE DATABASE "Ludicrous_test" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (22.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rails:9
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_try_advisory_lock(888442568904494100)[0m
+  ↳ bin/rails:9
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateUsers (20200406161148)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (14.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "email" character varying, "password_digest" character varying, "session_token" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20200406161148_create_users.rb:3
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_username" ON "users"  ("username")[0m
+  ↳ db/migrate/20200406161148_create_users.rb:12
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE  INDEX  "index_users_on_password_digest" ON "users"  ("password_digest")[0m
+  ↳ db/migrate/20200406161148_create_users.rb:13
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE  INDEX  "index_users_on_session_token" ON "users"  ("session_token")[0m
+  ↳ db/migrate/20200406161148_create_users.rb:14
+  [1m[36mActiveRecord::SchemaMigration Create (8.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200406161148"]]
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateJokes (20200408142037)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (8.0ms)[0m  [1m[35mCREATE TABLE "jokes" ("id" bigserial primary key, "title" character varying NOT NULL, "comedian_id" integer NOT NULL, "joke" text NOT NULL, "user_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20200408142037_create_jokes.rb:3
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE  INDEX  "index_jokes_on_comedian_id" ON "jokes"  ("comedian_id")[0m
+  ↳ db/migrate/20200408142037_create_jokes.rb:10
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE  INDEX  "index_jokes_on_user_id" ON "jokes"  ("user_id")[0m
+  ↳ db/migrate/20200408142037_create_jokes.rb:11
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_jokes_on_title_and_comedian_id" ON "jokes"  ("title", "comedian_id")[0m
+  ↳ db/migrate/20200408142037_create_jokes.rb:12
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200408142037"]]
+  ↳ bin/rails:9
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateComedians (20200408193828)
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (8.1ms)[0m  [1m[35mCREATE TABLE "comedians" ("id" bigserial primary key, "name" character varying NOT NULL, "description" text NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20200408193828_create_comedians.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (1.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200408193828"]]
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-04-09 02:15:42.602366"], ["updated_at", "2020-04-09 02:15:42.602366"]]
+  ↳ bin/rails:9
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(888442568904494100)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Exists (1.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "demo"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:10
+  [1m[36mUser Create (1.1ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "demo"], ["email", "demo@demo.com"], ["password_digest", "$2a$12$eWBY84d7RPdk/9VN8dBBvuWoAMg5a4Ph0XOoLxz8.YAJ1bjfU1Ccm"], ["session_token", "vi5WyOfhejJZiYw-KTEtKw"], ["created_at", "2020-04-09 02:15:57.828744"], ["updated_at", "2020-04-09 02:15:57.828744"]]
+  ↳ db/seeds.rb:10
+  [1m[35m (4.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:11
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Connor"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:11
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "Connor"], ["email", "connorbrabant@gmail.com"], ["password_digest", "$2a$12$LfJtMRzESf/DddC0GbAbiOTZrXVrWakTAscFpYXozwzHP0JVYTLPm"], ["session_token", "IlvZPRgBz9MzdoCmkJsuRA"], ["created_at", "2020-04-09 02:15:58.118554"], ["updated_at", "2020-04-09 02:15:58.118554"]]
+  ↳ db/seeds.rb:11
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:13
+  [1m[36mComedian Create (0.7ms)[0m  [1m[32mINSERT INTO "comedians" ("name", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Jerry Seinfeld"], ["description", "Funny guy from Massapequa New York. Created\nand starred in the classic Seinfeld. Big Mets fan."], ["created_at", "2020-04-09 02:15:58.138379"], ["updated_at", "2020-04-09 02:15:58.138379"]]
+  ↳ db/seeds.rb:13
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:13
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:15
+  [1m[36mComedian Create (0.4ms)[0m  [1m[32mINSERT INTO "comedians" ("name", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Ellen DeGeneres"], ["description", "Host of the arguably the\ngreatest day time talk show. Loves animals and even has a gorilla sanctuary"], ["created_at", "2020-04-09 02:15:58.141615"], ["updated_at", "2020-04-09 02:15:58.141615"]]
+  ↳ db/seeds.rb:15
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:15
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:18
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:18
+  [1m[36mComedian Load (0.4ms)[0m  [1m[34mSELECT  "comedians".* FROM "comedians" WHERE "comedians"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:18
+  [1m[36mJoke Create (1.6ms)[0m  [1m[32mINSERT INTO "jokes" ("title", "comedian_id", "joke", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "I'm Telling You for the Last Time"], ["comedian_id", 1], ["joke", "So, anyway, I’m thrilled to be back here in New York. \nI love how certain things about New York never change. They’re always constant, \nthey’re always there for you. The cabbies and the BO. What is with the BO and \nthese guys? How long are these shifts? Can’t we get this man a ten minute break\nfor a shower? You’re in the back and it’s coming through the glass. You’re just\ngoing: 'What in the…' Not only they put that cherry puppet stuff on the dashboard \nso you get a cherry BO. I don’t know what that’s supposed to be… Even the fruit\nshowers more often than this. The funny thing about being in these cabs is that\nwhen you’re in Manhattan for some reason you don’t get scared, no matter how \nfast the guy goes. Well, you know, he’s driving fast and recklessly… \nbut he’s a professional. He’s got a cab driver’s license, I can see it right there. \nI don’t even know what it takes to get a cab driver’s license. I think all you \nneed is a face. This seems to be their big qualification. No blank heads are\nallowed driving cabs in this town. Also helps to have a name with like 8 \nconsonants in a row. Did you ever see some of the letters in these names?\nWhat is the “O” with a line through it, by the way? What planet is that from? \nYou need a chart of the elements if you wanna report the guy. “Yes, officer, \nhis name was Amal and then the symbol for Boron.” “No, it’s not Manganese. \nI had the periodic chart with me at the time.”"], ["user_id", 1], ["created_at", "2020-04-09 02:15:58.185277"], ["updated_at", "2020-04-09 02:15:58.185277"]]
+  ↳ db/seeds.rb:18
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:18
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:39
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:39
+  [1m[36mComedian Load (0.2ms)[0m  [1m[34mSELECT  "comedians".* FROM "comedians" WHERE "comedians"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:39
+  [1m[36mJoke Create (1.5ms)[0m  [1m[32mINSERT INTO "jokes" ("title", "comedian_id", "joke", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Relatable"], ["comedian_id", 2], ["joke", "When I’m in traffic, here’s the thing. I love to drive and I like to \ndrive fast and I’m safe, but I do like to go fast and so slow drivers… irritate\nme, because they’re going so slow and let’s be honest. It’s usually a Prius, \nisn’t it? They’ve got the “coexist” bumper sticker on the back \nlistening to NPR knitting a hemp scarf… If I see a Prius going fast, I’m like: \n“Good for you!” I don’t know why it is. Whenever we pass someone going slow we \nhave to see what they look like. We’re always like… “That’s what you look like. \nI thought so, I thought…” There’s nothing more embarrassing than \nwhen you pass up a slow driver to show them the proper way of driving. You go \naround them and show them how they should be driving and then you hit a red light.\n And you’re watching them slowly creep up in your rearview mirror, and you’re just: \n “Please, change. Please, change. Please, change.” And the light doesn’t change so \n they just creep up alongside of you. “I’m just gonna look down here and touch that. \n I’m gonna see what that is, right there, with that because I have to see this and… \n No, I know you’re next to me but you’re still wrong, even though you caught up. And \n I’m gonna do that with my finger for a while because…” \nI don’t wanna judge. You don’t know why someone’s going slow. You have no idea. \nMaybe they’re transporting a bowl of soup. I don’t know, you know. I really \ndon’t like to judge, except for people who say “libary”. Then I do. \n“Libary”… Really? OK. The place with all the words? OK… You know what word’s not \nin there? “Libary”. No, I don’t like to judge ’cause… I do stupid \nthings, we all do– Everyone does stupid things. But the difference is, when \nyou do something stupid you’re just a person someone saw doing something stupid. \nWhen I do something stupid, it’s a story. I went to a gas station to put gas in \nmy car And there’s a group of teenage boys across the way and they’re like… \nreally cool. They were vaping and… And they were like: “It’s Ellen, oh my God, \nit’s Ellen.” And I’m like… and… then I realized I pulled up, and \nthe gas pump was over here and my tank was back here, on this side of the car. \nThey’re looking at me, and I’m looking at them and… I get back in the car… and \nI pull around. Now, it’s still on the wrong side… because I’ve just pulled around. \nAnd they’re still looking at me… And I’m like: “I don’t wanna look like an idiot.” \nSo, I just filled up the back seat. I just… I’ll buy a new car, I don’t care."], ["user_id", 1], ["created_at", "2020-04-09 02:15:58.190945"], ["updated_at", "2020-04-09 02:15:58.190945"]]
+  ↳ db/seeds.rb:39
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:39
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (46.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "Ludicrous_development"[0m
+  ↳ bin/rails:9
+  [1m[35m (39.5ms)[0m  [1m[35mDROP DATABASE IF EXISTS "Ludicrous_test"[0m
+  ↳ bin/rails:9
+  [1m[35m (134.3ms)[0m  [1m[35mCREATE DATABASE "Ludicrous_development" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (143.7ms)[0m  [1m[35mCREATE DATABASE "Ludicrous_test" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35mSQL (3.0ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  ↳ db/schema.rb:16
+  [1m[35m (4.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "comedians" CASCADE[0m
+  ↳ db/schema.rb:18
+  [1m[35m (15.4ms)[0m  [1m[35mCREATE TABLE "comedians" ("id" bigserial primary key, "name" character varying NOT NULL, "description" text NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:18
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "jokes" CASCADE[0m
+  ↳ db/schema.rb:25
+  [1m[35m (20.4ms)[0m  [1m[35mCREATE TABLE "jokes" ("id" bigserial primary key, "title" character varying NOT NULL, "comedian_id" integer NOT NULL, "joke" text NOT NULL, "user_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:25
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE  INDEX  "index_jokes_on_comedian_id" ON "jokes"  ("comedian_id")[0m
+  ↳ db/schema.rb:25
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_jokes_on_title_and_comedian_id" ON "jokes"  ("title", "comedian_id")[0m
+  ↳ db/schema.rb:25
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE  INDEX  "index_jokes_on_user_id" ON "jokes"  ("user_id")[0m
+  ↳ db/schema.rb:25
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  ↳ db/schema.rb:37
+  [1m[35m (5.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "email" character varying, "password_digest" character varying, "session_token" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:37
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE  INDEX  "index_users_on_password_digest" ON "users"  ("password_digest")[0m
+  ↳ db/schema.rb:37
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE  INDEX  "index_users_on_session_token" ON "users"  ("session_token")[0m
+  ↳ db/schema.rb:37
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_username" ON "users"  ("username")[0m
+  ↳ db/schema.rb:37
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200408193828)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200408142037),
+(20200406161148);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (0.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-04-09 02:17:10.385686"], ["updated_at", "2020-04-09 02:17:10.385686"]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35mSQL (1.8ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  ↳ db/schema.rb:16
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "comedians" CASCADE[0m
+  ↳ db/schema.rb:18
+  [1m[35m (17.5ms)[0m  [1m[35mCREATE TABLE "comedians" ("id" bigserial primary key, "name" character varying NOT NULL, "description" text NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:18
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "jokes" CASCADE[0m
+  ↳ db/schema.rb:25
+  [1m[35m (11.8ms)[0m  [1m[35mCREATE TABLE "jokes" ("id" bigserial primary key, "title" character varying NOT NULL, "comedian_id" integer NOT NULL, "joke" text NOT NULL, "user_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:25
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE  INDEX  "index_jokes_on_comedian_id" ON "jokes"  ("comedian_id")[0m
+  ↳ db/schema.rb:25
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_jokes_on_title_and_comedian_id" ON "jokes"  ("title", "comedian_id")[0m
+  ↳ db/schema.rb:25
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE  INDEX  "index_jokes_on_user_id" ON "jokes"  ("user_id")[0m
+  ↳ db/schema.rb:25
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  ↳ db/schema.rb:37
+  [1m[35m (7.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "email" character varying, "password_digest" character varying, "session_token" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:37
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE  INDEX  "index_users_on_password_digest" ON "users"  ("password_digest")[0m
+  ↳ db/schema.rb:37
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE  INDEX  "index_users_on_session_token" ON "users"  ("session_token")[0m
+  ↳ db/schema.rb:37
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_username" ON "users"  ("username")[0m
+  ↳ db/schema.rb:37
+  [1m[35m (8.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200408193828)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200408142037),
+(20200406161148);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (7.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (0.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-04-09 02:17:10.570088"], ["updated_at", "2020-04-09 02:17:10.570088"]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (3.7ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Update (0.7ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2020-04-09 02:17:10.581317"], ["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Exists (1.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "demo"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:10
+  [1m[36mUser Create (1.6ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "demo"], ["email", "demo@demo.com"], ["password_digest", "$2a$12$2Re9Z4B1ZCBCF/7/ChB.hux8D3JvMxpNTgplEYkcOxtfNb4a4RK3K"], ["session_token", "HI3CsGZ1KBVasS3slV8Ydg"], ["created_at", "2020-04-09 02:17:10.947858"], ["updated_at", "2020-04-09 02:17:10.947858"]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:11
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Connor"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:11
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "Connor"], ["email", "connorbrabant@gmail.com"], ["password_digest", "$2a$12$Gy4aG9Zqlh/P36TTUtBzFuNbPXiJ0OGWzj3fyXNevV5gYnRxeJgA."], ["session_token", "jYiKOZq8iuIpR2GpMZh5IQ"], ["created_at", "2020-04-09 02:17:11.253080"], ["updated_at", "2020-04-09 02:17:11.253080"]]
+  ↳ db/seeds.rb:11
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:13
+  [1m[36mComedian Create (1.1ms)[0m  [1m[32mINSERT INTO "comedians" ("name", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Jerry Seinfeld"], ["description", "Funny guy from Massapequa New York. Created\nand starred in the classic Seinfeld. Big Mets fan."], ["created_at", "2020-04-09 02:17:11.274178"], ["updated_at", "2020-04-09 02:17:11.274178"]]
+  ↳ db/seeds.rb:13
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:13
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:15
+  [1m[36mComedian Create (0.3ms)[0m  [1m[32mINSERT INTO "comedians" ("name", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Ellen DeGeneres"], ["description", "Host of the arguably the\ngreatest day time talk show. Loves animals and even has a gorilla sanctuary"], ["created_at", "2020-04-09 02:17:11.277661"], ["updated_at", "2020-04-09 02:17:11.277661"]]
+  ↳ db/seeds.rb:15
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:15
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:18
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:18
+  [1m[36mComedian Load (0.4ms)[0m  [1m[34mSELECT  "comedians".* FROM "comedians" WHERE "comedians"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:18
+  [1m[36mJoke Create (1.1ms)[0m  [1m[32mINSERT INTO "jokes" ("title", "comedian_id", "joke", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "I'm Telling You for the Last Time"], ["comedian_id", 1], ["joke", "So, anyway, I’m thrilled to be back here in New York. \nI love how certain things about New York never change. They’re always constant, \nthey’re always there for you. The cabbies and the BO. What is with the BO and \nthese guys? How long are these shifts? Can’t we get this man a ten minute break\nfor a shower? You’re in the back and it’s coming through the glass. You’re just\ngoing: 'What in the…' Not only they put that cherry puppet stuff on the dashboard \nso you get a cherry BO. I don’t know what that’s supposed to be… Even the fruit\nshowers more often than this. The funny thing about being in these cabs is that\nwhen you’re in Manhattan for some reason you don’t get scared, no matter how \nfast the guy goes. Well, you know, he’s driving fast and recklessly… \nbut he’s a professional. He’s got a cab driver’s license, I can see it right there. \nI don’t even know what it takes to get a cab driver’s license. I think all you \nneed is a face. This seems to be their big qualification. No blank heads are\nallowed driving cabs in this town. Also helps to have a name with like 8 \nconsonants in a row. Did you ever see some of the letters in these names?\nWhat is the “O” with a line through it, by the way? What planet is that from? \nYou need a chart of the elements if you wanna report the guy. “Yes, officer, \nhis name was Amal and then the symbol for Boron.” “No, it’s not Manganese. \nI had the periodic chart with me at the time.”"], ["user_id", 2], ["created_at", "2020-04-09 02:17:11.307675"], ["updated_at", "2020-04-09 02:17:11.307675"]]
+  ↳ db/seeds.rb:18
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:18
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:39
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:39
+  [1m[36mComedian Load (0.3ms)[0m  [1m[34mSELECT  "comedians".* FROM "comedians" WHERE "comedians"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:39
+  [1m[36mJoke Create (0.6ms)[0m  [1m[32mINSERT INTO "jokes" ("title", "comedian_id", "joke", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Relatable"], ["comedian_id", 2], ["joke", "When I’m in traffic, here’s the thing. I love to drive and I like to \ndrive fast and I’m safe, but I do like to go fast and so slow drivers… irritate\nme, because they’re going so slow and let’s be honest. It’s usually a Prius, \nisn’t it? They’ve got the “coexist” bumper sticker on the back \nlistening to NPR knitting a hemp scarf… If I see a Prius going fast, I’m like: \n“Good for you!” I don’t know why it is. Whenever we pass someone going slow we \nhave to see what they look like. We’re always like… “That’s what you look like. \nI thought so, I thought…” There’s nothing more embarrassing than \nwhen you pass up a slow driver to show them the proper way of driving. You go \naround them and show them how they should be driving and then you hit a red light.\n And you’re watching them slowly creep up in your rearview mirror, and you’re just: \n “Please, change. Please, change. Please, change.” And the light doesn’t change so \n they just creep up alongside of you. “I’m just gonna look down here and touch that. \n I’m gonna see what that is, right there, with that because I have to see this and… \n No, I know you’re next to me but you’re still wrong, even though you caught up. And \n I’m gonna do that with my finger for a while because…” \nI don’t wanna judge. You don’t know why someone’s going slow. You have no idea. \nMaybe they’re transporting a bowl of soup. I don’t know, you know. I really \ndon’t like to judge, except for people who say “libary”. Then I do. \n“Libary”… Really? OK. The place with all the words? OK… You know what word’s not \nin there? “Libary”. No, I don’t like to judge ’cause… I do stupid \nthings, we all do– Everyone does stupid things. But the difference is, when \nyou do something stupid you’re just a person someone saw doing something stupid. \nWhen I do something stupid, it’s a story. I went to a gas station to put gas in \nmy car And there’s a group of teenage boys across the way and they’re like… \nreally cool. They were vaping and… And they were like: “It’s Ellen, oh my God, \nit’s Ellen.” And I’m like… and… then I realized I pulled up, and \nthe gas pump was over here and my tank was back here, on this side of the car. \nThey’re looking at me, and I’m looking at them and… I get back in the car… and \nI pull around. Now, it’s still on the wrong side… because I’ve just pulled around. \nAnd they’re still looking at me… And I’m like: “I don’t wanna look like an idiot.” \nSo, I just filled up the back seat. I just… I’ll buy a new car, I don’t care."], ["user_id", 2], ["created_at", "2020-04-09 02:17:11.313157"], ["updated_at", "2020-04-09 02:17:11.313157"]]
+  ↳ db/seeds.rb:39
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:39
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Exists (3.6ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "demo"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.8ms)[0m  [1m[31mROLLBACK[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:11
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Connor"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:11
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:13
+  [1m[36mComedian Create (1.1ms)[0m  [1m[32mINSERT INTO "comedians" ("name", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Jerry Seinfeld"], ["description", "Funny guy from Massapequa New York. Created\nand starred in the classic Seinfeld. Big Mets fan."], ["created_at", "2020-04-09 02:48:30.126762"], ["updated_at", "2020-04-09 02:48:30.126762"]]
+  ↳ db/seeds.rb:13
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:13
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:15
+  [1m[36mComedian Create (0.3ms)[0m  [1m[32mINSERT INTO "comedians" ("name", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Ellen DeGeneres"], ["description", "Host of the arguably the\ngreatest day time talk show. Loves animals and even has a gorilla sanctuary"], ["created_at", "2020-04-09 02:48:30.132400"], ["updated_at", "2020-04-09 02:48:30.132400"]]
+  ↳ db/seeds.rb:15
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:15
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:18
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:18
+  [1m[36mComedian Load (0.7ms)[0m  [1m[34mSELECT  "comedians".* FROM "comedians" WHERE "comedians"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:18
+  [1m[36mJoke Create (3.2ms)[0m  [1m[32mINSERT INTO "jokes" ("title", "comedian_id", "joke", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "I'm Telling You for the Last Time"], ["comedian_id", 1], ["joke", "So, anyway, I’m thrilled to be back here in New York. \nI love how certain things about New York never change. They’re always constant, \nthey’re always there for you. The cabbies and the BO. What is with the BO and \nthese guys? How long are these shifts? Can’t we get this man a ten minute break\nfor a shower? You’re in the back and it’s coming through the glass. You’re just\ngoing: 'What in the…' Not only they put that cherry puppet stuff on the dashboard \nso you get a cherry BO. I don’t know what that’s supposed to be… Even the fruit\nshowers more often than this. The funny thing about being in these cabs is that\nwhen you’re in Manhattan for some reason you don’t get scared, no matter how \nfast the guy goes. Well, you know, he’s driving fast and recklessly… \nbut he’s a professional. He’s got a cab driver’s license, I can see it right there. \nI don’t even know what it takes to get a cab driver’s license. I think all you \nneed is a face. This seems to be their big qualification. No blank heads are\nallowed driving cabs in this town. Also helps to have a name with like 8 \nconsonants in a row. Did you ever see some of the letters in these names?\nWhat is the “O” with a line through it, by the way? What planet is that from? \nYou need a chart of the elements if you wanna report the guy. “Yes, officer, \nhis name was Amal and then the symbol for Boron.” “No, it’s not Manganese. \nI had the periodic chart with me at the time.”"], ["user_id", 2], ["created_at", "2020-04-09 02:48:30.167116"], ["updated_at", "2020-04-09 02:48:30.167116"]]
+  ↳ db/seeds.rb:18
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ db/seeds.rb:18
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (73.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "Ludicrous_development"[0m
+  ↳ bin/rails:9
+  [1m[35m (63.7ms)[0m  [1m[35mDROP DATABASE IF EXISTS "Ludicrous_test"[0m
+  ↳ bin/rails:9
+  [1m[35m (353.8ms)[0m  [1m[35mCREATE DATABASE "Ludicrous_development" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (156.0ms)[0m  [1m[35mCREATE DATABASE "Ludicrous_test" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35mSQL (1.9ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  ↳ db/schema.rb:16
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "comedians" CASCADE[0m
+  ↳ db/schema.rb:18
+  [1m[35m (16.3ms)[0m  [1m[35mCREATE TABLE "comedians" ("id" bigserial primary key, "name" character varying NOT NULL, "description" text NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:18
+  [1m[35m (0.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "jokes" CASCADE[0m
+  ↳ db/schema.rb:25
+  [1m[35m (11.3ms)[0m  [1m[35mCREATE TABLE "jokes" ("id" bigserial primary key, "title" character varying NOT NULL, "comedian_id" integer NOT NULL, "joke" text NOT NULL, "user_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:25
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE  INDEX  "index_jokes_on_comedian_id" ON "jokes"  ("comedian_id")[0m
+  ↳ db/schema.rb:25
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_jokes_on_title_and_comedian_id" ON "jokes"  ("title", "comedian_id")[0m
+  ↳ db/schema.rb:25
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE  INDEX  "index_jokes_on_user_id" ON "jokes"  ("user_id")[0m
+  ↳ db/schema.rb:25
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  ↳ db/schema.rb:37
+  [1m[35m (14.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "email" character varying, "password_digest" character varying, "session_token" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:37
+  [1m[35m (4.4ms)[0m  [1m[35mCREATE  INDEX  "index_users_on_password_digest" ON "users"  ("password_digest")[0m
+  ↳ db/schema.rb:37
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE  INDEX  "index_users_on_session_token" ON "users"  ("session_token")[0m
+  ↳ db/schema.rb:37
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_username" ON "users"  ("username")[0m
+  ↳ db/schema.rb:37
+  [1m[35m (7.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200408193828)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200408142037),
+(20200406161148);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (10.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (0.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-04-09 02:49:32.314588"], ["updated_at", "2020-04-09 02:49:32.314588"]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35mSQL (0.7ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  ↳ db/schema.rb:16
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "comedians" CASCADE[0m
+  ↳ db/schema.rb:18
+  [1m[35m (17.9ms)[0m  [1m[35mCREATE TABLE "comedians" ("id" bigserial primary key, "name" character varying NOT NULL, "description" text NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:18
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "jokes" CASCADE[0m
+  ↳ db/schema.rb:25
+  [1m[35m (11.2ms)[0m  [1m[35mCREATE TABLE "jokes" ("id" bigserial primary key, "title" character varying NOT NULL, "comedian_id" integer NOT NULL, "joke" text NOT NULL, "user_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:25
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE  INDEX  "index_jokes_on_comedian_id" ON "jokes"  ("comedian_id")[0m
+  ↳ db/schema.rb:25
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_jokes_on_title_and_comedian_id" ON "jokes"  ("title", "comedian_id")[0m
+  ↳ db/schema.rb:25
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE  INDEX  "index_jokes_on_user_id" ON "jokes"  ("user_id")[0m
+  ↳ db/schema.rb:25
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  ↳ db/schema.rb:37
+  [1m[35m (10.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "email" character varying, "password_digest" character varying, "session_token" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:37
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE  INDEX  "index_users_on_password_digest" ON "users"  ("password_digest")[0m
+  ↳ db/schema.rb:37
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE  INDEX  "index_users_on_session_token" ON "users"  ("session_token")[0m
+  ↳ db/schema.rb:37
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_username" ON "users"  ("username")[0m
+  ↳ db/schema.rb:37
+  [1m[35m (5.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200408193828)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200408142037),
+(20200406161148);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (8.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (0.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-04-09 02:49:32.517963"], ["updated_at", "2020-04-09 02:49:32.517963"]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Update (0.5ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2020-04-09 02:49:32.539490"], ["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Exists (1.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Connor"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:9
+  [1m[36mUser Create (1.8ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "Connor"], ["email", "connorbrabant@gmail.com"], ["password_digest", "$2a$12$P1MHdXM/p.JUCq8NDKaPL.0.zCkmeHr6N6ZOeW0rjIol9iQuFLPEu"], ["session_token", "S5k98OltgPfOY3c0jYaieQ"], ["created_at", "2020-04-09 02:49:32.888943"], ["updated_at", "2020-04-09 02:49:32.888943"]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "demo"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:10
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "demo"], ["email", "demo@demo.com"], ["password_digest", "$2a$12$LJUe7JBmZzfxCIQhkj998ewZ0sOaDL6igWuIZ.yR5z1t38WVjdNLS"], ["session_token", "d5VhUOXMb3d8ESECkyk55g"], ["created_at", "2020-04-09 02:49:33.198160"], ["updated_at", "2020-04-09 02:49:33.198160"]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:12
+  [1m[36mComedian Create (0.9ms)[0m  [1m[32mINSERT INTO "comedians" ("name", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Jerry Seinfeld"], ["description", "Funny guy from Massapequa New York. Created\nand starred in the classic Seinfeld. Big Mets fan."], ["created_at", "2020-04-09 02:49:33.213761"], ["updated_at", "2020-04-09 02:49:33.213761"]]
+  ↳ db/seeds.rb:12
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:14
+  [1m[36mComedian Create (0.4ms)[0m  [1m[32mINSERT INTO "comedians" ("name", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Ellen DeGeneres"], ["description", "Host of the arguably the\ngreatest day time talk show. Loves animals and even has a gorilla sanctuary"], ["created_at", "2020-04-09 02:49:33.216840"], ["updated_at", "2020-04-09 02:49:33.216840"]]
+  ↳ db/seeds.rb:14
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:14
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:17
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:17
+  [1m[36mComedian Load (0.4ms)[0m  [1m[34mSELECT  "comedians".* FROM "comedians" WHERE "comedians"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:17
+  [1m[36mJoke Create (1.2ms)[0m  [1m[32mINSERT INTO "jokes" ("title", "comedian_id", "joke", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "I'm Telling You for the Last Time"], ["comedian_id", 1], ["joke", "So, anyway, I’m thrilled to be back here in New York. \nI love how certain things about New York never change. They’re always constant, \nthey’re always there for you. The cabbies and the BO. What is with the BO and \nthese guys? How long are these shifts? Can’t we get this man a ten minute break\nfor a shower? You’re in the back and it’s coming through the glass. You’re just\ngoing: 'What in the…' Not only they put that cherry puppet stuff on the dashboard \nso you get a cherry BO. I don’t know what that’s supposed to be… Even the fruit\nshowers more often than this. The funny thing about being in these cabs is that\nwhen you’re in Manhattan for some reason you don’t get scared, no matter how \nfast the guy goes. Well, you know, he’s driving fast and recklessly… \nbut he’s a professional. He’s got a cab driver’s license, I can see it right there. \nI don’t even know what it takes to get a cab driver’s license. I think all you \nneed is a face. This seems to be their big qualification. No blank heads are\nallowed driving cabs in this town. Also helps to have a name with like 8 \nconsonants in a row. Did you ever see some of the letters in these names?\nWhat is the “O” with a line through it, by the way? What planet is that from? \nYou need a chart of the elements if you wanna report the guy. “Yes, officer, \nhis name was Amal and then the symbol for Boron.” “No, it’s not Manganese. \nI had the periodic chart with me at the time.”"], ["user_id", 2], ["created_at", "2020-04-09 02:49:33.253389"], ["updated_at", "2020-04-09 02:49:33.253389"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:38
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:38
+  [1m[36mComedian Load (0.3ms)[0m  [1m[34mSELECT  "comedians".* FROM "comedians" WHERE "comedians"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:38
+  [1m[36mJoke Create (0.6ms)[0m  [1m[32mINSERT INTO "jokes" ("title", "comedian_id", "joke", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Relatable"], ["comedian_id", 2], ["joke", "When I’m in traffic, here’s the thing. I love to drive and I like to \ndrive fast and I’m safe, but I do like to go fast and so slow drivers… irritate\nme, because they’re going so slow and let’s be honest. It’s usually a Prius, \nisn’t it? They’ve got the “coexist” bumper sticker on the back \nlistening to NPR knitting a hemp scarf… If I see a Prius going fast, I’m like: \n“Good for you!” I don’t know why it is. Whenever we pass someone going slow we \nhave to see what they look like. We’re always like… “That’s what you look like. \nI thought so, I thought…” There’s nothing more embarrassing than \nwhen you pass up a slow driver to show them the proper way of driving. You go \naround them and show them how they should be driving and then you hit a red light.\n And you’re watching them slowly creep up in your rearview mirror, and you’re just: \n “Please, change. Please, change. Please, change.” And the light doesn’t change so \n they just creep up alongside of you. “I’m just gonna look down here and touch that. \n I’m gonna see what that is, right there, with that because I have to see this and… \n No, I know you’re next to me but you’re still wrong, even though you caught up. And \n I’m gonna do that with my finger for a while because…” \nI don’t wanna judge. You don’t know why someone’s going slow. You have no idea. \nMaybe they’re transporting a bowl of soup. I don’t know, you know. I really \ndon’t like to judge, except for people who say “libary”. Then I do. \n“Libary”… Really? OK. The place with all the words? OK… You know what word’s not \nin there? “Libary”. No, I don’t like to judge ’cause… I do stupid \nthings, we all do– Everyone does stupid things. But the difference is, when \nyou do something stupid you’re just a person someone saw doing something stupid. \nWhen I do something stupid, it’s a story. I went to a gas station to put gas in \nmy car And there’s a group of teenage boys across the way and they’re like… \nreally cool. They were vaping and… And they were like: “It’s Ellen, oh my God, \nit’s Ellen.” And I’m like… and… then I realized I pulled up, and \nthe gas pump was over here and my tank was back here, on this side of the car. \nThey’re looking at me, and I’m looking at them and… I get back in the car… and \nI pull around. Now, it’s still on the wrong side… because I’ve just pulled around. \nAnd they’re still looking at me… And I’m like: “I don’t wanna look like an idiot.” \nSo, I just filled up the back seat. I just… I’ll buy a new car, I don’t care."], ["user_id", 2], ["created_at", "2020-04-09 02:49:33.259145"], ["updated_at", "2020-04-09 02:49:33.259145"]]
+  ↳ db/seeds.rb:38
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:38
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:73
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:73
+  [1m[36mComedian Load (0.3ms)[0m  [1m[34mSELECT  "comedians".* FROM "comedians" WHERE "comedians"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:73
+  [1m[36mJoke Create (0.4ms)[0m  [1m[32mINSERT INTO "jokes" ("title", "comedian_id", "joke", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Dummy Joke 1"], ["comedian_id", 1], ["joke", "Dummy Joke 1"], ["user_id", 1], ["created_at", "2020-04-09 02:49:33.264755"], ["updated_at", "2020-04-09 02:49:33.264755"]]
+  ↳ db/seeds.rb:73
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:73
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:74
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:74
+  [1m[36mComedian Load (0.3ms)[0m  [1m[34mSELECT  "comedians".* FROM "comedians" WHERE "comedians"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:74
+  [1m[36mJoke Create (0.4ms)[0m  [1m[32mINSERT INTO "jokes" ("title", "comedian_id", "joke", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Dummy Joke 2"], ["comedian_id", 1], ["joke", "Dummy Joke 2"], ["user_id", 1], ["created_at", "2020-04-09 02:49:33.269766"], ["updated_at", "2020-04-09 02:49:33.269766"]]
+  ↳ db/seeds.rb:74
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:74
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:75
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:75
+  [1m[36mComedian Load (0.3ms)[0m  [1m[34mSELECT  "comedians".* FROM "comedians" WHERE "comedians"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:75
+  [1m[36mJoke Create (0.4ms)[0m  [1m[32mINSERT INTO "jokes" ("title", "comedian_id", "joke", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Dummy Joke 3"], ["comedian_id", 1], ["joke", "Dummy Joke 3"], ["user_id", 1], ["created_at", "2020-04-09 02:49:33.274810"], ["updated_at", "2020-04-09 02:49:33.274810"]]
+  ↳ db/seeds.rb:75
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:75
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:76
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:76
+  [1m[36mComedian Load (0.4ms)[0m  [1m[34mSELECT  "comedians".* FROM "comedians" WHERE "comedians"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:76
+  [1m[36mJoke Create (0.5ms)[0m  [1m[32mINSERT INTO "jokes" ("title", "comedian_id", "joke", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Dummy Joke 4"], ["comedian_id", 1], ["joke", "Dummy Joke 4"], ["user_id", 1], ["created_at", "2020-04-09 02:49:33.284994"], ["updated_at", "2020-04-09 02:49:33.284994"]]
+  ↳ db/seeds.rb:76
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:76
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:77
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:77
+  [1m[36mComedian Load (0.2ms)[0m  [1m[34mSELECT  "comedians".* FROM "comedians" WHERE "comedians"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:77
+  [1m[36mJoke Create (0.5ms)[0m  [1m[32mINSERT INTO "jokes" ("title", "comedian_id", "joke", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Dummy Joke 5"], ["comedian_id", 1], ["joke", "Dummy Joke 5"], ["user_id", 1], ["created_at", "2020-04-09 02:49:33.290336"], ["updated_at", "2020-04-09 02:49:33.290336"]]
+  ↳ db/seeds.rb:77
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:77
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:78
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:78
+  [1m[36mComedian Load (0.2ms)[0m  [1m[34mSELECT  "comedians".* FROM "comedians" WHERE "comedians"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:78
+  [1m[36mJoke Create (0.4ms)[0m  [1m[32mINSERT INTO "jokes" ("title", "comedian_id", "joke", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Dummy Joke 6"], ["comedian_id", 1], ["joke", "Dummy Joke 6"], ["user_id", 1], ["created_at", "2020-04-09 02:49:33.295604"], ["updated_at", "2020-04-09 02:49:33.295604"]]
+  ↳ db/seeds.rb:78
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:78
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:79
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:79
+  [1m[36mComedian Load (0.2ms)[0m  [1m[34mSELECT  "comedians".* FROM "comedians" WHERE "comedians"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:79
+  [1m[36mJoke Create (0.3ms)[0m  [1m[32mINSERT INTO "jokes" ("title", "comedian_id", "joke", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Dummy Joke 7"], ["comedian_id", 1], ["joke", "Dummy Joke 7"], ["user_id", 1], ["created_at", "2020-04-09 02:49:33.299812"], ["updated_at", "2020-04-09 02:49:33.299812"]]
+  ↳ db/seeds.rb:79
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:79
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:80
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:80
+  [1m[36mComedian Load (0.2ms)[0m  [1m[34mSELECT  "comedians".* FROM "comedians" WHERE "comedians"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:80
+  [1m[36mJoke Create (0.4ms)[0m  [1m[32mINSERT INTO "jokes" ("title", "comedian_id", "joke", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Dummy Joke 8"], ["comedian_id", 1], ["joke", "Dummy Joke 8"], ["user_id", 1], ["created_at", "2020-04-09 02:49:33.304426"], ["updated_at", "2020-04-09 02:49:33.304426"]]
+  ↳ db/seeds.rb:80
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:80
