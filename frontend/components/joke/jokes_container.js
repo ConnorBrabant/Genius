@@ -3,9 +3,13 @@ import { updateJoke, deleteJoke, fetchJoke } from '../../actions/jokes_actions'
 import Jokes from './jokes'
 
 const msp = (state, ownProps) => {
-    return ({
-    joke: state.entities.jokes[ownProps.location.state.id]
-    })
+    if (Object.keys(state.entities.jokes).length) {
+        return ({
+            joke: state.entities.jokes[ownProps.location.state.id]
+    })}  else {
+        return ( null )
+    }
+
 }
 
 const mdp = dispatch => ({

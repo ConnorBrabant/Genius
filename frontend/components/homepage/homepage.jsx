@@ -11,6 +11,10 @@ class Homepage extends React.Component {
         this.props.fetchJokes();
     }
 
+    componentWillUnmount() {
+        localStorage.removeItem('joke');
+    }
+
     formatRoute(title, comedian) {
         let routeStart = comedian + " " + title;
         let routeSplit = routeStart.split(" ");
@@ -29,9 +33,11 @@ class Homepage extends React.Component {
                     state: {id: joke.id}
                 }}>
             <ul className='chart-jokes' key={joke.id}>
-            <li className='chart-element'>{joke.id}</li>
-            <li className='chart-element'>{joke.title}</li>
-            <li className='chart-element'>{joke.comedian.name}</li>
+            <li key={`${i}-id`} className='chart-element'>{joke.id}</li>
+            <li key={`${i}-img`}><img className='chart-image' src={joke.image} alt='homepage pics'></img>
+            </li>
+            <li key={`${i}-title`} className='chart-element'>{joke.title}</li>
+            <li key={`${i}-comedian`} className='chart-element'>{joke.comedian.name}</li>
             </ul>
             </Link>
             
@@ -39,9 +45,12 @@ class Homepage extends React.Component {
 
         return (
             <div className='homepage'>
-                <h1 className='homepage-title'>CHARTS</h1>
-                <div className='chart-list'>
-                    {jokesLI}
+                <div className='chart-container'>
+                    <h1 className='homepage-title'>CHARTS</h1>
+                    <h2 className='homepage-trending'>trending on ludicrous</h2>
+                    <div className='chart-list'>
+                        {jokesLI}
+                    </div>
                 </div>
             </div>
         )

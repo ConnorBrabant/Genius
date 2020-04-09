@@ -1,5 +1,5 @@
 json.set! joke.id do 
-    json.extract! joke, :id, :title, :joke
+    json.extract! joke, :id, :title, :joke, :image
     json.comedian do 
         json.name comedian.name 
         json.id comedian.id 
