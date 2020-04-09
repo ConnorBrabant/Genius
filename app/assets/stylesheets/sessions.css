@@ -22,14 +22,21 @@
 
 }
 
-.signup-secondary, .signin-main {
+.signin-main {
     font-size: 30px;
     font-weight: 400;
     margin: 0px 0px 20px;
     padding: 1px 0px 0px;
 }
 
-h1, h2 {
+.signup-secondary {
+    font-size: 30px;
+    font-weight: 100;
+    margin: 0px 0px 20px;
+    padding: 1px 0px 0px;
+}
+
+h1 {
     font-family: sans-serif;
     font-weight: 700;
 }
@@ -162,4 +169,18 @@ input {
 .align-demo {
     display: flex;
     justify-content: space-between;
+}
+
+.form-button {
+    display: flex;
+    justify-content: center;
+}
+
+.fa-envelope {
+    margin-right: 5px;
+}
+
+.session-link:hover {
+    border-bottom: 6.5px solid red;
+    padding-bottom: 5.5px;
 }

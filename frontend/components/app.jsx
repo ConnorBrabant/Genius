@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import SignUpContainer from './session/signup_container';
 import SignInContainer from './session/signin_container'
 import HomepageContainer from './homepage/homepage_container';
@@ -14,8 +14,10 @@ export default () => (
         <Modal />
         <Route path='/' component={NavbarContainer}  />
         <Route exact path='/' component={HomepageContainer} />
-        <Route exact path='/:showpage' component={JokeContainer} />
-        <AuthRoute path='/signup' component={SignUpContainer} />
-        <AuthRoute path='/login' component={SignInContainer} />
+        <Switch>
+            <AuthRoute path='/signup' component={SignUpContainer} />
+            <AuthRoute path='/login' component={SignInContainer} />
+            <Route exact path='/:showpage' component={JokeContainer} />
+        </Switch>
     </div>
 )

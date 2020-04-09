@@ -17,7 +17,6 @@ class SignUp extends React.Component {
             formPresent: false
         }
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.resetInput = this.resetInput.bind(this);
         this.demoUser = this.demoUser.bind(this);
     }
 
@@ -27,20 +26,12 @@ class SignUp extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.createUser(this.state).then(this.resetInput);
+        this.props.createUser(this.state).then(this.props.closeModal);
     }
 
-    resetInput() {
-        this.setState({
-            username: '',
-            password: '',
-            email: '',
-        })
-        this.props.closeModal();
-    }
-
-    demoUser() {
-        this.props.loginUser({ 'username': 'demo', 'password': 'demopassword' }).then(this.resetInput);
+    demoUser(e) {
+        e.preventDefault();
+        this.props.loginUser({ 'username': 'demo', 'password': 'demopassword' }).then(this.props.closeModal);
     }
 
     showForm(errors) {
@@ -63,11 +54,11 @@ class SignUp extends React.Component {
                 <label htmlFor='email' className='signup-child signin-label'>Email</label>
                 <input id='email' className='signup-child' type='text' onChange={this.update('email')} value={this.state.email} />
                 <label htmlFor='password' className='signup-child signin-label' >Password</label>
-                <input id='password' className='signup-child' type='text' onChange={this.update('password')} value={this.state.password} />
+                <input id='password' className='signup-child' type='password' onChange={this.update('password')} value={this.state.password} />
                 <p className='terms-p'>By clicking "Create Account", you are indicating that you have read and agree to the Terms of Service.</p>
                 <div className='align-demo'>
                     <button className='signup-button signup-child' type='submit'>Create Account</button>
-                    <button className='signup-button' onClick={this.demoUser} >Demo</button>
+                    <button className='signup-button' onClick={(e) => this.demoUser(e)} >Demo</button>
                 </div>
             </form>
         )
@@ -79,7 +70,10 @@ class SignUp extends React.Component {
             <div className='session-forms-page signin'>
                 <h1 className='signup-main'>SIGN UP</h1>
                 <h2 className='signup-secondary'>and show off your genius</h2>
-                <button className='button form-button' onClick={() => this.state.formPresent ? this.setState({ formPresent: false }) : this.setState({ formPresent: true })}>Sign up with email</button>
+                <button className='button form-button' onClick={() => this.state.formPresent ? this.setState({ formPresent: false }) : this.setState({ formPresent: true })}>
+                    <i className="fas fa-envelope"></i>
+                    Sign up with email
+                </button>
                 {this.state.formPresent ? this.showForm(errors) : null}
                 <div className='modal-form'>
                     <span className='signup-signin'>Already have an account? </span>

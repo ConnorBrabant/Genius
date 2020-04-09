@@ -12,12 +12,12 @@ class Homepage extends React.Component {
     }
 
     formatRoute(title, comedian) {
-    let routeStart = comedian + " " + title;
-    let routeSplit = routeStart.split(" ");
-    let capitalize = routeSplit[0][0].toUpperCase() + routeSplit[0].slice(1).split("").map(ele => ele.toLowerCase()).join("");
-    let lowerCase = routeSplit.slice(1).map(ele => ele.toLowerCase());
-    let formattedRoute = [capitalize].concat(lowerCase);
-    return formattedRoute.join("-") + "-transcripts"
+        let routeStart = comedian + " " + title;
+        let routeSplit = routeStart.split(" ");
+        let capitalize = routeSplit[0][0].toUpperCase() + routeSplit[0].slice(1).split("").map(ele => ele.toLowerCase()).join("");
+        let lowerCase = routeSplit.slice(1).map(ele => ele.toLowerCase());
+        let formattedRoute = [capitalize].concat(lowerCase);
+        return formattedRoute.join("-") + "-transcripts"
     } 
 
     render() {
