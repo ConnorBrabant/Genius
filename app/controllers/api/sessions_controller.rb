@@ -6,7 +6,11 @@ class Api::SessionsController < ApplicationController
             login!(@user)
             render 'api/users/show'
         else 
-            render json: ['Invalid Login Credentials'], status: 401
+            if User.find_by(username: params[:user][:username])
+                render json: ['Password is not valid'], status: 401
+            else 
+                render json: ['Login is not valid'], status: 401
+            end
         end 
     end
 

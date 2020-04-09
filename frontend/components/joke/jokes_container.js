@@ -3,7 +3,6 @@ import { updateJoke, deleteJoke, fetchJoke } from '../../actions/jokes_actions'
 import Jokes from './jokes'
 
 const msp = (state, ownProps) => {
-    debugger
     return ({
     joke: state.entities.jokes[ownProps.location.state.id]
     })
