@@ -11,12 +11,14 @@ class Api::JokesController < ApplicationController
 
     def create
         @joke = Joke.new(joke_params)
-        # @joke_comedian = @joke.comedian 
-        @joke_user = @joke.user 
+        @joke.user_id = current_user.id 
+        @joke.comedian_id = Comedian.find_by(name: params[:joke][:comedian]).id
         if @joke.save
+            @joke_comedian = @joke.comedian 
+            @joke_user = @joke.user 
             render 'api/jokes/show'
         else
-            render json: @users.errors.full_messages, status: 401
+            render json: @joke.errors.full_messages, status: 401
         end
     end
 
@@ -39,4 +41,8 @@ class Api::JokesController < ApplicationController
         end 
     end
 
+    private 
+    def joke_params 
+        params.require(:joke).permit(:title, :joke, :image)
+    end
 end 

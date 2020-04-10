@@ -1,0 +1,76 @@
+.show-whole {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: #f7f7f7;
+}
+
+.show-header {
+    position: relative;
+    display: flex;
+    background-color: black;
+    width: 100%;
+    padding: 36px 0px 50px;
+}
+
+.show-image {
+    height: 220px;
+    width: 200px;
+    position: relative;
+    left: 23%;
+    border: 2px solid lightslategray;
+}
+
+.show-info {
+    position: relative;
+    left: 23%;
+    margin-top: 30px;
+    display:flex;
+    flex-direction: column;
+    padding-left: 15px;
+}
+
+.show-title {
+    color: #ffff64;
+    font-weight: 700px;
+    font-size: 36px;
+    margin: -4.8px 0px 0px;
+}
+
+.show-comedian {
+    margin-top: 10px;
+    font-size: 24px;
+    color: #FFFF    
+}
+
+
+.show-content {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    max-width: 950px;
+    padding: 10px;
+
+}
+
+.show-comments {
+    width: 40%;
+} 
+
+.show-description {
+    margin-top: 40px;
+    word-wrap: initial;
+    font-size: 18px;
+    padding: 0px 16px 0px 24px;
+    width: 60%;
+    font-size: 1.125em;
+    margin-right: 20px;
+    font-family: Programme,sans-serif;
+    font-weight: 10;
+}
+
+.show-comments {
+    margin-top: 15px;
+    padding: 0px 0px 0px 22px;
+}
