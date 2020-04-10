@@ -5,8 +5,9 @@ import SignInContainer from './session/signin_container'
 import HomepageContainer from './homepage/homepage_container';
 import NavbarContainer from './navbar/navbar_container'
 import JokeContainer from './joke/jokes_container'
+import NewJokeContainer from './joke/newjoke_container'
 import Modal from './modal'
-import { AuthRoute, ProtectedRouter } from '../util/route_utils'
+import { AuthRoute, ProtectedRoute } from '../util/route_utils'
 
 
 export default () => (
@@ -17,6 +18,7 @@ export default () => (
         <Switch>
             <AuthRoute path='/signup' component={SignUpContainer} />
             <AuthRoute path='/login' component={SignInContainer} />
+            <ProtectedRoute exact path='/new' component={NewJokeContainer} />
             <Route exact path='/:showpage' component={JokeContainer} />
         </Switch>
     </div>

@@ -2,35 +2,67 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 .show-header {
+    position: relative;
     display: flex;
     background-color: green;
     justify-content: center;
+    width: 100%;
+    padding: 36px 0px 24px;
 }
 
 .show-image {
-    height: 200px;
+    height: 220px;
     width: 200px;
 }
 
-.show-info {
-    display:flex;
-    flex-direction: column;
-}
+
 .show-content {
     display: flex;
     justify-content: center;
     background-color: red;
-    width: 70vh;
+    max-width: 950px;
+    padding: 10px;
+
 }
 
-.show-content {
-    width: 200px;
+.show-description {
+    padding: 0px 16px;
+    width: 60%;
+    font-size: 20px;
+    margin-right: 20px;
 }
 
 .show-comments {
-    width: 100px;
+    width: 40%;
+    background-color: orange;
+} 
+
+.show-info {
+    margin-top: 30px;
+    display:flex;
+    flex-direction: column;
+    padding-left: 15px;
 }
 
+.show-title {
+    color: #ffff64;
+    font-weight: 700px;
+    font-size: 24px;
+    margin: -4.8px 0px 0px;
+}
+
+.show-comedian {
+    margin-top: 10px;
+    font-size: 21px;
+    color: #FFFF    
+}
+
+.show-description {
+    /* display: flex;
+    flex-wrap: wrap; */
+    overflow-wrap: break-word;
+}
