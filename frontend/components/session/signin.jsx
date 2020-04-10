@@ -50,6 +50,7 @@ class SignIn extends React.Component{
     render() {
         const errors = this.props.errors.map((error, i) => <li key={i}>{error}</li>)
         return (
+            <div className='session-page'>
             <div className='session-forms-page signin'>
                 <h2 className='signin-main'>Sign In</h2>
                 <form onSubmit={this.handleSubmit} className='signin-form'>
@@ -67,6 +68,7 @@ class SignIn extends React.Component{
                     <span className='signup-signin'>Don't have an account? </span>
                     <span className='signup-signin modal-link' onClick={() => this.props.openModal('signup')}> Sign up here.</span>
                 </div>
+            </div>
             </div>
         )
     }

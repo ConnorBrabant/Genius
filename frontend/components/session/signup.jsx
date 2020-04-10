@@ -67,9 +67,10 @@ class SignUp extends React.Component {
     render() {
         const errors = this.props.errors.map((error, i) => <li key={i}>{error}</li>)
         return (
+            <div className='session-page'>
             <div className='session-forms-page signin'>
                 <h1 className='signup-main'>SIGN UP</h1>
-                <h2 className='signup-secondary'>and show off your genius</h2>
+                <h2 className='signup-secondary'>and see if you got jokes</h2>
                 <button className='button form-button' onClick={() => this.state.formPresent ? this.setState({ formPresent: false }) : this.setState({ formPresent: true })}>
                     <i className="fas fa-envelope"></i>
                     Sign up with email
@@ -79,6 +80,7 @@ class SignUp extends React.Component {
                     <span className='signup-signin'>Already have an account? </span>
                     <span className='signup-signin modal-link' onClick={() => this.props.openModal('signin')}>Sign in here.</span>
                 </div>
+            </div>
             </div>
         )
     }
