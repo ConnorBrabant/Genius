@@ -70,7 +70,7 @@ class SignUp extends React.Component {
             <div className='session-page'>
             <div className='session-forms-page signin'>
                 <h1 className='signup-main'>SIGN UP</h1>
-                <h2 className='signup-secondary'>and show off your genius</h2>
+                <h2 className='signup-secondary'>and see if you got jokes</h2>
                 <button className='button form-button' onClick={() => this.state.formPresent ? this.setState({ formPresent: false }) : this.setState({ formPresent: true })}>
                     <i className="fas fa-envelope"></i>
                     Sign up with email

@@ -10,22 +10,21 @@
     position: relative;
     display: flex;
     background-color: black;
-    justify-content: center;
     width: 100%;
-    padding: 36px 0px 24px;
+    padding: 36px 0px 50px;
 }
 
 .show-image {
     height: 220px;
     width: 200px;
     position: relative;
-    right: 15.5%;
+    left: 23%;
     border: 2px solid lightslategray;
 }
 
 .show-info {
     position: relative;
-    right: 15.5%;
+    left: 23%;
     margin-top: 30px;
     display:flex;
     flex-direction: column;
@@ -41,7 +40,7 @@
 
 .show-comedian {
     margin-top: 10px;
-    font-size: 21px;
+    font-size: 24px;
     color: #FFFF    
 }
 
