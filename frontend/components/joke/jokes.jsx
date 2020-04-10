@@ -19,11 +19,13 @@ class Joke extends React.Component {
             this.setState({ joke: this.props.joke })
         } else {
             this.setState({ joke: JSON.parse(localStorage.getItem('joke')) })
-        }}
+        }
+    }
+
 
     render () {
-
     return (
+        
         <div className='show-whole'> 
             <div className='show-header'>
                 <img className='show-image' src={this.state.joke.image}></img>

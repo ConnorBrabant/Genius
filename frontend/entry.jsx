@@ -7,16 +7,6 @@ import { fetchJoke, fetchJokes } from './util/jokes'
 document.addEventListener('DOMContentLoaded', () => {
 
     let store;
-    // if (window.currentUser && window.currentJoke) {
-    //     const preloadedState = {
-    //         entities: {
-    //             users: { [window.currentUser.id]: window.currentUser }
-    //         },
-    //         session: { id: window.currentUser.id },
-    //         currentJoke: window.currentJoke
-    //         };
-    //     store = configureStore(preloadedState);
-    //     delete window.currentUser;
     if (window.currentUser) {
         const preloadedState = {
             entities: {

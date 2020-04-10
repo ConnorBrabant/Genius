@@ -24,7 +24,9 @@ export default (props) => {
                     <li>VIDEOS</li>
                     <li>SHOP</li>
                     <li>FORUMS</li>
-                    <li>ADD A SONG</li>
+                    <li>
+                        <Link className='newjokelink' to='/new'>ADD A SONG</Link>
+                    </li>
                     <li>ICONS</li>
                 </ul>
             </section>

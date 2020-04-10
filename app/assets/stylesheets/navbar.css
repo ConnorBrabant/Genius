@@ -46,6 +46,7 @@
     color: white;
     justify-content: center;
     align-items: center;
+    background-color: black;
 }
 
 .navbar-menu li {
@@ -53,8 +54,14 @@
     padding: 0px 36px;
     font-family: sans-serif;
     font-size: 13px;
+    text-decoration: none;
+    color: white;
 }
 
 .navbar-menu li:last-of-type {
     border: none;
+}
+
+.newjokelink {
+    color: white;
 }

@@ -13,9 +13,10 @@ Comedian.create(name: 'Jerry Seinfeld', description: 'Funny guy from Massapequa 
 and starred in the classic Seinfeld. Big Mets fan.')
 Comedian.create(name: 'Ellen DeGeneres', description: 'Host of the arguably the
 greatest day time talk show. Loves animals and even has a gorilla sanctuary')
+Comedian.create(name: 'John Mulaney', description: 'funny guy')
 
 Joke.create(title: "I'm Telling You for the Last Time", comedian_id: 1, 
-joke: "So, anyway, I’m thrilled to be back here in New York. 
+joke: "So, anyway, I’m thrilled to be back here in New York.
 I love how certain things about New York never change. They’re always constant, 
 they’re always there for you. The cabbies and the BO. What is with the BO and 
 these guys? How long are these shifts? Can’t we get this man a ten minute break
@@ -70,7 +71,28 @@ And they’re still looking at me… And I’m like: “I don’t wanna look lik
 So, I just filled up the back seat. I just… I’ll buy a new car, I don’t care.',
 user_id: 2, image: 'https://m.media-amazon.com/images/M/MV5BYTlmYzI2NTMtYmZmOS00ZTYzLTg2ZTUtZDhkZjhkZDVjMWQwXkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_SY1000_CR0,0,675,1000_AL_.jpg')
 
-Joke.create(title: 'Dummy Joke 1', joke: 'Dummy Joke 1', comedian_id: 1, user_id: 1, image: 'https://m.media-amazon.com/images/M/MV5BYTlmYzI2NTMtYmZmOS00ZTYzLTg2ZTUtZDhkZjhkZDVjMWQwXkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_SY1000_CR0,0,675,1000_AL_.jpg')
+Joke.create(title: 'New in Town', 
+joke: "I also watch this show called Cold Case Files. 
+On Cold Case Files, they solve old murders, and it’s really interesting cause what I learned from it is that it was really easy to get away with murder before they knew about DNA. 
+It was ridiculously easy. 
+Like, what was even going on back then? 
+What was a murder investigation like in 1935?? One cop would just walk in and be like, “Detective! We found a pool of the killer’s blood in that hallway!” and he would just be like “Hmmm… gross! Mop it up. 
+Now then, back to my hunch… 
+Hmmmmmm…. Look for clues.
+I’ll tell you what we’ll do! 
+We’ll draw chalk around the body is. That way, we’ll know where it was…” 
+A couple years ago, I saw this movie called Public Enemies with Johnny Depp, it was about old bank robbers and stuff. 
+Here’s how easy it was to get away with bank robbery back in the 30’s. 
+As long as you weren’t still there when the police arrived, you had a 99% chance of getting away with it. 
+To the point that, like, those old bank robbers, they take credit for the bank robberies! 
+Like, they come running out of there and they’re like “Ha ha ha! And if anyone asks, you tell em it was Golden Joe and the Suggins Gang!” 
+And then they like shoot “Suggins” into the side of the wall. 
+It’s like, what, were bullets free back then? And they don’t even disguise themselves! 
+They dress up for the bank robbery. 
+They’re rolling in there in, like, big suits and hats like they’re going to church in Atlanta. 
+They make a day of it!",
+comedian_id: 3, user_id: 1, image: 'https://m.media-amazon.com/images/M/MV5BYTlmYzI2NTMtYmZmOS00ZTYzLTg2ZTUtZDhkZjhkZDVjMWQwXkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_SY1000_CR0,0,675,1000_AL_.jpg')
+
 Joke.create(title: 'Dummy Joke 2', joke: 'Dummy Joke 2', comedian_id: 1, user_id: 1, image: 'https://m.media-amazon.com/images/M/MV5BYTlmYzI2NTMtYmZmOS00ZTYzLTg2ZTUtZDhkZjhkZDVjMWQwXkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_SY1000_CR0,0,675,1000_AL_.jpg')
 Joke.create(title: 'Dummy Joke 3', joke: 'Dummy Joke 3', comedian_id: 1, user_id: 1, image: 'https://m.media-amazon.com/images/M/MV5BYTlmYzI2NTMtYmZmOS00ZTYzLTg2ZTUtZDhkZjhkZDVjMWQwXkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_SY1000_CR0,0,675,1000_AL_.jpg')
 Joke.create(title: 'Dummy Joke 4', joke: 'Dummy Joke 4', comedian_id: 1, user_id: 1, image: 'https://m.media-amazon.com/images/M/MV5BYTlmYzI2NTMtYmZmOS00ZTYzLTg2ZTUtZDhkZjhkZDVjMWQwXkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_SY1000_CR0,0,675,1000_AL_.jpg')
