@@ -24,9 +24,11 @@
 .chart-container {
     display: flex;
     width: 90vh;
-    height: 900px;
+    min-height: 900px;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
 }
 .chart-jokes {
     height: 74px;
@@ -59,4 +61,31 @@ a {
 .chart-image {
     width: 60px;
     height: 60px;
+}
+
+.load-button {
+    color: rgb(0, 0, 0);
+    overflow-wrap: break-word;
+    word-break: break-word;
+    background-color: transparent;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Programme, sans-serif;
+    font-size: 0.875rem;
+    line-height: 1;
+    text-align: center;
+    vertical-align: top;
+    user-select: none;
+    -webkit-appearance: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-color: rgb(0, 0, 0);
+    transition: background-color 0.1s ease 0s, color 0.1s ease 0s;
+    border-width: 2px;
+    border-style: solid;
+    margin: 0px;
+    padding: 0.75rem 1.313rem;
+    width: 140px;
+    justify-content: center;
+    margin-top: 40px;
 }
