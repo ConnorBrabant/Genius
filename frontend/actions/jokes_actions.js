@@ -19,8 +19,8 @@ const removeJoke = () => ({
     type: REMOVE_JOKE,
 })
 
-export const fetchJokes = () => dispatch => (
-    JokesUtil.fetchJokes().then(jokes => dispatch(receiveJokes(jokes)))
+export const fetchJokes = (start) => dispatch => (
+    JokesUtil.fetchJokes(start).then(jokes => dispatch(receiveJokes(jokes)))
 );
 
 export const fetchJoke = (jokeId) => dispatch => (

@@ -11,7 +11,7 @@ const msp = (state) => {
 
 const mdp = dispatch => ({
     logoutUser: () => dispatch(logoutUser),
-    fetchJokes: () => dispatch(fetchJokes())
+    fetchJokes: (start) => dispatch(fetchJokes(start))
 })
 
 export default connect(msp, mdp)(Homepage);

@@ -131,9 +131,9 @@ var removeJoke = function removeJoke() {
   };
 };
 
-var fetchJokes = function fetchJokes() {
+var fetchJokes = function fetchJokes(start) {
   return function (dispatch) {
-    return _util_jokes__WEBPACK_IMPORTED_MODULE_0__["fetchJokes"]().then(function (jokes) {
+    return _util_jokes__WEBPACK_IMPORTED_MODULE_0__["fetchJokes"](start).then(function (jokes) {
       return dispatch(receiveJokes(jokes));
     });
   };
@@ -392,7 +392,7 @@ var Homepage = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      this.props.fetchJokes().then(function (jokes) {
+      this.props.fetchJokes(0).then(function (jokes) {
         var generatedJokes = _this2.generateJokes(jokes);
 
         _this2.setState({
@@ -424,6 +424,7 @@ var Homepage = /*#__PURE__*/function (_React$Component) {
     value: function generateJokes(jokes) {
       var _this3 = this;
 
+      var idx = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
       var jokesLI = jokes.jokes.map(function (joke, i) {
         var route = _this3.formatRoute(joke.title, joke.comedian.name);
 
@@ -431,7 +432,7 @@ var Homepage = /*#__PURE__*/function (_React$Component) {
           to: {
             pathname: "/".concat(route),
             state: {
-              id: i
+              id: i + idx
             }
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
@@ -440,7 +441,7 @@ var Homepage = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
           key: "".concat(i, "-id"),
           className: "chart-element"
-        }, i + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+        }, i + 1 + idx), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
           key: "".concat(i, "-img")
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
           className: "chart-image",
@@ -461,8 +462,8 @@ var Homepage = /*#__PURE__*/function (_React$Component) {
     value: function loadMoreJokes() {
       var _this4 = this;
 
-      this.props.fetchJokes().then(function (jokes) {
-        var generatedJokes = _this4.generateJokes(jokes);
+      this.props.fetchJokes(this.state.jokes.length).then(function (jokes) {
+        var generatedJokes = _this4.generateJokes(jokes, _this4.state.jokes.length);
 
         _this4.setState({
           jokes: _this4.state.jokes.concat(generatedJokes)
@@ -529,8 +530,8 @@ var mdp = function mdp(dispatch) {
     logoutUser: function logoutUser() {
       return dispatch(_actions_sessions_session_actions__WEBPACK_IMPORTED_MODULE_2__["logoutUser"]);
     },
-    fetchJokes: function fetchJokes() {
-      return dispatch(Object(_actions_jokes_actions__WEBPACK_IMPORTED_MODULE_3__["fetchJokes"])());
+    fetchJokes: function fetchJokes(start) {
+      return dispatch(Object(_actions_jokes_actions__WEBPACK_IMPORTED_MODULE_3__["fetchJokes"])(start));
     }
   };
 };
@@ -1748,7 +1749,11 @@ __webpack_require__.r(__webpack_exports__);
 
   switch (action.type) {
     case _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_JOKES"]:
-      return action.jokes;
+      var newJokes = {};
+      action.jokes.forEach(function (ele, i) {
+        return newJokes[i + Object.keys(state).length] = action.jokes[i];
+      });
+      return Object.assign({}, state, newJokes);
 
     case _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_JOKE"]:
       return Object.assign({}, state, action.joke);
@@ -2002,10 +2007,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postJoke", function() { return postJoke; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateJoke", function() { return updateJoke; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteJoke", function() { return deleteJoke; });
-var fetchJokes = function fetchJokes() {
+var fetchJokes = function fetchJokes(start) {
   return $.ajax({
     method: 'GET',
-    url: '/api/jokes'
+    url: '/api/jokes',
+    data: {
+      start: start
+    }
   });
 };
 var fetchJoke = function fetchJoke(jokeId) {

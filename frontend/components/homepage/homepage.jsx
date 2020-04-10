@@ -12,7 +12,7 @@ class Homepage extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchJokes().then((jokes) => {
+        this.props.fetchJokes(0).then((jokes) => {
             let generatedJokes = this.generateJokes(jokes);
             this.setState({ jokes: generatedJokes })
         });
@@ -31,16 +31,16 @@ class Homepage extends React.Component {
         return formattedRoute.join("-") + "-transcripts"
     } 
 
-    generateJokes(jokes) {
+    generateJokes(jokes, idx = 0) {
         const jokesLI = jokes.jokes.map((joke, i) => {
             let route = this.formatRoute(joke.title, joke.comedian.name);
             return (
                 <Link to={{
                     pathname: `/${route}`,
-                    state: { id: i }
+                    state: { id: i + idx }
                 }}>
                     <ul className='chart-jokes' key={joke.id}>
-                        <li key={`${i}-id`} className='chart-element'>{i + 1}</li>
+                        <li key={`${i}-id`} className='chart-element'>{i + 1 + idx}</li>
                         <li key={`${i}-img`}><img className='chart-image' src={joke.image} alt='homepage pics'></img>
                         </li>
                         <li key={`${i}-title`} className='chart-element'>{joke.title}</li>
@@ -53,8 +53,8 @@ class Homepage extends React.Component {
     }
 
     loadMoreJokes() {
-        this.props.fetchJokes().then((jokes) => {
-            let generatedJokes = this.generateJokes(jokes);
+        this.props.fetchJokes(this.state.jokes.length).then((jokes) => {
+            let generatedJokes = this.generateJokes(jokes, this.state.jokes.length);
             this.setState({ jokes: this.state.jokes.concat(generatedJokes) })
         });
     }
