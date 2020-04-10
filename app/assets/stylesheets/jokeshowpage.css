@@ -3,12 +3,13 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    background-color: #f7f7f7;
 }
 
 .show-header {
     position: relative;
     display: flex;
-    background-color: green;
+    background-color: black;
     justify-content: center;
     width: 100%;
     padding: 36px 0px 24px;
@@ -17,31 +18,14 @@
 .show-image {
     height: 220px;
     width: 200px;
+    position: relative;
+    right: 15.5%;
+    border: 2px solid lightslategray;
 }
-
-
-.show-content {
-    display: flex;
-    justify-content: center;
-    background-color: red;
-    max-width: 950px;
-    padding: 10px;
-
-}
-
-.show-description {
-    padding: 0px 16px;
-    width: 60%;
-    font-size: 20px;
-    margin-right: 20px;
-}
-
-.show-comments {
-    width: 40%;
-    background-color: orange;
-} 
 
 .show-info {
+    position: relative;
+    right: 15.5%;
     margin-top: 30px;
     display:flex;
     flex-direction: column;
@@ -51,7 +35,7 @@
 .show-title {
     color: #ffff64;
     font-weight: 700px;
-    font-size: 24px;
+    font-size: 36px;
     margin: -4.8px 0px 0px;
 }
 
@@ -61,8 +45,33 @@
     color: #FFFF    
 }
 
+
+.show-content {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    max-width: 950px;
+    padding: 10px;
+
+}
+
+.show-comments {
+    width: 40%;
+} 
+
 .show-description {
-    /* display: flex;
-    flex-wrap: wrap; */
-    overflow-wrap: break-word;
+    margin-top: 40px;
+    word-wrap: initial;
+    font-size: 18px;
+    padding: 0px 16px 0px 24px;
+    width: 60%;
+    font-size: 1.125em;
+    margin-right: 20px;
+    font-family: Programme,sans-serif;
+    font-weight: 10;
+}
+
+.show-comments {
+    margin-top: 15px;
+    padding: 0px 0px 0px 22px;
 }
