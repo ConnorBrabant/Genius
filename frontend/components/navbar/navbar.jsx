@@ -7,7 +7,7 @@ export default (props) => {
         <div className='navbar'>
             <section className='navbar-main'>
                 <p>search</p>
-                <Link exact to='/' className='navbar-title'>LUDICROUS</Link>
+                <Link to='/' className='navbar-title'>LUDICROUS</Link>
                 <ul className='login-options'>
                     <li className='nav iq'>EARN IQ</li>
                     <li className='nav messages'>MESSAGES</li>
@@ -19,15 +19,15 @@ export default (props) => {
             </section>
             <section className='navbar-menu'>
                 <ul>
-                    <li>FEATURED</li>
-                    <li>CHARTS</li>
-                    <li>VIDEOS</li>
-                    <li>SHOP</li>
-                    <li>FORUMS</li>
-                    <li>
-                        <Link className='newjokelink' to='/new'>ADD A SONG</Link>
+                    <li className='nav featured'>FEATURED</li>
+                    <li className='nav charts'>CHARTS</li>
+                    <li className='nav videos'>VIDEOS</li>
+                    <li className='nav shop'>SHOP</li>
+                    <li className='nav forums'>FORUMS</li>
+                    <li className='nav new'>
+                        <Link className='newjokelink' to='/new'>ADD A JOKE</Link>
                     </li>
-                    <li>ICONS</li>
+                    <li className='nav icons'>ICONS</li>
                 </ul>
             </section>
         </div>
@@ -45,13 +45,12 @@ export default (props) => {
                 </section>
                 <section className='navbar-menu'>
                     <ul>
-                        <li>FEATURED</li>
-                        <li>CHARTS</li>
-                        <li>VIDEOS</li>
-                        <li>SHOP</li>
-                        <li>FORUMS</li>
-                        <li>ADD A JOKE</li>
-                        <li>ICONS</li>
+                        <li className='nav featured'>FEATURED</li>
+                        <li className='nav charts'>CHARTS</li>
+                        <li className='nav videos'>VIDEOS</li>
+                        <li className='nav shop'>SHOP</li>
+                        <li className='nav forums'>FORUMS</li>
+                        <li className='nav icons'>ICONS</li>
                     </ul>
                 </section>
             </div>
@@ -69,13 +68,12 @@ export default (props) => {
                 </section>
                 <section className='navbar-menu'>
                     <ul>
-                        <li>FEATURED</li>
-                        <li>CHARTS</li>
-                        <li>VIDEOS</li>
-                        <li>SHOP</li>
-                        <li>FORUMS</li>
-                        <li>ADD A JOKE</li>
-                        <li>ICONS</li>
+                        <li className='nav featured'>FEATURED</li>
+                        <li className='nav charts'>CHARTS</li>
+                        <li className='nav videos'>VIDEOS</li>
+                        <li className='nav shop'>SHOP</li>
+                        <li className='nav forums'>FORUMS</li>
+                        <li className='nav icons'>ICONS</li>
                     </ul>
                 </section>
             </div>

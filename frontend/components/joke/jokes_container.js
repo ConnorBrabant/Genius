@@ -6,10 +6,7 @@ const msp = (state, ownProps) => {
     if (Object.keys(state.entities.jokes).length) {
         return ({
             joke: state.entities.jokes[ownProps.location.state.id]
-    })}  else {
-        return ( null )
-    }
-
+    })} 
 }
 
 const mdp = dispatch => ({

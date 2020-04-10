@@ -1,15 +1,7 @@
 json.set! joke.id do 
-    json.extract! joke, :id, :title, :image, :joke
-    # formatJoke = '';
-    # joke[:joke].each_char.with_index do |char, i|
-    #     debugger
-    #     if (char + joke[:joke][i+1]) == '. ' 
-    #         formatJoke += ".\n"
-    #     else
-    #         formatJoke += char 
-    #     end 
-    # end
-    # json.set! :joke, formatJoke
+    json.extract! joke, :id, :title, :image
+    deformatJoke = joke[:joke].tr("\n", "")
+    json.set! :joke, deformatJoke
     json.comedian do 
         json.name comedian.name 
         json.id comedian.id 

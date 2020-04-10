@@ -22,10 +22,29 @@ class Joke extends React.Component {
         }
     }
 
+    componentDidUpdate() {
+        this.formatJoke();
+    }
+
+    formatJoke() {
+        const jokeHTML = document.getElementById('formatJoke')
+        const structureJoke = this.state.joke.joke.split(" ");
+        const jokeWithBreaks = []
+        for (let i = 0; i < structureJoke.length; i++) {
+            if (structureJoke[i].includes('.')) {
+                jokeWithBreaks.push(structureJoke[i]);
+                jokeWithBreaks.push('<br></br>');
+            } else {
+                jokeWithBreaks.push(structureJoke[i])
+            }
+        }
+        let formattedJoke = jokeWithBreaks.join(" ");
+        jokeHTML.innerHTML = formattedJoke;
+    }
+
 
     render () {
     return (
-        
         <div className='show-whole'> 
             <div className='show-header'>
                 <img className='show-image' src={this.state.joke.image}></img>
@@ -35,9 +54,7 @@ class Joke extends React.Component {
                 </div>
             </div>
             <div className='show-content'>
-                <div className='show-description'>
-                    {this.state.joke.joke}
-                </div>
+                <p id='formatJoke' className='show-description'></p>
                 <div className='show-comments'>
                     Comments go here 
                 </div>
