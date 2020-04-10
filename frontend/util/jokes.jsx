@@ -1,7 +1,8 @@
-export const fetchJokes = () => (
+export const fetchJokes = (start) => (
     $.ajax({
         method: 'GET',
-        url: '/api/jokes'
+        url: '/api/jokes',
+        data: { start }
     })
 )
 

@@ -4,7 +4,9 @@ export default (state = {}, action) => {
     Object.freeze(state);
     switch (action.type) {
         case RECEIVE_JOKES:
-            return action.jokes;
+            let newJokes = {}
+            action.jokes.forEach((ele, i) => newJokes[i + Object.keys(state).length] = action.jokes[i])
+            return Object.assign({}, state, newJokes);
         case RECEIVE_JOKE:
             return Object.assign({}, state, action.joke)
         case REMOVE_JOKE:

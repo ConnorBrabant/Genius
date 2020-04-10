@@ -4,6 +4,7 @@ class Api::JokesController < ApplicationController
             SELECT * 
             FROM jokes
             ORDER BY created_at 
+            OFFSET #{params[:start]}
             LIMIT 7")
         render :index 
     end 
