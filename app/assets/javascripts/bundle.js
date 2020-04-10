@@ -375,15 +375,30 @@ var Homepage = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(Homepage);
 
   function Homepage(props) {
+    var _this;
+
     _classCallCheck(this, Homepage);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.state = {
+      jokes: ''
+    };
+    _this.loadMoreJokes = _this.loadMoreJokes.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Homepage, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchJokes();
+      var _this2 = this;
+
+      this.props.fetchJokes().then(function (jokes) {
+        var generatedJokes = _this2.generateJokes(jokes);
+
+        _this2.setState({
+          jokes: generatedJokes
+        });
+      });
     }
   }, {
     key: "componentWillUnmount",
@@ -405,18 +420,18 @@ var Homepage = /*#__PURE__*/function (_React$Component) {
       return formattedRoute.join("-") + "-transcripts";
     }
   }, {
-    key: "render",
-    value: function render() {
-      var _this = this;
+    key: "generateJokes",
+    value: function generateJokes(jokes) {
+      var _this3 = this;
 
-      var jokesLI = this.props.jokes.map(function (joke, i) {
-        var route = _this.formatRoute(joke.title, joke.comedian.name);
+      var jokesLI = jokes.jokes.map(function (joke, i) {
+        var route = _this3.formatRoute(joke.title, joke.comedian.name);
 
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Link"], {
           to: {
             pathname: "/".concat(route),
             state: {
-              id: joke.id
+              id: i
             }
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
@@ -425,7 +440,7 @@ var Homepage = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
           key: "".concat(i, "-id"),
           className: "chart-element"
-        }, joke.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+        }, i + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
           key: "".concat(i, "-img")
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
           className: "chart-image",
@@ -439,6 +454,24 @@ var Homepage = /*#__PURE__*/function (_React$Component) {
           className: "chart-element"
         }, joke.comedian.name)));
       });
+      return jokesLI;
+    }
+  }, {
+    key: "loadMoreJokes",
+    value: function loadMoreJokes() {
+      var _this4 = this;
+
+      this.props.fetchJokes().then(function (jokes) {
+        var generatedJokes = _this4.generateJokes(jokes);
+
+        _this4.setState({
+          jokes: _this4.state.jokes.concat(generatedJokes)
+        });
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "homepage"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -448,8 +481,12 @@ var Homepage = /*#__PURE__*/function (_React$Component) {
       }, "CHARTS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", {
         className: "homepage-trending"
       }, "trending on ludicrous"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        id: "main-chart",
         className: "chart-list"
-      }, jokesLI)));
+      }, this.state.jokes), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        className: "load-button",
+        onClick: this.loadMoreJokes
+      }, "Load More")));
     }
   }]);
 

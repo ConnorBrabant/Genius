@@ -1,6 +1,10 @@
 class Api::JokesController < ApplicationController 
     def index 
-        @jokes = Joke.all 
+        @jokes = Joke.find_by_sql("
+            SELECT * 
+            FROM jokes
+            ORDER BY created_at 
+            LIMIT 7")
         render :index 
     end 
 

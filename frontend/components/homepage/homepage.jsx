@@ -5,10 +5,17 @@ import ShowpageContainer from '../joke/jokes_container'
 class Homepage extends React.Component {
     constructor (props) {
         super(props)
+        this.state = {
+            jokes: '',
+        }
+        this.loadMoreJokes = this.loadMoreJokes.bind(this);
     }
 
     componentDidMount() {
-        this.props.fetchJokes();
+        this.props.fetchJokes().then((jokes) => {
+            let generatedJokes = this.generateJokes(jokes);
+            this.setState({ jokes: generatedJokes })
+        });
     }
 
     componentWillUnmount() {
@@ -24,33 +31,44 @@ class Homepage extends React.Component {
         return formattedRoute.join("-") + "-transcripts"
     } 
 
-    render() {
-        const jokesLI = this.props.jokes.map((joke, i) => {
+    generateJokes(jokes) {
+        const jokesLI = jokes.jokes.map((joke, i) => {
             let route = this.formatRoute(joke.title, joke.comedian.name);
             return (
-            <Link to={{
-                    pathname: `/${route}`, 
-                    state: {id: joke.id}
+                <Link to={{
+                    pathname: `/${route}`,
+                    state: { id: i }
                 }}>
-            <ul className='chart-jokes' key={joke.id}>
-            <li key={`${i}-id`} className='chart-element'>{joke.id}</li>
-            <li key={`${i}-img`}><img className='chart-image' src={joke.image} alt='homepage pics'></img>
-            </li>
-            <li key={`${i}-title`} className='chart-element'>{joke.title}</li>
-            <li key={`${i}-comedian`} className='chart-element'>{joke.comedian.name}</li>
-            </ul>
-            </Link>
-            
-        )});
+                    <ul className='chart-jokes' key={joke.id}>
+                        <li key={`${i}-id`} className='chart-element'>{i + 1}</li>
+                        <li key={`${i}-img`}><img className='chart-image' src={joke.image} alt='homepage pics'></img>
+                        </li>
+                        <li key={`${i}-title`} className='chart-element'>{joke.title}</li>
+                        <li key={`${i}-comedian`} className='chart-element'>{joke.comedian.name}</li>
+                    </ul>
+                </Link>
+            )
+        });
+        return jokesLI;
+    }
 
+    loadMoreJokes() {
+        this.props.fetchJokes().then((jokes) => {
+            let generatedJokes = this.generateJokes(jokes);
+            this.setState({ jokes: this.state.jokes.concat(generatedJokes) })
+        });
+    }
+
+    render() {
         return (
             <div className='homepage'>
                 <div className='chart-container'>
                     <h1 className='homepage-title'>CHARTS</h1>
                     <h2 className='homepage-trending'>trending on ludicrous</h2>
-                    <div className='chart-list'>
-                        {jokesLI}
+                    <div id='main-chart' className='chart-list'>
+                        {this.state.jokes}
                     </div>
+                    <button className='load-button' onClick={this.loadMoreJokes}>Load More</button>
                 </div>
             </div>
         )
