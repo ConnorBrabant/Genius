@@ -1,7 +1,8 @@
 import React from 'react';
 
 class Joke extends React.Component {
-    constructor (props) {
+   
+    constructor (props) { 
         super(props)
         this.state = {
             joke: {
