@@ -7,7 +7,7 @@ export default (props) => {
         <div className='navbar'>
             <section className='navbar-main'>
                 <p>search</p>
-                <Link to='/' className='navbar-title'>LUDICROUS</Link>
+                <Link to='/' onClick={(props.resetState)} className='navbar-title'>LUDICROUS</Link>
                 <ul className='login-options'>
                     <li className='nav iq'>EARN IQ</li>
                     <li className='nav messages'>MESSAGES</li>

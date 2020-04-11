@@ -32,12 +32,12 @@ class Homepage extends React.Component {
     } 
 
     generateJokes(jokes, idx = 0) {
-        const jokesLI = jokes.jokes.map((joke, i) => {
+        const jokesLI = Object.values(jokes.jokes).map((joke, i) => {
             let route = this.formatRoute(joke.title, joke.comedian.name);
             return (
                 <Link to={{
                     pathname: `/${route}`,
-                    state: { id: i + idx }
+                    state: { id: joke.id}
                 }}>
                     <ul className='chart-jokes' key={joke.id}>
                         <li key={`${i}-id`} className='chart-element'>{i + 1 + idx}</li>

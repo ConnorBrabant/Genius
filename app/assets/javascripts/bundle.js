@@ -425,14 +425,14 @@ var Homepage = /*#__PURE__*/function (_React$Component) {
       var _this3 = this;
 
       var idx = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-      var jokesLI = jokes.jokes.map(function (joke, i) {
+      var jokesLI = Object.values(jokes.jokes).map(function (joke, i) {
         var route = _this3.formatRoute(joke.title, joke.comedian.name);
 
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Link"], {
           to: {
             pathname: "/".concat(route),
             state: {
-              id: i + idx
+              id: joke.id
             }
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
@@ -686,9 +686,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state, ownProps) {
-  if (Object.keys(state.entities.jokes).length) {
+  if (ownProps.location.state) {
     return {
       joke: state.entities.jokes[ownProps.location.state.id]
+    };
+  } else if (Object.keys(state.entities.jokes).length) {
+    return {
+      joke: Object.values(state.entities.jokes)[Object.keys(state.entities.jokes).length - 1]
     };
   }
 };
@@ -770,18 +774,39 @@ var NewJoke = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(NewJoke, [{
+    key: "formatRoute",
+    value: function formatRoute(title, comedian) {
+      var routeStart = comedian + " " + title;
+      var routeSplit = routeStart.split(" ");
+      var capitalize = routeSplit[0][0].toUpperCase() + routeSplit[0].slice(1).split("").map(function (ele) {
+        return ele.toLowerCase();
+      }).join("");
+      var lowerCase = routeSplit.slice(1).map(function (ele) {
+        return ele.toLowerCase();
+      });
+      var formattedRoute = [capitalize].concat(lowerCase);
+      return formattedRoute.join("-") + "-transcripts";
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      var _this2 = this;
+
       e.preventDefault();
-      this.props.postJoke(this.state).then(this.props.history.push('/'));
+      this.props.postJoke(this.state).then(function (joke) {
+        var key = Object.keys(joke.joke)[0];
+        var jokeObj = joke.joke[key];
+
+        _this2.props.history.push(_this2.formatRoute(jokeObj.title, jokeObj.comedian.name));
+      }); // this.props.postJoke(this.state).then(joke => this.props.history.push('/'))
     }
   }, {
     key: "update",
     value: function update(type) {
-      var _this2 = this;
+      var _this3 = this;
 
       return function (e) {
-        return _this2.setState(_defineProperty({}, type, e.target.value));
+        return _this3.setState(_defineProperty({}, type, e.target.value));
       };
     }
   }, {
@@ -1041,6 +1066,7 @@ __webpack_require__.r(__webpack_exports__);
       className: "navbar-main"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "search"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       to: "/",
+      onClick: props.resetState,
       className: "navbar-title"
     }, "LUDICROUS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
       className: "login-options"
@@ -1178,6 +1204,11 @@ var mdp = function mdp(dispatch) {
     },
     openModal: function openModal(modal) {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["openModal"])(modal));
+    },
+    resetState: function resetState() {
+      return dispatch({
+        type: 'RESET_STATE'
+      });
     }
   };
 };
@@ -1749,19 +1780,22 @@ __webpack_require__.r(__webpack_exports__);
 
   switch (action.type) {
     case _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_JOKES"]:
-      var newJokes = {};
-      action.jokes.forEach(function (ele, i) {
-        return newJokes[i + Object.keys(state).length] = action.jokes[i];
-      });
-      return Object.assign({}, state, newJokes);
+      // let newJokes = {};
+      // action.jokes.forEach((ele, i) => newJokes[i + Object.keys(state).length] = action.jokes[i])
+      return Object.assign({}, state, action.jokes);
 
     case _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_JOKE"]:
+      // debugger
+      // let newJoke = {};
+      // newJoke[Object.keys(state).length] = action.joke;
       return Object.assign({}, state, action.joke);
 
     case _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_JOKE"]:
       var newState = Object.assign({}, state);
       delete newState[action.jokeId];
       return newState;
+    // case 'RESET_STATE':
+    //     return {};
 
     default:
       return state;

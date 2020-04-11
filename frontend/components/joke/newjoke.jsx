@@ -12,9 +12,24 @@ class NewJoke extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
+    formatRoute(title, comedian) {
+        let routeStart = comedian + " " + title;
+        let routeSplit = routeStart.split(" ");
+        let capitalize = routeSplit[0][0].toUpperCase() + routeSplit[0].slice(1).split("").map(ele => ele.toLowerCase()).join("");
+        let lowerCase = routeSplit.slice(1).map(ele => ele.toLowerCase());
+        let formattedRoute = [capitalize].concat(lowerCase);
+        return formattedRoute.join("-") + "-transcripts"
+    } 
+
     handleSubmit(e) {
+
         e.preventDefault();
-        this.props.postJoke(this.state).then(this.props.history.push('/'))
+        this.props.postJoke(this.state).then((joke) => {
+            let key = Object.keys(joke.joke)[0];
+            let jokeObj = joke.joke[key]
+            this.props.history.push(this.formatRoute(jokeObj.title, jokeObj.comedian.name))
+        })
+        // this.props.postJoke(this.state).then(joke => this.props.history.push('/'))
     }
 
     update(type) {

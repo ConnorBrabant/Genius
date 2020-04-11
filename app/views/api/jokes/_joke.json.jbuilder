@@ -10,6 +10,4 @@ json.set! joke.id do
         json.name joke_user.username
         json.id joke_user.id
     end
-    
 end
-
