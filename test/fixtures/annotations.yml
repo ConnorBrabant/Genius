@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: annotations
+#
+#  id          :bigint           not null, primary key
+#  description :text             not null
+#  joke_id     :integer          not null
+#  user_id     :integer          not null
+#  start_index :integer          not null
+#  end_index   :integer          not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+one:
+  description: MyText
+  joke_id: 1
+  user_id: 1
+  start_index: 1
+  end_index: 1
+
+two:
+  description: MyText
+  joke_id: 1
+  user_id: 1
+  start_index: 1
+  end_index: 1

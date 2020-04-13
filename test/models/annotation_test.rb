@@ -1,19 +1,19 @@
 # == Schema Information
 #
-# Table name: jokes
+# Table name: annotations
 #
 #  id          :bigint           not null, primary key
-#  title       :string           not null
-#  comedian_id :integer          not null
-#  joke        :text             not null
+#  description :text             not null
+#  joke_id     :integer          not null
 #  user_id     :integer          not null
+#  start_index :integer          not null
+#  end_index   :integer          not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  image       :string
 #
 require 'test_helper'
 
-class JokeTest < ActiveSupport::TestCase
+class AnnotationTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
