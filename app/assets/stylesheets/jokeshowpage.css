@@ -50,12 +50,13 @@
     justify-content: center;
     background-color: white;
     max-width: 950px;
-    padding: 10px;
 
 }
 
 .show-comments {
     width: 40%;
+    border-left: solid 4px #99a7ee;
+    padding: 16px 0px 0px 20px;
 } 
 
 .show-description {
@@ -68,9 +69,10 @@
     margin-right: 20px;
     font-family: Programme,sans-serif;
     font-weight: 10;
+    line-height: 1.7em;
 }
 
 .show-comments {
-    margin-top: 15px;
-    padding: 0px 0px 0px 22px;
+    margin-top: 40px;
+    padding: 0px 0px 0px 14px;
 }

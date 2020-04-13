@@ -5,6 +5,8 @@ export default (state = null, action) => {
     switch (action.type) {
         case 'OPEN_MODAL':
             return action.modal;
+        case 'OPEN_ANNOTATION_MODAL':
+            return action.params;
         case 'CLOSE_MODAL':
             return null;
         default:

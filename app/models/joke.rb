@@ -9,6 +9,7 @@
 #  user_id     :integer          not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  image       :string
 #
 class Joke < ApplicationRecord
     validates :title, presence: true
@@ -23,4 +24,9 @@ class Joke < ApplicationRecord
         primary_key: :id,
         foreign_key: :comedian_id,
         class_name: :Comedian
+
+    has_many :annotations,
+        foreign_key: :joke_id,
+        class_name: :Annotation
 end
+
