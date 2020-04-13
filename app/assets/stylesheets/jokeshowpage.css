@@ -46,6 +46,7 @@
 
 
 .show-content {
+    position: relative;
     display: flex;
     justify-content: center;
     background-color: white;
@@ -57,10 +58,16 @@
     width: 40%;
     border-left: solid 4px #99a7ee;
     padding: 16px 0px 0px 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    min-height: 600px;
+    position: fixed;
 } 
 
 .show-description {
+    min-height: 600px;
     margin-top: 40px;
+    margin-bottom: 40px;
     word-wrap: initial;
     font-size: 18px;
     padding: 0px 16px 0px 24px;
@@ -72,7 +79,7 @@
     line-height: 1.7em;
 }
 
-.show-comments {
+/* .show-comments {
     margin-top: 40px;
     padding: 0px 0px 0px 14px;
-}
+} */

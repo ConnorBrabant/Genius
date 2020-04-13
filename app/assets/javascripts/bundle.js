@@ -125,9 +125,10 @@ var receiveAnnotation = function receiveAnnotation(annotation) {
   };
 };
 
-var removeAnnotation = function removeAnnotation() {
+var removeAnnotation = function removeAnnotation(annotation) {
   return {
-    type: REMOVE_ANNOTATION
+    type: REMOVE_ANNOTATION,
+    annotation: annotation
   };
 };
 
@@ -147,8 +148,8 @@ var updateAnnotation = function updateAnnotation(annotation) {
 };
 var deleteAnnotation = function deleteAnnotation(annotationId) {
   return function (dispatch) {
-    return _util_annotations__WEBPACK_IMPORTED_MODULE_0__["deleteAnnotation"](annotationId).then(function () {
-      return dispatch(removeAnnotation());
+    return _util_annotations__WEBPACK_IMPORTED_MODULE_0__["deleteAnnotation"](annotationId).then(function (annotation) {
+      return dispatch(removeAnnotation(annotation));
     });
   };
 };
@@ -398,10 +399,11 @@ var AnnotationForm = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      description: '',
-      start_index: _this.props.startIndex,
-      end_index: _this.props.endIndex,
-      joke_id: _this.props.joke
+      id: _this.props.annotation.id,
+      description: _this.props.annotation.description,
+      start_index: _this.props.annotation.startIndex,
+      end_index: _this.props.annotation.endIndex,
+      joke_id: _this.props.annotation.jokeId
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
@@ -422,14 +424,22 @@ var AnnotationForm = /*#__PURE__*/function (_React$Component) {
       var _this3 = this;
 
       e.preventDefault();
-      this.props.postAnnotation(this.state).then(function () {
-        return _this3.props.closeAnnotation();
+      this.props.action(this.state).then(function () {
+        return _this3.props.closeForm();
       });
     }
   }, {
     key: "render",
     value: function render() {
       var _this4 = this;
+
+      var textPlaceholder;
+
+      if (this.props.formType === 'New') {
+        textPlaceholder = "Don't just put the joke in your own words-drop some knowledge!";
+      } else {
+        textPlaceholder = this.state.description;
+      }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "annotation-form"
@@ -439,7 +449,7 @@ var AnnotationForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         id: "a-description",
         onChange: this.update('description'),
-        placeholder: "Don't just put the joke in your own words-drop some knowledge!",
+        placeholder: textPlaceholder,
         value: this.state.description
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "annotation-form-buttons"
@@ -449,7 +459,7 @@ var AnnotationForm = /*#__PURE__*/function (_React$Component) {
       }, "Save"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "annotation-button-cancel",
         onClick: function onClick() {
-          return _this4.props.closeAnnotation();
+          return _this4.props.closeForm();
         }
       }, "Cancel"))));
     }
@@ -459,6 +469,48 @@ var AnnotationForm = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (AnnotationForm);
+
+/***/ }),
+
+/***/ "./frontend/components/annotation/edit_annotation_container.js":
+/*!*********************************************************************!*\
+  !*** ./frontend/components/annotation/edit_annotation_container.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _annotation_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./annotation_form */ "./frontend/components/annotation/annotation_form.jsx");
+/* harmony import */ var _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/annotations_actions */ "./frontend/actions/annotations_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
+
+
+
+
+var msp = function msp(state, ownProps) {
+  return {
+    formType: 'Edit',
+    annotation: {
+      id: ownProps.annotation.id,
+      jokeId: ownProps.annotation.joke_id,
+      description: ownProps.annotation.description
+    },
+    closeForm: ownProps.closeForm
+  };
+};
+
+var mdp = function mdp(dispatch) {
+  return {
+    action: function action(annotation) {
+      return dispatch(Object(_actions_annotations_actions__WEBPACK_IMPORTED_MODULE_2__["updateAnnotation"])(annotation));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(_annotation_form__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
@@ -483,20 +535,20 @@ __webpack_require__.r(__webpack_exports__);
 var msp = function msp(state, ownProps) {
   return {
     formType: 'New',
-    startIndex: ownProps.startIndex,
-    endIndex: ownProps.endIndex,
-    jokeId: ownProps.joke,
-    closeAnnotation: ownProps.closeAnnotation
+    annotation: {
+      startIndex: ownProps.startIndex,
+      endIndex: ownProps.endIndex,
+      jokeId: ownProps.joke,
+      description: ''
+    },
+    closeForm: ownProps.closeForm
   };
 };
 
 var mdp = function mdp(dispatch) {
   return {
-    postAnnotation: function postAnnotation(annotation) {
+    action: function action(annotation) {
       return dispatch(Object(_actions_annotations_actions__WEBPACK_IMPORTED_MODULE_2__["postAnnotation"])(annotation));
-    },
-    closeModal: function closeModal() {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["closeModal"])());
     }
   };
 };
@@ -518,13 +570,173 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _edit_annotation_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit_annotation_container */ "./frontend/components/annotation/edit_annotation_container.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
-/* harmony default export */ __webpack_exports__["default"] = (function (props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "annotation-showpage"
-  }, props.annotation.description);
-});
+
+
+
+var AnnotationShow = /*#__PURE__*/function (_React$Component) {
+  _inherits(AnnotationShow, _React$Component);
+
+  var _super = _createSuper(AnnotationShow);
+
+  function AnnotationShow(props) {
+    var _this;
+
+    _classCallCheck(this, AnnotationShow);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      edit: false
+    };
+    _this.displayEditForm = _this.displayEditForm.bind(_assertThisInitialized(_this));
+    _this.closeEditForm = _this.closeEditForm.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(AnnotationShow, [{
+    key: "update",
+    value: function update(type) {
+      var _this2 = this;
+
+      (function (e) {
+        return _this2.setState(_defineProperty({}, type, e.target.value));
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      this.props.update;
+    } // doesnt edit the form but instead adds another edit with the new info //
+
+  }, {
+    key: "displayEditForm",
+    value: function displayEditForm() {
+      this.setState({
+        edit: true
+      });
+    }
+  }, {
+    key: "closeEditForm",
+    value: function closeEditForm() {
+      this.setState({
+        edit: false
+      });
+    }
+  }, {
+    key: "delete",
+    value: function _delete() {
+      var _this3 = this;
+
+      this.props.deleteAnnotation(this.props.annotation).then(function () {
+        return _this3.props.closeAnnotation();
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this4 = this;
+
+      var annotationModify;
+
+      if (this.state.edit) {
+        annotationModify = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_edit_annotation_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          annotation: this.props.annotation,
+          closeForm: this.closeEditForm
+        });
+      } else if (this.props.currentUser === this.props.annotation.user_id) {
+        annotationModify = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+          className: "annotation-modify"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+          className: "annotation-button-delete",
+          onClick: function onClick() {
+            return _this4["delete"]();
+          }
+        }, "Remove"));
+      } else {
+        annotationModify = null;
+      }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "annotation-showpage"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", {
+        className: "annotation-showpage-user"
+      }, this.props.annotation.user), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+        className: "annotation-showpage-description"
+      }, this.props.annotation.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "annotation-showpage-option"
+      }, annotationModify));
+    }
+  }]);
+
+  return AnnotationShow;
+}(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (AnnotationShow);
+
+/***/ }),
+
+/***/ "./frontend/components/annotation/show_annotation_container.js":
+/*!*********************************************************************!*\
+  !*** ./frontend/components/annotation/show_annotation_container.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _show_annotation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./show_annotation */ "./frontend/components/annotation/show_annotation.jsx");
+/* harmony import */ var _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/annotations_actions */ "./frontend/actions/annotations_actions.js");
+
+
+
+
+var msp = function msp(state, ownProps) {
+  return {
+    annotation: ownProps.annotation,
+    currentUser: state.session.id,
+    closeAnnotation: ownProps.closeAnnotation
+  };
+};
+
+var mdp = function mdp(dispatch) {
+  return {
+    deleteAnnotation: function deleteAnnotation(id) {
+      return dispatch(Object(_actions_annotations_actions__WEBPACK_IMPORTED_MODULE_2__["deleteAnnotation"])(id));
+    },
+    updateAnnotation: function updateAnnotation(annotation) {
+      return dispatch(Object(_actions_annotations_actions__WEBPACK_IMPORTED_MODULE_2__["updateAnnotation"])(annotation));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(_show_annotation__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
@@ -934,7 +1146,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _joke_annotated__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./joke_annotated */ "./frontend/components/joke/joke_annotated.jsx");
 /* harmony import */ var _annotation_new_annotation_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../annotation/new_annotation_container */ "./frontend/components/annotation/new_annotation_container.js");
-/* harmony import */ var _annotation_show_annotation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../annotation/show_annotation */ "./frontend/components/annotation/show_annotation.jsx");
+/* harmony import */ var _annotation_show_annotation_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../annotation/show_annotation_container */ "./frontend/components/annotation/show_annotation_container.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1011,11 +1223,11 @@ var Joke = /*#__PURE__*/function (_React$Component) {
         this.props.fetchJoke(this.props.joke.id);
       }
     } // componentDidUpdate(prevProps) {
-    //     // if (prevProps.joke.annotations.length !== this.props.joke.annotations.length) {
-    //     //     this.props.fetchJoke(this.props.joke.id)
-    //     // }
-    //     // document.getElementById('formatJoke').innerHTML = this.state.joke.joke;
-    // }
+    //     if (prevProps.annotations !== this.props.annotations) {
+    //         this.props.fetchJoke(this.props.joke.id)
+    //     }
+    // document.getElementById('formatJoke').innerHTML = this.state.joke.joke;
+    //}
     // script to remove all the <a> in order to determine index //
     // calculate offset and use that but joke is now modified to have <a> //
     // iterate through current innerHTML to find 
@@ -1031,6 +1243,7 @@ var Joke = /*#__PURE__*/function (_React$Component) {
     key: "annotation",
     value: function annotation(e) {
       e.preventDefault();
+      console.log(this.state.startElement.offsetParent);
       var highlighted = window.getSelection();
       var startIndex = highlighted.anchorOffset;
       var endIndex = highlighted.focusOffset;
@@ -1039,7 +1252,7 @@ var Joke = /*#__PURE__*/function (_React$Component) {
       var startPosition = startIndex + startOffset;
       var endPosition = endIndex + endOffset;
 
-      if (Boolean(startPosition) === false || Boolean(endPosition) === false || endPosition < startPosition) {
+      if (!this.props.currentUser || Boolean(startPosition) === false || Boolean(endPosition) === false || endPosition <= startPosition) {
         this.closeAnnotation();
       } else {
         this.setState({
@@ -1076,14 +1289,15 @@ var Joke = /*#__PURE__*/function (_React$Component) {
           joke: this.state.joke.id,
           startIndex: this.state.startIndex,
           endIndex: this.state.endIndex,
-          closeAnnotation: this.closeAnnotation
+          closeForm: this.closeAnnotation
         });
       } else if (this.state.showingAnnotation) {
-        comments = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_annotation_show_annotation__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        comments = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_annotation_show_annotation_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          closeAnnotation: this.closeAnnotation,
           annotation: this.state.showingAnnotation
         });
       } else {
-        comments = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Drag and Click to begin a new annotation or select one on the page to read its descr");
+        comments = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Drag and Click to begin a new annotation or select one on the page to read its description");
       }
 
       var currentAnnotations;
@@ -1159,7 +1373,8 @@ var msp = function msp(state, ownProps) {
   if (ownProps.location.state) {
     return {
       joke: state.entities.jokes[ownProps.location.state.id],
-      annotations: Object.values(state.entities.annotations)
+      annotations: Object.values(state.entities.annotations),
+      currentUser: state.session.id
     };
   } else if (Object.keys(state.entities.jokes).length) {
     return {
@@ -2318,22 +2533,15 @@ __webpack_require__.r(__webpack_exports__);
 
   switch (action.type) {
     case _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_JOKES"]:
-      // let newJokes = {};
-      // action.jokes.forEach((ele, i) => newJokes[i + Object.keys(state).length] = action.jokes[i])
       return Object.assign({}, state, action.jokes);
 
     case _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_JOKE"]:
-      // debugger
-      // let newJoke = {};
-      // newJoke[Object.keys(state).length] = action.joke;
       return Object.assign({}, state, action.joke);
 
     case _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_JOKE"]:
       var newState = Object.assign({}, state);
       delete newState[action.jokeId];
       return newState;
-    // case 'RESET_STATE':
-    //     return {};
 
     default:
       return state;
