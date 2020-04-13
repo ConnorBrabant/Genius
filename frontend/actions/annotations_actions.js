@@ -16,8 +16,9 @@ const receiveAnnotation = (annotation) => ({
     annotation
 })
 
-const removeAnnotation = () => ({
+const removeAnnotation = (annotation) => ({
     type: REMOVE_ANNOTATION,
+    annotation
 })
 
 export const postAnnotation = (annotation) => dispatch => (
@@ -29,5 +30,5 @@ export const updateAnnotation = (annotation) => dispatch => (
 );
 
 export const deleteAnnotation = (annotationId) => dispatch => (
-    AnnotationsUtil.deleteAnnotation(annotationId).then(() => dispatch(removeAnnotation()))
+    AnnotationsUtil.deleteAnnotation(annotationId).then((annotation) => dispatch(removeAnnotation(annotation)))
 );

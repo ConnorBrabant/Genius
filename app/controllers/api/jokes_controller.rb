@@ -17,7 +17,13 @@ class Api::JokesController < ApplicationController
     def create
         @joke = Joke.new(joke_params)
         @joke.user_id = current_user.id 
-        @joke.comedian_id = Comedian.find_by(name: params[:joke][:comedian]).id
+        if Comedian.find_by(name: params[:joke][:comedian])
+            @joke.comedian_id = Comedian.find_by(name: params[:joke][:comedian]).id
+        else 
+            comedian = Comedian.create(name: params[:joke][:comedian], description: 'funny person')
+            @joke.comedian_id = comedian.id
+        end
+        debugger
         if @joke.save
             @joke_comedian = @joke.comedian 
             @joke_user = @joke.user 

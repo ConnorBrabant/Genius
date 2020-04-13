@@ -7,7 +7,8 @@ const msp = (state, ownProps) => {
     if (ownProps.location.state) {
         return ({
             joke: state.entities.jokes[ownProps.location.state.id],
-            annotations: Object.values(state.entities.annotations)
+            annotations: Object.values(state.entities.annotations),
+            currentUser: state.session.id
         })
     } else if (Object.keys(state.entities.jokes).length) {
         return({

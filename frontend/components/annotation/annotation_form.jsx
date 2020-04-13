@@ -4,10 +4,11 @@ class AnnotationForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            description: '',
-            start_index: this.props.startIndex,
-            end_index: this.props.endIndex,
-            joke_id: this.props.joke,
+            id: this.props.annotation.id,
+            description: this.props.annotation.description,
+            start_index: this.props.annotation.startIndex,
+            end_index: this.props.annotation.endIndex,
+            joke_id: this.props.annotation.jokeId,
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -18,21 +19,27 @@ class AnnotationForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.postAnnotation(this.state).then(() => this.props.closeAnnotation())
+        this.props.action(this.state).then(() => this.props.closeForm())
     }
             
     render() {
+        let textPlaceholder;
+        if (this.props.formType === 'New') {
+            textPlaceholder = "Don't just put the joke in your own words-drop some knowledge!";
+        } else {
+            textPlaceholder = this.state.description;
+        }
         return (
             <div className='annotation-form'>
                 <form className='a-form' onSubmit={this.handleSubmit} >
                 <textarea 
                     id='a-description' 
                     onChange={this.update('description')} 
-                    placeholder="Don't just put the joke in your own words-drop some knowledge!"
+                    placeholder={textPlaceholder}
                     value={this.state.description}  />
                 <div className='annotation-form-buttons'>
                     <button className='annotation-button-save' type='submit'>Save</button>
-                    <button className='annotation-button-cancel' onClick={() => this.props.closeAnnotation()}>Cancel</button>
+                    <button className='annotation-button-cancel' onClick={() => this.props.closeForm()}>Cancel</button>
                 </div>
                 </form>
             </div>  

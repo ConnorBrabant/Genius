@@ -1,7 +1,7 @@
 import React from 'react';
 import AnnotatedJoke from './joke_annotated'
 import AnnotationForm from '../annotation/new_annotation_container'
-import AnnotationShow from '../annotation/show_annotation'
+import AnnotationShow from '../annotation/show_annotation_container'
 
 class Joke extends React.Component {
    
@@ -39,11 +39,12 @@ class Joke extends React.Component {
     }
 
     // componentDidUpdate(prevProps) {
-    //     // if (prevProps.joke.annotations.length !== this.props.joke.annotations.length) {
-    //     //     this.props.fetchJoke(this.props.joke.id)
-    //     // }
-    //     // document.getElementById('formatJoke').innerHTML = this.state.joke.joke;
-    // }
+
+    //     if (prevProps.annotations !== this.props.annotations) {
+    //         this.props.fetchJoke(this.props.joke.id)
+    //     }
+        // document.getElementById('formatJoke').innerHTML = this.state.joke.joke;
+    //}
 
 
 
@@ -59,6 +60,7 @@ class Joke extends React.Component {
 
     annotation(e) {
         e.preventDefault();
+        console.log(this.state.startElement.offsetParent);
         const highlighted = window.getSelection();
         const startIndex = highlighted.anchorOffset;
         const endIndex = highlighted.focusOffset;
@@ -66,7 +68,7 @@ class Joke extends React.Component {
         const endOffset = parseInt(e.target.getAttribute('data-offset'))
         const startPosition = startIndex + startOffset;
         const endPosition = endIndex + endOffset;
-        if (Boolean(startPosition) === false || Boolean(endPosition) === false || endPosition < startPosition) {
+        if ( !this.props.currentUser ||Boolean(startPosition) === false || Boolean(endPosition) === false || endPosition <= startPosition) {
             this.closeAnnotation()
         } else {  
             this.setState({
@@ -99,13 +101,15 @@ class Joke extends React.Component {
                     joke={this.state.joke.id}
                     startIndex={this.state.startIndex}
                     endIndex={this.state.endIndex}
-                    closeAnnotation={this.closeAnnotation} />
+                    closeForm={this.closeAnnotation} />
     } else if (this.state.showingAnnotation) {
-        comments = <AnnotationShow annotation={this.state.showingAnnotation} />
+        comments = <AnnotationShow 
+                    closeAnnotation={this.closeAnnotation}
+                    annotation={this.state.showingAnnotation} />
     } else {
         comments = <p> 
             Drag and Click to begin a new annotation or select one on the page
-            to read its descr
+            to read its description
         </p>
     }
     let currentAnnotations;

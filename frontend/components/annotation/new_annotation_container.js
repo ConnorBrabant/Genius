@@ -6,16 +6,18 @@ import { closeModal } from '../../actions/modal_actions'
 const msp = (state, ownProps) => {
     return ({
         formType: 'New',
-        startIndex: ownProps.startIndex,
-        endIndex: ownProps.endIndex,
-        jokeId: ownProps.joke,
-        closeAnnotation: ownProps.closeAnnotation
+        annotation: {
+            startIndex: ownProps.startIndex,
+            endIndex: ownProps.endIndex,
+            jokeId: ownProps.joke,
+            description: ''
+        },
+        closeForm: ownProps.closeForm
     })
 };
 
 const mdp = (dispatch) => ({
-    postAnnotation: annotation => dispatch(postAnnotation(annotation)),
-    closeModal: () => dispatch(closeModal())
+    action: annotation => dispatch(postAnnotation(annotation)),
 });
 
 export default connect(msp, mdp)(AnnotationForm)

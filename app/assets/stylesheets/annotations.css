@@ -62,3 +62,25 @@
 .annotation-button-cancel:hover {
   background-color: rgba(154,154,154,.2)
 }
+
+
+.annotation-showpage-user {
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.annotation-showpage-description {
+  font-weight: 250;
+}
+
+.annotation-button-delete {
+  border-color: transparent;
+  padding-right: .25rem;
+  color: #9a9a9a;
+  height: 25px;
+  width: 60px;
+  margin-top: 20px;
+  padding: 0px;
+  justify-content: left;
+}

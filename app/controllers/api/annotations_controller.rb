@@ -3,7 +3,6 @@ class Api::AnnotationsController < ApplicationController
     end 
 
     def create
-        # debugger
         @annotation = Annotation.new(annotation_params)
         @annotation.user_id = current_user.id 
         if @annotation.save 
@@ -16,7 +15,7 @@ class Api::AnnotationsController < ApplicationController
 
     def update 
         @annotation = Annotation.find(params[:id])
-        if @annotation.update 
+        if @annotation.update(annotation_params)
             @joke = Joke.find(@annotation.joke_id)
             render 'api/annotations/show'
         else
@@ -25,12 +24,12 @@ class Api::AnnotationsController < ApplicationController
     end 
 
     def destroy 
-        annotation = Annotation.find(params[:id])
-        if annotatation.delete 
-            @joke = Joke.find(@annotation.joke_id)
-            render 'api/jokes/show'
+        @annotation = Annotation.find(params[:id])
+        if @annotation.delete 
+            # @joke = Joke.find(@annotation.joke_id)
+            render 'api/annotations/show'
         else
-            render json: annotation.errors.full_messages, status: 401 
+            render json: @annotation.errors.full_messages, status: 401 
         end 
     end
             
