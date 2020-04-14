@@ -50,6 +50,10 @@ class User < ApplicationRecord
         class_name: :Joke
 
     has_many :annotations,
-        foreign_key: :joke_id,
+        foreign_key: :user_id,
         class_name: :Annotation
+
+    has_many :comments,
+        foreign_key: :user_id,
+        class_name: :Comment
 end

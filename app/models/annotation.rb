@@ -21,4 +21,6 @@ class Annotation < ApplicationRecord
     belongs_to :joke,
         foreign_key: :joke_id, 
         class_name: :Joke
+
+    has_many :comments, as: :commentable
 end

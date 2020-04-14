@@ -2,6 +2,7 @@ import React from 'react';
 import AnnotatedJoke from './joke_annotated'
 import AnnotationForm from '../annotation/new_annotation_container'
 import AnnotationShow from '../annotation/show_annotation_container'
+import CommentShow from '../comment/show_comment_container'
 
 class Joke extends React.Component {
    
@@ -136,13 +137,18 @@ class Joke extends React.Component {
                 </div>
             </div>
             <div className='show-content'>
-                <AnnotatedJoke 
-                    joke={this.state.joke.joke}
-                    annotations={currentAnnotations}
-                    startAnnotation={this.startAnnotation}
-                    annotation={this.annotation}
-                    displayAnnotation={this.displayAnnotation}
-                />
+                <div className='show-content-left'>
+                    <AnnotatedJoke 
+                        joke={this.state.joke.joke}
+                        annotations={currentAnnotations}
+                        startAnnotation={this.startAnnotation}
+                        annotation={this.annotation}
+                        displayAnnotation={this.displayAnnotation}
+                    />
+                    <CommentShow 
+                        commentableType='Joke' 
+                        commentableId={this.state.joke.id}/>
+                </div>
                 <div className='show-comments'>
                     {comments}
                 </div>

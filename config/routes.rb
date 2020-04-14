@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :jokes, only: [:create, :update, :destroy, :show, :index] do
       resources :annotations, only: [:create, :destroy, :update, :show, :index]
+      resources :comments, only: [:create, :destroy, :update, :index]
     end
   end 
   root to: 'root#root'
