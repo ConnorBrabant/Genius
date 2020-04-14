@@ -8,6 +8,7 @@ import JokeContainer from './joke/jokes_container'
 import NewJokeContainer from './joke/newjoke_container'
 import FooterContainer from '../components/navbar/footer_container'
 import Modal from './modal'
+import AnnotationModal from '../components/annotation/new_annotation_container'
 import { AuthRoute, ProtectedRoute } from '../util/route_utils'
 
 
