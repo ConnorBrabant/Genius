@@ -86,6 +86,133 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./frontend/actions/annotations_actions.js":
+/*!*************************************************!*\
+  !*** ./frontend/actions/annotations_actions.js ***!
+  \*************************************************/
+/*! exports provided: RECEIVE_ANNOTATIONS, RECEIVE_ANNOTATION, REMOVE_ANNOTATION, OPEN_ANNOTATION, CLOSE_ANNOTATION, postAnnotation, updateAnnotation, deleteAnnotation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ANNOTATIONS", function() { return RECEIVE_ANNOTATIONS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ANNOTATION", function() { return RECEIVE_ANNOTATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_ANNOTATION", function() { return REMOVE_ANNOTATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OPEN_ANNOTATION", function() { return OPEN_ANNOTATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLOSE_ANNOTATION", function() { return CLOSE_ANNOTATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postAnnotation", function() { return postAnnotation; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateAnnotation", function() { return updateAnnotation; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteAnnotation", function() { return deleteAnnotation; });
+/* harmony import */ var _util_annotations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/annotations */ "./frontend/util/annotations.jsx");
+
+var RECEIVE_ANNOTATIONS = 'RECEIVE_ANNOTATIONS';
+var RECEIVE_ANNOTATION = 'RECEIVE_ANNOTATION';
+var REMOVE_ANNOTATION = 'REMOVE_ANNOTATION';
+var OPEN_ANNOTATION = 'OPEN_ANNOTATION';
+var CLOSE_ANNOTATION = 'CLOSE_ANNOTATION';
+
+var receiveAnnotations = function receiveAnnotations(annotations) {
+  return {
+    type: RECEIVE_ANNOTATIONS,
+    annotations: annotations
+  };
+};
+
+var receiveAnnotation = function receiveAnnotation(annotation) {
+  return {
+    type: RECEIVE_ANNOTATION,
+    annotation: annotation
+  };
+};
+
+var removeAnnotation = function removeAnnotation(annotation) {
+  return {
+    type: REMOVE_ANNOTATION,
+    annotation: annotation
+  };
+};
+
+var postAnnotation = function postAnnotation(annotation) {
+  return function (dispatch) {
+    return _util_annotations__WEBPACK_IMPORTED_MODULE_0__["postAnnotation"](annotation).then(function (annotation) {
+      return dispatch(receiveAnnotation(annotation));
+    });
+  };
+};
+var updateAnnotation = function updateAnnotation(annotation) {
+  return function (dispatch) {
+    return _util_annotations__WEBPACK_IMPORTED_MODULE_0__["updateAnnotation"](annotation).then(function (annotation) {
+      return dispatch(receiveAnnotation(annotation));
+    });
+  };
+};
+var deleteAnnotation = function deleteAnnotation(annotationId) {
+  return function (dispatch) {
+    return _util_annotations__WEBPACK_IMPORTED_MODULE_0__["deleteAnnotation"](annotationId).then(function (annotation) {
+      return dispatch(removeAnnotation(annotation));
+    });
+  };
+};
+
+/***/ }),
+
+/***/ "./frontend/actions/comments_actions.js":
+/*!**********************************************!*\
+  !*** ./frontend/actions/comments_actions.js ***!
+  \**********************************************/
+/*! exports provided: RECEIVE_COMMENT, REMOVE_COMMENT, postComment, updateComment, deleteComment */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_COMMENT", function() { return RECEIVE_COMMENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_COMMENT", function() { return REMOVE_COMMENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postComment", function() { return postComment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateComment", function() { return updateComment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteComment", function() { return deleteComment; });
+/* harmony import */ var _util_comments__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/comments */ "./frontend/util/comments.jsx");
+
+var RECEIVE_COMMENT = 'RECEIVE_COMMENT';
+var REMOVE_COMMENT = 'REMOVE_COMMENT';
+
+var receiveComment = function receiveComment(comment) {
+  return {
+    type: RECEIVE_COMMENT,
+    comment: comment
+  };
+};
+
+var removeComment = function removeComment(commentId) {
+  return {
+    type: RECEIVE_COMMENT,
+    commentId: commentId
+  };
+};
+
+var postComment = function postComment(comment) {
+  return function (dispatch) {
+    return _util_comments__WEBPACK_IMPORTED_MODULE_0__["postComment"](comment).then(function (comment) {
+      return dispatch(receiveComment(comment));
+    });
+  };
+};
+var updateComment = function updateComment(comment) {
+  return function (dispatch) {
+    return _util_comments__WEBPACK_IMPORTED_MODULE_0__["updateComment"](comment).then(function (comment) {
+      return dispatch(receiveComment(comment));
+    });
+  };
+};
+var deleteComment = function deleteComment(commentId) {
+  return function (dispatch) {
+    return _util_comments__WEBPACK_IMPORTED_MODULE_0__["deleteComment"](commentId).then(function (comment) {
+      return dispatch(removeComment(comment));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/jokes_actions.js":
 /*!*******************************************!*\
   !*** ./frontend/actions/jokes_actions.js ***!
@@ -173,21 +300,32 @@ var deleteJoke = function deleteJoke(jokeId) {
 /*!*******************************************!*\
   !*** ./frontend/actions/modal_actions.js ***!
   \*******************************************/
-/*! exports provided: OPEN_MODAL, CLOSE_MODAL, openModal, closeModal */
+/*! exports provided: OPEN_MODAL, CLOSE_MODAL, OPEN_ANNOTATION_MODAL, openModal, openAnnotationModal, closeModal */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OPEN_MODAL", function() { return OPEN_MODAL; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLOSE_MODAL", function() { return CLOSE_MODAL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OPEN_ANNOTATION_MODAL", function() { return OPEN_ANNOTATION_MODAL; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "openModal", function() { return openModal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "openAnnotationModal", function() { return openAnnotationModal; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "closeModal", function() { return closeModal; });
+/* harmony import */ var _annotations_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./annotations_actions */ "./frontend/actions/annotations_actions.js");
+
 var OPEN_MODAL = 'OPEN_MODAL';
 var CLOSE_MODAL = 'CLOSE_MODAL';
+var OPEN_ANNOTATION_MODAL = 'OPEN_ANNOTATION_MODAL';
 var openModal = function openModal(modal) {
   return {
     type: OPEN_MODAL,
     modal: modal
+  };
+};
+var openAnnotationModal = function openAnnotationModal(params) {
+  return {
+    type: OPEN_ANNOTATION_MODAL,
+    params: params
   };
 };
 var closeModal = function closeModal() {
@@ -269,6 +407,396 @@ var logoutUser = function logoutUser() {
 
 /***/ }),
 
+/***/ "./frontend/components/annotation/annotation_form.jsx":
+/*!************************************************************!*\
+  !*** ./frontend/components/annotation/annotation_form.jsx ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var AnnotationForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(AnnotationForm, _React$Component);
+
+  var _super = _createSuper(AnnotationForm);
+
+  function AnnotationForm(props) {
+    var _this;
+
+    _classCallCheck(this, AnnotationForm);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      id: _this.props.annotation.id,
+      description: _this.props.annotation.description,
+      start_index: _this.props.annotation.startIndex,
+      end_index: _this.props.annotation.endIndex,
+      joke_id: _this.props.annotation.jokeId
+    };
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(AnnotationForm, [{
+    key: "update",
+    value: function update(type) {
+      var _this2 = this;
+
+      return function (e) {
+        return _this2.setState(_defineProperty({}, type, e.target.value));
+      };
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      var _this3 = this;
+
+      e.preventDefault();
+      this.props.action(this.state).then(function () {
+        return _this3.props.closeForm();
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this4 = this;
+
+      var textPlaceholder;
+
+      if (this.props.formType === 'New') {
+        textPlaceholder = "Don't just put the joke in your own words-drop some knowledge!";
+      } else {
+        textPlaceholder = this.state.description;
+      }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "annotation-form"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "a-form",
+        onSubmit: this.handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        id: "a-description",
+        onChange: this.update('description'),
+        placeholder: textPlaceholder,
+        value: this.state.description
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "annotation-form-buttons"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "annotation-button-save",
+        type: "submit"
+      }, "Save"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "annotation-button-cancel",
+        onClick: function onClick() {
+          return _this4.props.closeForm();
+        }
+      }, "Cancel"))));
+    }
+  }]);
+
+  return AnnotationForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (AnnotationForm);
+
+/***/ }),
+
+/***/ "./frontend/components/annotation/edit_annotation_container.js":
+/*!*********************************************************************!*\
+  !*** ./frontend/components/annotation/edit_annotation_container.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _annotation_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./annotation_form */ "./frontend/components/annotation/annotation_form.jsx");
+/* harmony import */ var _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/annotations_actions */ "./frontend/actions/annotations_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
+
+
+
+
+var msp = function msp(state, ownProps) {
+  return {
+    formType: 'Edit',
+    annotation: {
+      id: ownProps.annotation.id,
+      jokeId: ownProps.annotation.joke_id,
+      description: ownProps.annotation.description
+    },
+    closeForm: ownProps.closeForm
+  };
+};
+
+var mdp = function mdp(dispatch) {
+  return {
+    action: function action(annotation) {
+      return dispatch(Object(_actions_annotations_actions__WEBPACK_IMPORTED_MODULE_2__["updateAnnotation"])(annotation));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(_annotation_form__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/annotation/new_annotation_container.js":
+/*!********************************************************************!*\
+  !*** ./frontend/components/annotation/new_annotation_container.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _annotation_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./annotation_form */ "./frontend/components/annotation/annotation_form.jsx");
+/* harmony import */ var _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/annotations_actions */ "./frontend/actions/annotations_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
+
+
+
+
+var msp = function msp(state, ownProps) {
+  return {
+    formType: 'New',
+    annotation: {
+      startIndex: ownProps.startIndex,
+      endIndex: ownProps.endIndex,
+      jokeId: ownProps.joke,
+      description: ''
+    },
+    closeForm: ownProps.closeForm
+  };
+};
+
+var mdp = function mdp(dispatch) {
+  return {
+    action: function action(annotation) {
+      return dispatch(Object(_actions_annotations_actions__WEBPACK_IMPORTED_MODULE_2__["postAnnotation"])(annotation));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(_annotation_form__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/annotation/show_annotation.jsx":
+/*!************************************************************!*\
+  !*** ./frontend/components/annotation/show_annotation.jsx ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _edit_annotation_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit_annotation_container */ "./frontend/components/annotation/edit_annotation_container.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var AnnotationShow = /*#__PURE__*/function (_React$Component) {
+  _inherits(AnnotationShow, _React$Component);
+
+  var _super = _createSuper(AnnotationShow);
+
+  function AnnotationShow(props) {
+    var _this;
+
+    _classCallCheck(this, AnnotationShow);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      edit: false
+    };
+    _this.displayEditForm = _this.displayEditForm.bind(_assertThisInitialized(_this));
+    _this.closeEditForm = _this.closeEditForm.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(AnnotationShow, [{
+    key: "update",
+    value: function update(type) {
+      var _this2 = this;
+
+      (function (e) {
+        return _this2.setState(_defineProperty({}, type, e.target.value));
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      this.props.update;
+    } // doesnt edit the form but instead adds another edit with the new info //
+
+  }, {
+    key: "displayEditForm",
+    value: function displayEditForm() {
+      this.setState({
+        edit: true
+      });
+    }
+  }, {
+    key: "closeEditForm",
+    value: function closeEditForm() {
+      this.setState({
+        edit: false
+      });
+    }
+  }, {
+    key: "delete",
+    value: function _delete() {
+      var _this3 = this;
+
+      this.props.deleteAnnotation(this.props.annotation).then(function () {
+        return _this3.props.closeAnnotation();
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this4 = this;
+
+      var annotationModify;
+
+      if (this.state.edit) {
+        annotationModify = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_edit_annotation_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          annotation: this.props.annotation,
+          closeForm: this.closeEditForm
+        });
+      } else if (this.props.currentUser === this.props.annotation.user_id) {
+        annotationModify = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+          className: "annotation-modify"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+          className: "annotation-button-delete",
+          onClick: function onClick() {
+            return _this4["delete"]();
+          }
+        }, "Remove"));
+      } else {
+        annotationModify = null;
+      }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "annotation-showpage"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", {
+        className: "annotation-showpage-user"
+      }, this.props.annotation.user), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+        className: "annotation-showpage-description"
+      }, this.props.annotation.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "annotation-showpage-option"
+      }, annotationModify));
+    }
+  }]);
+
+  return AnnotationShow;
+}(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (AnnotationShow);
+
+/***/ }),
+
+/***/ "./frontend/components/annotation/show_annotation_container.js":
+/*!*********************************************************************!*\
+  !*** ./frontend/components/annotation/show_annotation_container.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _show_annotation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./show_annotation */ "./frontend/components/annotation/show_annotation.jsx");
+/* harmony import */ var _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/annotations_actions */ "./frontend/actions/annotations_actions.js");
+
+
+
+
+var msp = function msp(state, ownProps) {
+  return {
+    annotation: ownProps.annotation,
+    currentUser: state.session.id,
+    closeAnnotation: ownProps.closeAnnotation
+  };
+};
+
+var mdp = function mdp(dispatch) {
+  return {
+    deleteAnnotation: function deleteAnnotation(id) {
+      return dispatch(Object(_actions_annotations_actions__WEBPACK_IMPORTED_MODULE_2__["deleteAnnotation"])(id));
+    },
+    updateAnnotation: function updateAnnotation(annotation) {
+      return dispatch(Object(_actions_annotations_actions__WEBPACK_IMPORTED_MODULE_2__["updateAnnotation"])(annotation));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(_show_annotation__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
 /***/ "./frontend/components/app.jsx":
 /*!*************************************!*\
   !*** ./frontend/components/app.jsx ***!
@@ -289,7 +817,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _joke_newjoke_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./joke/newjoke_container */ "./frontend/components/joke/newjoke_container.js");
 /* harmony import */ var _components_navbar_footer_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/navbar/footer_container */ "./frontend/components/navbar/footer_container.js");
 /* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modal */ "./frontend/components/modal.jsx");
-/* harmony import */ var _util_route_utils__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../util/route_utils */ "./frontend/util/route_utils.jsx");
+/* harmony import */ var _components_annotation_new_annotation_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/annotation/new_annotation_container */ "./frontend/components/annotation/new_annotation_container.js");
+/* harmony import */ var _util_route_utils__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../util/route_utils */ "./frontend/util/route_utils.jsx");
+
 
 
 
@@ -311,13 +841,13 @@ __webpack_require__.r(__webpack_exports__);
     exact: true,
     path: "/",
     component: _homepage_homepage_container__WEBPACK_IMPORTED_MODULE_4__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_10__["AuthRoute"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_11__["AuthRoute"], {
     path: "/signup",
     component: _session_signup_container__WEBPACK_IMPORTED_MODULE_2__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_10__["AuthRoute"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_11__["AuthRoute"], {
     path: "/login",
     component: _session_signin_container__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_10__["ProtectedRoute"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_11__["ProtectedRoute"], {
     exact: true,
     path: "/new",
     component: _joke_newjoke_container__WEBPACK_IMPORTED_MODULE_7__["default"]
@@ -327,6 +857,232 @@ __webpack_require__.r(__webpack_exports__);
     component: _joke_jokes_container__WEBPACK_IMPORTED_MODULE_6__["default"]
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_navbar_footer_container__WEBPACK_IMPORTED_MODULE_8__["default"], null));
 });
+
+/***/ }),
+
+/***/ "./frontend/components/comment/comment_form.jsx":
+/*!******************************************************!*\
+  !*** ./frontend/components/comment/comment_form.jsx ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var CommentForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(CommentForm, _React$Component);
+
+  var _super = _createSuper(CommentForm);
+
+  function CommentForm(props) {
+    var _this;
+
+    _classCallCheck(this, CommentForm);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      content: ''
+    };
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(CommentForm, [{
+    key: "update",
+    value: function update(type) {
+      var _this2 = this;
+
+      return function (e) {
+        return _this2.setState(_defineProperty({}, type, e.target.value));
+      };
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      this.props.action(this.state);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "comment-form-whole"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "comment-form",
+        onSubmit: this.handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        placeholder: "Add a comment",
+        onChange: this.update('content'),
+        value: this.state.content
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "annotation-button-save",
+        type: "submit"
+      }, "Submit")));
+    }
+  }]);
+
+  return CommentForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (CommentForm);
+
+/***/ }),
+
+/***/ "./frontend/components/comment/new_comment_container.js":
+/*!**************************************************************!*\
+  !*** ./frontend/components/comment/new_comment_container.js ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _comment_form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./comment_form */ "./frontend/components/comment/comment_form.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+
+
+
+var msp = function msp(state) {};
+
+var mdp = function mdp(dispatch) {
+  return {
+    action: function action(comment) {
+      return dispatch(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["postComment"])(comment));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(msp, mdp)(_comment_form__WEBPACK_IMPORTED_MODULE_0__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/comment/show_comment.jsx":
+/*!******************************************************!*\
+  !*** ./frontend/components/comment/show_comment.jsx ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _new_comment_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./new_comment_container */ "./frontend/components/comment/new_comment_container.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var CommentShow = /*#__PURE__*/function (_React$Component) {
+  _inherits(CommentShow, _React$Component);
+
+  var _super = _createSuper(CommentShow);
+
+  function CommentShow(props) {
+    _classCallCheck(this, CommentShow);
+
+    return _super.call(this, props);
+  }
+
+  _createClass(CommentShow, [{
+    key: "render",
+    value: function render() {
+      // let comments = this.props.comments.map()
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "comment-section"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_new_comment_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "comment-list"
+      }));
+    }
+  }]);
+
+  return CommentShow;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (CommentShow);
+
+/***/ }),
+
+/***/ "./frontend/components/comment/show_comment_container.js":
+/*!***************************************************************!*\
+  !*** ./frontend/components/comment/show_comment_container.js ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _show_comment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./show_comment */ "./frontend/components/comment/show_comment.jsx");
+/* harmony import */ var _actions_comments_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/comments_actions */ "./frontend/actions/comments_actions.js");
+
+
+
+
+var msp = function msp(state, ownProps) {
+  return {
+    currentUser: state.session.id
+  };
+};
+
+var mdp = function mdp(dispatch) {
+  return {
+    deleteComment: function deleteComment(commentId) {
+      return dispatch(Object(_actions_comments_actions__WEBPACK_IMPORTED_MODULE_2__["deleteComment"])(commentId));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(_show_comment__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
@@ -540,10 +1296,10 @@ var mdp = function mdp(dispatch) {
 
 /***/ }),
 
-/***/ "./frontend/components/joke/jokes.jsx":
-/*!********************************************!*\
-  !*** ./frontend/components/joke/jokes.jsx ***!
-  \********************************************/
+/***/ "./frontend/components/joke/joke_annotated.jsx":
+/*!*****************************************************!*\
+  !*** ./frontend/components/joke/joke_annotated.jsx ***!
+  \*****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -575,6 +1331,134 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+var AnnotatedJoke = /*#__PURE__*/function (_React$Component) {
+  _inherits(AnnotatedJoke, _React$Component);
+
+  var _super = _createSuper(AnnotatedJoke);
+
+  function AnnotatedJoke() {
+    _classCallCheck(this, AnnotatedJoke);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(AnnotatedJoke, [{
+    key: "render",
+    //  formatJoke(joke) {
+    //     const structureJoke = joke.split(" ");
+    //     const jokeWithBreaks = []
+    //     for (let i = 0; i < structureJoke.length; i++) {
+    //         if (structureJoke[i].includes('.')) {
+    //             jokeWithBreaks.push(structureJoke[i]);
+    //             jokeWithBreaks.push("<br></br>");
+    //         } else {
+    //             jokeWithBreaks.push(structureJoke[i])
+    //         }
+    //     }
+    //     let formattedJoke = jokeWithBreaks.join(" ");;
+    //     return formattedJoke
+    // }
+    value: function render() {
+      var _this$props = this.props,
+          joke = _this$props.joke,
+          annotations = _this$props.annotations,
+          startAnnotation = _this$props.startAnnotation,
+          annotation = _this$props.annotation,
+          displayAnnotation = _this$props.displayAnnotation;
+      var annotatedJoke = [];
+      var prevIndex = 0;
+      var key = 0;
+      annotations.forEach(function (annotation, idx) {
+        var jokeSlice = joke.slice(annotation.start_index, annotation.end_index);
+        var before = joke.slice(prevIndex, annotation.start_index);
+        annotatedJoke.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          key: key++,
+          "data-offset": prevIndex
+        }, before));
+        annotatedJoke.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          key: key++,
+          onClick: function onClick() {
+            return displayAnnotation(annotation);
+          },
+          className: "annotated"
+        }, jokeSlice));
+        prevIndex = annotation.end_index;
+
+        if (idx === annotations.length - 1) {
+          annotatedJoke.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            key: key++,
+            "data-offset": prevIndex
+          }, joke.slice(prevIndex, joke.length)));
+        }
+      }); // let displayJoke = this.formatJoke(joke);
+
+      if (annotatedJoke.length) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "show-description",
+          onMouseDown: startAnnotation,
+          onMouseUp: annotation
+        }, annotatedJoke);
+      } else {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "show-description",
+          onMouseDown: startAnnotation,
+          onMouseUp: annotation,
+          "data-offset": 0
+        }, joke);
+      }
+    }
+  }]);
+
+  return AnnotatedJoke;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (AnnotatedJoke);
+
+/***/ }),
+
+/***/ "./frontend/components/joke/jokes.jsx":
+/*!********************************************!*\
+  !*** ./frontend/components/joke/jokes.jsx ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _joke_annotated__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./joke_annotated */ "./frontend/components/joke/joke_annotated.jsx");
+/* harmony import */ var _annotation_new_annotation_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../annotation/new_annotation_container */ "./frontend/components/annotation/new_annotation_container.js");
+/* harmony import */ var _annotation_show_annotation_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../annotation/show_annotation_container */ "./frontend/components/annotation/show_annotation_container.js");
+/* harmony import */ var _comment_show_comment_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../comment/show_comment_container */ "./frontend/components/comment/show_comment_container.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
 var Joke = /*#__PURE__*/function (_React$Component) {
   _inherits(Joke, _React$Component);
 
@@ -591,9 +1475,18 @@ var Joke = /*#__PURE__*/function (_React$Component) {
         image: '',
         title: '',
         comedian: '',
-        joke: ''
-      }
+        joke: '',
+        annotations: []
+      },
+      startIndex: 0,
+      endIndex: 0,
+      annotation: false,
+      showingAnnotation: false
     };
+    _this.annotation = _this.annotation.bind(_assertThisInitialized(_this));
+    _this.startAnnotation = _this.startAnnotation.bind(_assertThisInitialized(_this));
+    _this.closeAnnotation = _this.closeAnnotation.bind(_assertThisInitialized(_this));
+    _this.displayAnnotation = _this.displayAnnotation.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -610,34 +1503,105 @@ var Joke = /*#__PURE__*/function (_React$Component) {
           joke: JSON.parse(localStorage.getItem('joke'))
         });
       }
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      this.formatJoke();
-    }
-  }, {
-    key: "formatJoke",
-    value: function formatJoke() {
-      var jokeHTML = document.getElementById('formatJoke');
-      var structureJoke = this.state.joke.joke.split(" ");
-      var jokeWithBreaks = [];
 
-      for (var i = 0; i < structureJoke.length; i++) {
-        if (structureJoke[i].includes('.')) {
-          jokeWithBreaks.push(structureJoke[i]);
-          jokeWithBreaks.push('<br></br>');
-        } else {
-          jokeWithBreaks.push(structureJoke[i]);
-        }
+      if (this.props.joke) {
+        this.props.fetchJoke(this.props.joke.id);
       }
+    } // componentDidUpdate(prevProps) {
+    //     if (prevProps.annotations !== this.props.annotations) {
+    //         this.props.fetchJoke(this.props.joke.id)
+    //     }
+    // document.getElementById('formatJoke').innerHTML = this.state.joke.joke;
+    //}
+    // script to remove all the <a> in order to determine index //
+    // calculate offset and use that but joke is now modified to have <a> //
+    // iterate through current innerHTML to find 
 
-      var formattedJoke = jokeWithBreaks.join(" ");
-      jokeHTML.innerHTML = formattedJoke;
+  }, {
+    key: "startAnnotation",
+    value: function startAnnotation(e) {
+      this.setState({
+        startElement: e.target
+      });
+    }
+  }, {
+    key: "annotation",
+    value: function annotation(e) {
+      e.preventDefault();
+      console.log(this.state.startElement.offsetParent);
+      var highlighted = window.getSelection();
+      var startIndex = highlighted.anchorOffset;
+      var endIndex = highlighted.focusOffset;
+      var startOffset = parseInt(this.state.startElement.getAttribute('data-offset'));
+      var endOffset = parseInt(e.target.getAttribute('data-offset'));
+      var startPosition = startIndex + startOffset;
+      var endPosition = endIndex + endOffset;
+
+      if (!this.props.currentUser || Boolean(startPosition) === false || Boolean(endPosition) === false || endPosition <= startPosition) {
+        this.closeAnnotation();
+      } else {
+        this.setState({
+          startIndex: startPosition,
+          endIndex: endPosition,
+          annotation: true
+        });
+      }
+    }
+  }, {
+    key: "closeAnnotation",
+    value: function closeAnnotation() {
+      this.setState({
+        startIndex: null,
+        endIndex: null,
+        annotation: false,
+        showingAnnotation: false
+      });
+    }
+  }, {
+    key: "displayAnnotation",
+    value: function displayAnnotation(annotation) {
+      this.setState({
+        showingAnnotation: annotation
+      });
     }
   }, {
     key: "render",
     value: function render() {
+      var comments;
+
+      if (this.state.annotation === true) {
+        comments = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_annotation_new_annotation_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          joke: this.state.joke.id,
+          startIndex: this.state.startIndex,
+          endIndex: this.state.endIndex,
+          closeForm: this.closeAnnotation
+        });
+      } else if (this.state.showingAnnotation) {
+        comments = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_annotation_show_annotation_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          closeAnnotation: this.closeAnnotation,
+          annotation: this.state.showingAnnotation
+        });
+      } else {
+        comments = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Drag and Click to begin a new annotation or select one on the page to read its description");
+      }
+
+      var currentAnnotations;
+
+      if (this.props.annotations) {
+        currentAnnotations = this.props.annotations;
+      } else if (this.state.joke.annotations) {
+        currentAnnotations = this.state.joke.annotations;
+      } else {
+        currentAnnotations = [];
+      }
+
+      currentAnnotations.sort(function (a, b) {
+        if (a.start_index < b.start_index) {
+          return -1;
+        } else {
+          return 1;
+        }
+      });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "show-whole"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -653,12 +1617,20 @@ var Joke = /*#__PURE__*/function (_React$Component) {
         className: "show-comedian"
       }, this.state.joke.comedian.name))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "show-content"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        id: "formatJoke",
-        className: "show-description"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "show-content-left"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_joke_annotated__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        joke: this.state.joke.joke,
+        annotations: currentAnnotations,
+        startAnnotation: this.startAnnotation,
+        annotation: this.annotation,
+        displayAnnotation: this.displayAnnotation
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comment_show_comment_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        commentableType: "Joke",
+        commentableId: this.state.joke.id
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "show-comments"
-      }, "Comments go here")));
+      }, comments)));
     }
   }]);
 
@@ -681,6 +1653,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/jokes_actions */ "./frontend/actions/jokes_actions.js");
 /* harmony import */ var _jokes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./jokes */ "./frontend/components/joke/jokes.jsx");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
 
 
 
@@ -688,11 +1662,14 @@ __webpack_require__.r(__webpack_exports__);
 var msp = function msp(state, ownProps) {
   if (ownProps.location.state) {
     return {
-      joke: state.entities.jokes[ownProps.location.state.id]
+      joke: state.entities.jokes[ownProps.location.state.id],
+      annotations: Object.values(state.entities.annotations),
+      currentUser: state.session.id
     };
   } else if (Object.keys(state.entities.jokes).length) {
     return {
-      joke: Object.values(state.entities.jokes)[Object.keys(state.entities.jokes).length - 1]
+      joke: Object.values(state.entities.jokes)[Object.keys(state.entities.jokes).length - 1],
+      annotations: Object.values(state.entities.annotations)
     };
   }
 };
@@ -707,6 +1684,12 @@ var mdp = function mdp(dispatch) {
     },
     fetchJoke: function fetchJoke(jokeId) {
       return dispatch(Object(_actions_jokes_actions__WEBPACK_IMPORTED_MODULE_1__["fetchJoke"])(jokeId));
+    },
+    openModal: function openModal(params) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openAnnotationModal"])(params));
+    },
+    closeModal: function closeModal() {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["closeModal"])());
     }
   };
 };
@@ -931,6 +1914,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _session_signin_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./session/signin_container */ "./frontend/components/session/signin_container.js");
 /* harmony import */ var _session_signup_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./session/signup_container */ "./frontend/components/session/signup_container.js");
+/* harmony import */ var _annotation_new_annotation_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./annotation/new_annotation_container */ "./frontend/components/annotation/new_annotation_container.js");
+
 
 
 
@@ -973,7 +1958,19 @@ function Modal(_ref) {
       return e.stopPropagation();
     }
   }, component)));
-}
+} // else {
+//     return (
+//         <div className="a-modal-background" onClick={closeModal}>
+//             <div className="modal-relative">
+//                 <div className="modal-x">{'\u2715'}</div>
+//                 <div className="a-modal-child" onClick={e => e.stopPropagation()}>
+//                     <AnnotationFormContainer params={modal}/>
+//                 </div>
+//             </div>
+//         </div>
+//     )
+// }
+
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
@@ -1740,6 +2737,49 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
+/***/ "./frontend/reducers/entities/annotations.js":
+/*!***************************************************!*\
+  !*** ./frontend/reducers/entities/annotations.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/annotations_actions */ "./frontend/actions/annotations_actions.js");
+/* harmony import */ var _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/jokes_actions */ "./frontend/actions/jokes_actions.js");
+
+
+
+var annotationsReducer = function annotationsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ANNOTATION"]:
+      return Object.assign({}, state, action.annotation.annotations);
+
+    case _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ANNOTATIONS"]:
+      return Object.assign({}, action.annotation.annotations);
+
+    case _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_ANNOTATION"]:
+      var newState = Object.assign({}, state);
+      delete newState[Object.keys(action.annotation.annotations)[0]];
+      return newState;
+
+    case _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_JOKE"]:
+      return Object.assign({}, Object.values(action.joke)[0].annotations);
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (annotationsReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/entities/entities.js":
 /*!************************************************!*\
   !*** ./frontend/reducers/entities/entities.js ***!
@@ -1751,13 +2791,16 @@ document.addEventListener('DOMContentLoaded', function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _users__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./users */ "./frontend/reducers/entities/users.js");
 /* harmony import */ var _jokes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./jokes */ "./frontend/reducers/entities/jokes.js");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _annotations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./annotations */ "./frontend/reducers/entities/annotations.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_2__["combineReducers"])({
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_3__["combineReducers"])({
   users: _users__WEBPACK_IMPORTED_MODULE_0__["default"],
-  jokes: _jokes__WEBPACK_IMPORTED_MODULE_1__["default"]
+  jokes: _jokes__WEBPACK_IMPORTED_MODULE_1__["default"],
+  annotations: _annotations__WEBPACK_IMPORTED_MODULE_2__["default"]
 }));
 
 /***/ }),
@@ -1780,22 +2823,15 @@ __webpack_require__.r(__webpack_exports__);
 
   switch (action.type) {
     case _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_JOKES"]:
-      // let newJokes = {};
-      // action.jokes.forEach((ele, i) => newJokes[i + Object.keys(state).length] = action.jokes[i])
       return Object.assign({}, state, action.jokes);
 
     case _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_JOKE"]:
-      // debugger
-      // let newJoke = {};
-      // newJoke[Object.keys(state).length] = action.joke;
       return Object.assign({}, state, action.joke);
 
     case _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_JOKE"]:
       var newState = Object.assign({}, state);
       delete newState[action.jokeId];
       return newState;
-    // case 'RESET_STATE':
-    //     return {};
 
     default:
       return state;
@@ -1954,6 +2990,36 @@ var _nullSession = {
 
 /***/ }),
 
+/***/ "./frontend/reducers/ui/annotations.js":
+/*!*********************************************!*\
+  !*** ./frontend/reducers/ui/annotations.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/annotations_actions */ "./frontend/actions/annotations_actions.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__["OPEN_ANNOTATION"]:
+      return true;
+
+    case _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__["CLOSE_ANNOTATION"]:
+      return null;
+
+    default:
+      return state;
+  }
+});
+
+/***/ }),
+
 /***/ "./frontend/reducers/ui/modals.js":
 /*!****************************************!*\
   !*** ./frontend/reducers/ui/modals.js ***!
@@ -1972,6 +3038,9 @@ __webpack_require__.r(__webpack_exports__);
   switch (action.type) {
     case 'OPEN_MODAL':
       return action.modal;
+
+    case 'OPEN_ANNOTATION_MODAL':
+      return action.params;
 
     case 'CLOSE_MODAL':
       return null;
@@ -1994,6 +3063,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _modals__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modals */ "./frontend/reducers/ui/modals.js");
+/* harmony import */ var _annotations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./annotations */ "./frontend/reducers/ui/annotations.js");
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
@@ -2024,6 +3095,91 @@ __webpack_require__.r(__webpack_exports__);
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root__WEBPACK_IMPORTED_MODULE_1__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_2__["default"], redux_logger__WEBPACK_IMPORTED_MODULE_3___default.a));
 });
+
+/***/ }),
+
+/***/ "./frontend/util/annotations.jsx":
+/*!***************************************!*\
+  !*** ./frontend/util/annotations.jsx ***!
+  \***************************************/
+/*! exports provided: fetchAnnontations, postAnnotation, updateAnnotation, deleteAnnotation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAnnontations", function() { return fetchAnnontations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postAnnotation", function() { return postAnnotation; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateAnnotation", function() { return updateAnnotation; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteAnnotation", function() { return deleteAnnotation; });
+var fetchAnnontations = function fetchAnnontations(jokeId) {
+  return $.ajax({
+    method: "GET",
+    url: "/api/jokes/".concat(jokeId, "/annotations")
+  });
+};
+var postAnnotation = function postAnnotation(annotation) {
+  return $.ajax({
+    method: "POST",
+    url: "/api/jokes/".concat(annotation.joke_id, "/annotations"),
+    data: {
+      annotation: annotation
+    }
+  });
+};
+var updateAnnotation = function updateAnnotation(annotation) {
+  return $.ajax({
+    method: "PATCH",
+    url: "/api/jokes/".concat(annotation.joke_id, "/annotations/").concat(annotation.id),
+    data: {
+      annotation: annotation
+    }
+  });
+};
+var deleteAnnotation = function deleteAnnotation(annotation) {
+  return $.ajax({
+    method: "DELETE",
+    url: "/api/jokes/".concat(annotation.joke_id, "/annotations/").concat(annotation.id)
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/comments.jsx":
+/*!************************************!*\
+  !*** ./frontend/util/comments.jsx ***!
+  \************************************/
+/*! exports provided: postComment, updateComment, deleteComment */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postComment", function() { return postComment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateComment", function() { return updateComment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteComment", function() { return deleteComment; });
+var postComment = function postComment(comment) {
+  return $.ajax({
+    method: "POST",
+    url: "/api/jokes/".concat(comment.comment_type, "/comments"),
+    data: {
+      comment: comment
+    }
+  });
+};
+var updateComment = function updateComment(comment) {
+  return $.ajax({
+    method: "PATCH",
+    url: "/api/jokes/".concat(comment.comment_type, "/comments/").concat(comment.id),
+    data: {
+      comment: comment
+    }
+  });
+};
+var deleteComment = function deleteComment(comment) {
+  return $.ajax({
+    method: "DELETE",
+    url: "/api/jokes/".concat(comment.comment_type, "/comments/").concat(comment.id)
+  });
+};
 
 /***/ }),
 

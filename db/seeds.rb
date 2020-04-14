@@ -97,7 +97,7 @@ They’re rolling in there in, like, big suits and hats like they’re going to 
 They make a day of it!",
 comedian_id: Comedian1.id, user_id: User1.id, image: 'https://m.media-amazon.com/images/M/MV5BYTlmYzI2NTMtYmZmOS00ZTYzLTg2ZTUtZDhkZjhkZDVjMWQwXkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_SY1000_CR0,0,675,1000_AL_.jpg')
 
-Joke.create(title: 'Dummy Joke 2', joke: 'Dummy Joke 2', comedian_id: Comedian1.id, user_id: User1.id, image: 'https://m.media-amazon.com/images/M/MV5BYTlmYzI2NTMtYmZmOS00ZTYzLTg2ZTUtZDhkZjhkZDVjMWQwXkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_SY1000_CR0,0,675,1000_AL_.jpg')
+Joke.create(title: 'Annotation Test', joke: '0123456789', comedian_id: Comedian1.id, user_id: User1.id, image: 'https://m.media-amazon.com/images/M/MV5BYTlmYzI2NTMtYmZmOS00ZTYzLTg2ZTUtZDhkZjhkZDVjMWQwXkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_SY1000_CR0,0,675,1000_AL_.jpg')
 Joke.create(title: 'Dummy Joke 3', joke: 'Dummy Joke 3', comedian_id: Comedian1.id, user_id: User1.id, image: 'https://m.media-amazon.com/images/M/MV5BYTlmYzI2NTMtYmZmOS00ZTYzLTg2ZTUtZDhkZjhkZDVjMWQwXkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_SY1000_CR0,0,675,1000_AL_.jpg')
 Joke.create(title: 'Dummy Joke 4', joke: 'Dummy Joke 4', comedian_id: Comedian1.id, user_id: User1.id, image: 'https://m.media-amazon.com/images/M/MV5BYTlmYzI2NTMtYmZmOS00ZTYzLTg2ZTUtZDhkZjhkZDVjMWQwXkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_SY1000_CR0,0,675,1000_AL_.jpg')
 Joke.create(title: 'Dummy Joke 5', joke: 'Dummy Joke 5', comedian_id: Comedian1.id, user_id: User1.id, image: 'https://m.media-amazon.com/images/M/MV5BYTlmYzI2NTMtYmZmOS00ZTYzLTg2ZTUtZDhkZjhkZDVjMWQwXkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_SY1000_CR0,0,675,1000_AL_.jpg')

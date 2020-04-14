@@ -10,16 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_09_142153) do
+ActiveRecord::Schema.define(version: 2020_04_14_000740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "annotations", force: :cascade do |t|
+    t.text "description", null: false
+    t.integer "joke_id", null: false
+    t.integer "user_id", null: false
+    t.integer "start_index", null: false
+    t.integer "end_index", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["joke_id"], name: "index_annotations_on_joke_id"
+    t.index ["user_id"], name: "index_annotations_on_user_id"
+  end
 
   create_table "comedians", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content", null: false
+    t.string "commentable_type"
+    t.bigint "commentable_id"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "jokes", force: :cascade do |t|

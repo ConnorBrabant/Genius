@@ -3,6 +3,7 @@ import { closeModal } from '../actions/modal_actions';
 import { connect } from 'react-redux';
 import SigninContainer from './session/signin_container';
 import SignupContainer from './session/signup_container';
+import AnnotationFormContainer from './annotation/new_annotation_container'
 
 function Modal({ modal, closeModal }) {
     if (!modal) {
@@ -19,17 +20,29 @@ function Modal({ modal, closeModal }) {
         default:
             return null;
     }
-    return (
-        <div className="modal-background" onClick={closeModal}>
-            <div className="modal-relative">
-                <div className="modal-x">{'\u2715'}</div>
-                <div className="modal-child" onClick={e => e.stopPropagation()}>
-                    {component}
+        return (
+            <div className="modal-background" onClick={closeModal}>
+                <div className="modal-relative">
+                    <div className="modal-x">{'\u2715'}</div>
+                    <div className="modal-child" onClick={e => e.stopPropagation()}>
+                        {component}
+                    </div>
                 </div>
             </div>
-        </div>
-    );
-}
+        );
+    } 
+    // else {
+    //     return (
+    //         <div className="a-modal-background" onClick={closeModal}>
+    //             <div className="modal-relative">
+    //                 <div className="modal-x">{'\u2715'}</div>
+    //                 <div className="a-modal-child" onClick={e => e.stopPropagation()}>
+    //                     <AnnotationFormContainer params={modal}/>
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     )
+    // }
 
 const mapStateToProps = state => {
     return {

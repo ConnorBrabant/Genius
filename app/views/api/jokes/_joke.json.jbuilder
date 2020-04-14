@@ -10,4 +10,16 @@ json.set! joke.id do
         json.name joke_user.username
         json.id joke_user.id
     end
+   json.annotations do 
+        json.array! joke.annotations.each do |annotation|
+            json.id annotation.id
+            json.description annotation.description
+            json.start_index annotation.start_index 
+            json.end_index annotation.end_index
+            json.user annotation.user.username
+            json.user_id annotation.user_id
+            json.joke_id annotation.joke_id
+        end 
+    end
+        
 end
