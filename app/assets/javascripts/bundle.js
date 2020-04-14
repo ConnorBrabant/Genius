@@ -909,7 +909,9 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      content: ''
+      content: '',
+      commentableType: _this.props.commentableType,
+      commentableId: _this.props.commentableId
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
@@ -934,7 +936,9 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "comment-form-whole"
+        className: "comment-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "comment-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "comment-form",
         onSubmit: this.handleSubmit
@@ -943,9 +947,9 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
         onChange: this.update('content'),
         value: this.state.content
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "annotation-button-save",
+        className: "annotation-button-save comment-button",
         type: "submit"
-      }, "Submit")));
+      }, "Submit"))));
     }
   }]);
 
@@ -967,16 +971,22 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _comment_form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./comment_form */ "./frontend/components/comment/comment_form.jsx");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_comments_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/comments_actions */ "./frontend/actions/comments_actions.js");
 
 
 
 
-var msp = function msp(state) {};
+var msp = function msp(state, ownProps) {
+  return {
+    commentableType: ownProps.commentableType,
+    commentableId: ownProps.commentableId
+  };
+};
 
 var mdp = function mdp(dispatch) {
   return {
     action: function action(comment) {
-      return dispatch(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["postComment"])(comment));
+      return dispatch(Object(_actions_comments_actions__WEBPACK_IMPORTED_MODULE_2__["postComment"])(comment));
     }
   };
 };
@@ -1030,18 +1040,30 @@ var CommentShow = /*#__PURE__*/function (_React$Component) {
   function CommentShow(props) {
     _classCallCheck(this, CommentShow);
 
+    debugger;
     return _super.call(this, props);
   }
 
   _createClass(CommentShow, [{
     key: "render",
     value: function render() {
-      // let comments = this.props.comments.map()
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "comment-section"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_new_comment_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        className: "comment-list"
-      }));
+      var comments = this.props.comments.map(function (comment, idx) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: idx
+        }, comment.content);
+      });
+      return (
+        /*#__PURE__*/
+        // let comments = this.props.comments.map()    return (
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "comment-section"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_new_comment_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          commentableType: this.props.commentableType,
+          commentableId: this.props.commentableId
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+          className: "comment-list"
+        }, comments))
+      );
     }
   }]);
 
@@ -1070,7 +1092,10 @@ __webpack_require__.r(__webpack_exports__);
 
 var msp = function msp(state, ownProps) {
   return {
-    currentUser: state.session.id
+    currentUser: state.session.id,
+    commentableType: ownProps.commentableType,
+    commentableId: ownProps.commentableId,
+    comments: ownProps.comments
   };
 };
 
@@ -1528,7 +1553,6 @@ var Joke = /*#__PURE__*/function (_React$Component) {
     key: "annotation",
     value: function annotation(e) {
       e.preventDefault();
-      console.log(this.state.startElement.offsetParent);
       var highlighted = window.getSelection();
       var startIndex = highlighted.anchorOffset;
       var endIndex = highlighted.focusOffset;
@@ -1627,7 +1651,8 @@ var Joke = /*#__PURE__*/function (_React$Component) {
         displayAnnotation: this.displayAnnotation
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comment_show_comment_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
         commentableType: "Joke",
-        commentableId: this.state.joke.id
+        commentableId: this.props.joke.id,
+        comments: this.props.joke.comments
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "show-comments"
       }, comments)));
@@ -2780,6 +2805,45 @@ var annotationsReducer = function annotationsReducer() {
 
 /***/ }),
 
+/***/ "./frontend/reducers/entities/comments.js":
+/*!************************************************!*\
+  !*** ./frontend/reducers/entities/comments.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/comments_actions */ "./frontend/actions/comments_actions.js");
+/* harmony import */ var _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/jokes_actions */ "./frontend/actions/jokes_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COMMENT"]:
+      return Object.assign({}, state, _defineProperty({}, action.comment.id, action.comment));
+
+    case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_COMMENT"]:
+      var newState = Object.assign({}, state);
+      delete newState[Object.values(action.comments)[0]];
+      return newState;
+
+    case _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_JOKE"]:
+      return Object.assign({}, Object.values(action.joke)[0].comments);
+
+    default:
+      return state;
+  }
+});
+
+/***/ }),
+
 /***/ "./frontend/reducers/entities/entities.js":
 /*!************************************************!*\
   !*** ./frontend/reducers/entities/entities.js ***!
@@ -2792,15 +2856,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _users__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./users */ "./frontend/reducers/entities/users.js");
 /* harmony import */ var _jokes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./jokes */ "./frontend/reducers/entities/jokes.js");
 /* harmony import */ var _annotations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./annotations */ "./frontend/reducers/entities/annotations.js");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _comments__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./comments */ "./frontend/reducers/entities/comments.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_3__["combineReducers"])({
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_4__["combineReducers"])({
   users: _users__WEBPACK_IMPORTED_MODULE_0__["default"],
   jokes: _jokes__WEBPACK_IMPORTED_MODULE_1__["default"],
-  annotations: _annotations__WEBPACK_IMPORTED_MODULE_2__["default"]
+  annotations: _annotations__WEBPACK_IMPORTED_MODULE_2__["default"],
+  comments: _comments__WEBPACK_IMPORTED_MODULE_3__["default"]
 }));
 
 /***/ }),

@@ -21,5 +21,12 @@ json.set! joke.id do
             json.joke_id annotation.joke_id
         end 
     end
-        
+    json.comments do 
+        json.array! joke.comments.each do |comment|
+            json.id comment.id 
+            json.content comment.content
+            json.user_id comment.user_id
+            json.username comment.user 
+        end 
+    end 
 end

@@ -61,7 +61,6 @@ class Joke extends React.Component {
 
     annotation(e) {
         e.preventDefault();
-        console.log(this.state.startElement.offsetParent);
         const highlighted = window.getSelection();
         const startIndex = highlighted.anchorOffset;
         const endIndex = highlighted.focusOffset;
@@ -147,7 +146,8 @@ class Joke extends React.Component {
                     />
                     <CommentShow 
                         commentableType='Joke' 
-                        commentableId={this.state.joke.id}/>
+                        commentableId={this.props.joke.id}
+                        comments={this.props.joke.comments} />
                 </div>
                 <div className='show-comments'>
                     {comments}

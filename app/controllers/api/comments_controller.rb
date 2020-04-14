@@ -1,11 +1,11 @@
-class API::CommentsController < ApplicationController 
+class Api::CommentsController < ApplicationController 
     before_action :commenter 
 
-
     def create
-        @comment = @commenter.comments.new(params[:comments])
+        @comment = @commenter.comments.new(comment_params)
+        @comment.user_id = current_user.id 
         if @comment.save 
-            render :show 
+            render :index
         else
             render json: @comment.errors.full_messages, status: 401 
         end
@@ -15,7 +15,12 @@ class API::CommentsController < ApplicationController
     private 
 
     def commenter 
-        @klass = params[:comment_type].capitalize.constantize 
-        @commenter = klass.find(params[:commenter_id])
+        @klass = params[:comment][:commentableType].constantize
+        @commenter = @klass.find(params[:comment][:commentableId])
     end
+
+    def comment_params 
+        params.require(:comment).permit(:content)
+    end
+
 end
