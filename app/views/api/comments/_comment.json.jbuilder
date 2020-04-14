@@ -1,2 +1,2 @@
 json.extract! comment, :id, :content, :user_id, :commentable_type, :commentable_id
-json.set! :username, comment.user 
+json.set! :username, comment.user

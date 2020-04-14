@@ -147,7 +147,7 @@ class Joke extends React.Component {
                     <CommentShow 
                         commentableType='Joke' 
                         commentableId={this.props.joke.id}
-                        comments={this.props.joke.comments} />
+                    />
                 </div>
                 <div className='show-comments'>
                     {comments}

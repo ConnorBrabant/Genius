@@ -1,3 +1,11 @@
+export const fetchComments = (commentId, start) => (
+    $.ajax({
+        method: 'GET',
+        url: `/api/jokes/${commentId}/comments`,
+        data: { start }
+    })
+)
+
 export const postComment = (comment) => (
     $.ajax({
         method: "POST",

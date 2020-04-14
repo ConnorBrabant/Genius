@@ -69,7 +69,6 @@
     margin-bottom: 40px;
     word-wrap: initial;
     font-size: 18px;
-    padding: 0px 16px 0px 24px;
     font-size: 1.125em;
     margin-right: 20px;
     font-family: Programme,sans-serif;
@@ -79,6 +78,7 @@
 
 .show-content-left {
     width: 60%;
+    padding: 0px 16px 0px 16px;
 }
 
 /* .show-comments {
