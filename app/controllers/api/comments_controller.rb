@@ -1,6 +1,17 @@
 class Api::CommentsController < ApplicationController 
     before_action :commenter 
 
+    def index 
+        @jokes = Joke.find_by_sql("
+            SELECT * 
+            FROM jokes
+            ORDER BY created_at 
+            OFFSET #{params[:start]}
+            LIMIT 5")
+        render :index 
+    end 
+
+
     def create
         @comment = @commenter.comments.new(comment_params)
         @comment.user_id = current_user.id 

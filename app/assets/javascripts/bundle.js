@@ -935,11 +935,7 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "comment-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "comment-div"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "comment-form",
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
@@ -949,7 +945,7 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "annotation-button-save comment-button",
         type: "submit"
-      }, "Submit"))));
+      }, "Submit"));
     }
   }]);
 
@@ -1038,20 +1034,61 @@ var CommentShow = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(CommentShow);
 
   function CommentShow(props) {
+    var _this;
+
     _classCallCheck(this, CommentShow);
 
-    debugger;
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.state = {
+      comments: []
+    };
+    _this.loadMoreComments = _this.loadMoreComments.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(CommentShow, [{
-    key: "render",
-    value: function render() {
-      var comments = this.props.comments.map(function (comment, idx) {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      this.props.fetchComments(this.props.commentableId, 0).then(function (comments) {
+        var generatedComments = _this2.generateComments(comments);
+
+        _this2.setState({
+          comments: generatedComments
+        });
+      });
+    }
+  }, {
+    key: "generateComments",
+    value: function generateComments(comments) {
+      var commentsLI = comments.map(function (comment, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: idx
-        }, comment.content);
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "comment-username"
+        }, comment.username.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "comment-content"
+        }, comment.content));
       });
+      return commentsLI;
+    }
+  }, {
+    key: "loadMoreComments",
+    value: function loadMoreComments() {
+      var _this3 = this;
+
+      this.props.fetchComments(this.props.commentableId, this.state.comments.length).then(function (comments) {
+        var generatedComments = _this3.generateComments(comments);
+
+        _this3.setState({
+          comments: generatedComments
+        });
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
       return (
         /*#__PURE__*/
         // let comments = this.props.comments.map()    return (
@@ -1062,7 +1099,10 @@ var CommentShow = /*#__PURE__*/function (_React$Component) {
           commentableId: this.props.commentableId
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
           className: "comment-list"
-        }, comments))
+        }, comments), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "comment-load",
+          onClick: this.loadMoreComments
+        }, "SHOW MORE"))
       );
     }
   }]);
@@ -1094,8 +1134,8 @@ var msp = function msp(state, ownProps) {
   return {
     currentUser: state.session.id,
     commentableType: ownProps.commentableType,
-    commentableId: ownProps.commentableId,
-    comments: ownProps.comments
+    commentableId: ownProps.commentableId // comments: ownProps.comments
+
   };
 };
 
@@ -1651,8 +1691,7 @@ var Joke = /*#__PURE__*/function (_React$Component) {
         displayAnnotation: this.displayAnnotation
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comment_show_comment_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
         commentableType: "Joke",
-        commentableId: this.props.joke.id,
-        comments: this.props.joke.comments
+        commentableId: this.props.joke.id
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "show-comments"
       }, comments)));
@@ -3215,14 +3254,24 @@ var deleteAnnotation = function deleteAnnotation(annotation) {
 /*!************************************!*\
   !*** ./frontend/util/comments.jsx ***!
   \************************************/
-/*! exports provided: postComment, updateComment, deleteComment */
+/*! exports provided: fetchComments, postComment, updateComment, deleteComment */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchComments", function() { return fetchComments; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postComment", function() { return postComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateComment", function() { return updateComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteComment", function() { return deleteComment; });
+var fetchComments = function fetchComments(commentId, start) {
+  return $.ajax({
+    method: 'GET',
+    url: "/api/jokes/".concat(commentId, "/comments"),
+    data: {
+      start: start
+    }
+  });
+};
 var postComment = function postComment(comment) {
   return $.ajax({
     method: "POST",
