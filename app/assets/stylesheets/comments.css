@@ -1,7 +1,31 @@
 
+.comment-section {
+    background-color: rgba(204,204,204,.2);
+}
 
 .comment-form {
+    padding: 12px;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    box-sizing: border-box;
+}
+
+.comment-form > textarea {
+    border: .15rem solid #ccc;
+    display: block;
+    width: 100%; 
+    height: 50px;
+    padding: 4px;
+    margin-bottom: 10px;
+
+}
+
+.comment-div {
+    padding-right: 12px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.comment-button {
+    margin-bottom: 10px;
 }

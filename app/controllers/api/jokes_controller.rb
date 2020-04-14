@@ -23,7 +23,6 @@ class Api::JokesController < ApplicationController
             comedian = Comedian.create(name: params[:joke][:comedian], description: 'funny person')
             @joke.comedian_id = comedian.id
         end
-        debugger
         if @joke.save
             @joke_comedian = @joke.comedian 
             @joke_user = @joke.user 
