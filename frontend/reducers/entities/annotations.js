@@ -11,6 +11,7 @@ const annotationsReducer = (state = {}, action) => {
         case REMOVE_ANNOTATION:
             let newState = Object.assign({}, state);
             delete newState[Object.keys(action.annotation.annotations)[0]];
+            debugger
             return newState;
         case RECEIVE_JOKE:
             return Object.assign({}, Object.values(action.joke)[0].annotations);

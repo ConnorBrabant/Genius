@@ -16,23 +16,29 @@ class CommentShow extends React.Component {
             commentableType: this.props.commentableType
         }
         this.props.fetchComments(commentInfo, 0).then((comments) => {
-            let generatedComments = this.generateComments(comments.comments);
+            debugger
+            let generatedComments = this.generateComments(Object.values(comments.comments));
             this.setState({ comments: generatedComments })
         })
     }
 
     componentDidUpdate(prevProps) {
-        debugger
         if (this.props.comments !== prevProps.comments) {
             debugger
-            let generatedComments = this.generateComments(this.props.comments);
+            let generatedComments = this.generateComments(Object.values(this.props.comments));
             this.setState({ comments: generatedComments })
         }
     }
 
     generateComments(comments) {
         debugger
-        const commentsLI = Object.values(comments).map((comment, idx) => (
+        let scopedComments = [];
+        comments.map(comment => {
+            if (comment.commentable_type === this.props.commentableType) {
+                scopedComments.push(comment)
+            }
+        });
+        const commentsLI = scopedComments.map((comment, idx) => (
             <li key={idx}>
                 <span className='comment-username'>{comment.username.username}</span>
                 <p className='comment-content'>{comment.content}</p>

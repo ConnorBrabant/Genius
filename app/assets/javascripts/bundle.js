@@ -1080,7 +1080,9 @@ var CommentShow = /*#__PURE__*/function (_React$Component) {
         commentableType: this.props.commentableType
       };
       this.props.fetchComments(commentInfo, 0).then(function (comments) {
-        var generatedComments = _this2.generateComments(comments.comments);
+        debugger;
+
+        var generatedComments = _this2.generateComments(Object.values(comments.comments));
 
         _this2.setState({
           comments: generatedComments
@@ -1090,11 +1092,9 @@ var CommentShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      debugger;
-
       if (this.props.comments !== prevProps.comments) {
         debugger;
-        var generatedComments = this.generateComments(this.props.comments);
+        var generatedComments = this.generateComments(Object.values(this.props.comments));
         this.setState({
           comments: generatedComments
         });
@@ -1106,7 +1106,13 @@ var CommentShow = /*#__PURE__*/function (_React$Component) {
       var _this3 = this;
 
       debugger;
-      var commentsLI = Object.values(comments).map(function (comment, idx) {
+      var scopedComments = [];
+      comments.map(function (comment) {
+        if (comment.commentable_type === _this3.props.commentableType) {
+          scopedComments.push(comment);
+        }
+      });
+      var commentsLI = scopedComments.map(function (comment, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: idx
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -2882,6 +2888,7 @@ var annotationsReducer = function annotationsReducer() {
     case _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_ANNOTATION"]:
       var newState = Object.assign({}, state);
       delete newState[Object.keys(action.annotation.annotations)[0]];
+      debugger;
       return newState;
 
     case _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_JOKE"]:
@@ -2916,17 +2923,21 @@ __webpack_require__.r(__webpack_exports__);
 
   switch (action.type) {
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COMMENTS"]:
-      return Object.assign({}, action.comments);
+      return Object.assign({}, state, action.comments);
 
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COMMENT"]:
       debugger;
       return Object.assign({}, state, action.comment);
 
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_COMMENT"]:
-      debugger;
       var newState = Object.assign({}, state);
       delete newState[Object.keys(action.commentId)[0]];
+      debugger;
       return newState;
+
+    case _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_JOKE"]:
+      debugger;
+      return Object.assign({}, Object.values(action.joke)[0].comments);
 
     default:
       return state;
