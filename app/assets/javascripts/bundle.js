@@ -160,13 +160,15 @@ var deleteAnnotation = function deleteAnnotation(annotationId) {
 /*!**********************************************!*\
   !*** ./frontend/actions/comments_actions.js ***!
   \**********************************************/
-/*! exports provided: RECEIVE_COMMENT, REMOVE_COMMENT, postComment, updateComment, deleteComment */
+/*! exports provided: RECEIVE_COMMENT, REMOVE_COMMENT, RECEIVE_COMMENTS, fetchComments, postComment, updateComment, deleteComment */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_COMMENT", function() { return RECEIVE_COMMENT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_COMMENT", function() { return REMOVE_COMMENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_COMMENTS", function() { return RECEIVE_COMMENTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchComments", function() { return fetchComments; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postComment", function() { return postComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateComment", function() { return updateComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteComment", function() { return deleteComment; });
@@ -174,6 +176,14 @@ __webpack_require__.r(__webpack_exports__);
 
 var RECEIVE_COMMENT = 'RECEIVE_COMMENT';
 var REMOVE_COMMENT = 'REMOVE_COMMENT';
+var RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
+
+var receiveComments = function receiveComments(comments) {
+  return {
+    type: RECEIVE_COMMENTS,
+    comments: comments
+  };
+};
 
 var receiveComment = function receiveComment(comment) {
   return {
@@ -184,11 +194,18 @@ var receiveComment = function receiveComment(comment) {
 
 var removeComment = function removeComment(commentId) {
   return {
-    type: RECEIVE_COMMENT,
+    type: REMOVE_COMMENT,
     commentId: commentId
   };
 };
 
+var fetchComments = function fetchComments(commentInfo, start) {
+  return function (dispatch) {
+    return _util_comments__WEBPACK_IMPORTED_MODULE_0__["fetchComments"](commentInfo, start).then(function (comments) {
+      return dispatch(receiveComments(comments));
+    });
+  };
+};
 var postComment = function postComment(comment) {
   return function (dispatch) {
     return _util_comments__WEBPACK_IMPORTED_MODULE_0__["postComment"](comment).then(function (comment) {
@@ -628,6 +645,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _edit_annotation_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit_annotation_container */ "./frontend/components/annotation/edit_annotation_container.js");
+/* harmony import */ var _comment_show_comment_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../comment/show_comment_container */ "./frontend/components/comment/show_comment_container.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -651,6 +669,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -747,7 +766,12 @@ var AnnotationShow = /*#__PURE__*/function (_React$Component) {
         className: "annotation-showpage-description"
       }, this.props.annotation.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "annotation-showpage-option"
-      }, annotationModify));
+      }, annotationModify), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: ""
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_comment_show_comment_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        commentableType: "Annotation",
+        commentableId: this.props.annotation.id
+      }));
     }
   }]);
 
@@ -1051,8 +1075,12 @@ var CommentShow = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      this.props.fetchComments(this.props.commentableId, 0).then(function (comments) {
-        var generatedComments = _this2.generateComments(comments);
+      var commentInfo = {
+        commentableId: this.props.commentableId,
+        commentableType: this.props.commentableType
+      };
+      this.props.fetchComments(commentInfo, 0).then(function (comments) {
+        var generatedComments = _this2.generateComments(comments.comments);
 
         _this2.setState({
           comments: generatedComments
@@ -1060,50 +1088,71 @@ var CommentShow = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      debugger;
+
+      if (this.props.comments !== prevProps.comments) {
+        debugger;
+        var generatedComments = this.generateComments(this.props.comments);
+        this.setState({
+          comments: generatedComments
+        });
+      }
+    }
+  }, {
     key: "generateComments",
     value: function generateComments(comments) {
-      var commentsLI = comments.map(function (comment, idx) {
+      var _this3 = this;
+
+      debugger;
+      var commentsLI = Object.values(comments).map(function (comment, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: idx
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "comment-username"
         }, comment.username.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "comment-content"
-        }, comment.content));
+        }, comment.content), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "comment-delete",
+          onClick: function onClick() {
+            return _this3.props.deleteComment(comment);
+          }
+        }, "Delete"));
       });
       return commentsLI;
     }
   }, {
     key: "loadMoreComments",
     value: function loadMoreComments() {
-      var _this3 = this;
+      var _this4 = this;
 
-      this.props.fetchComments(this.props.commentableId, this.state.comments.length).then(function (comments) {
-        var generatedComments = _this3.generateComments(comments);
+      var commentInfo = {
+        commentableId: this.props.commentableId,
+        commentableType: this.props.commentableType
+      };
+      this.props.fetchComments(commentInfo, this.state.comments.length).then(function (comments) {
+        var generatedComments = _this4.generateComments(comments.comments);
 
-        _this3.setState({
-          comments: generatedComments
+        _this4.setState({
+          comments: _this4.state.comments.concat(generatedComments)
         });
       });
     }
   }, {
     key: "render",
     value: function render() {
-      return (
-        /*#__PURE__*/
-        // let comments = this.props.comments.map()    return (
-        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "comment-section"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_new_comment_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
-          commentableType: this.props.commentableType,
-          commentableId: this.props.commentableId
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-          className: "comment-list"
-        }, comments), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "comment-load",
-          onClick: this.loadMoreComments
-        }, "SHOW MORE"))
-      );
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "comment-section"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_new_comment_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        commentableType: this.props.commentableType,
+        commentableId: this.props.commentableId
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "comment-list"
+      }, this.state.comments), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "comment-load",
+        onClick: this.loadMoreComments
+      }, "SHOW MORE"));
     }
   }]);
 
@@ -1134,15 +1183,18 @@ var msp = function msp(state, ownProps) {
   return {
     currentUser: state.session.id,
     commentableType: ownProps.commentableType,
-    commentableId: ownProps.commentableId // comments: ownProps.comments
-
+    commentableId: ownProps.commentableId,
+    comments: state.entities.comments
   };
 };
 
 var mdp = function mdp(dispatch) {
   return {
-    deleteComment: function deleteComment(commentId) {
-      return dispatch(Object(_actions_comments_actions__WEBPACK_IMPORTED_MODULE_2__["deleteComment"])(commentId));
+    deleteComment: function deleteComment(comment) {
+      return dispatch(Object(_actions_comments_actions__WEBPACK_IMPORTED_MODULE_2__["deleteComment"])(comment));
+    },
+    fetchComments: function fetchComments(commentInfo, start) {
+      return dispatch(Object(_actions_comments_actions__WEBPACK_IMPORTED_MODULE_2__["fetchComments"])(commentInfo, start));
     }
   };
 };
@@ -2855,8 +2907,6 @@ var annotationsReducer = function annotationsReducer() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/comments_actions */ "./frontend/actions/comments_actions.js");
 /* harmony import */ var _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/jokes_actions */ "./frontend/actions/jokes_actions.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
@@ -2865,16 +2915,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   Object.freeze(state);
 
   switch (action.type) {
+    case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COMMENTS"]:
+      return Object.assign({}, action.comments);
+
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COMMENT"]:
-      return Object.assign({}, state, _defineProperty({}, action.comment.id, action.comment));
+      debugger;
+      return Object.assign({}, state, action.comment);
 
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_COMMENT"]:
+      debugger;
       var newState = Object.assign({}, state);
-      delete newState[Object.values(action.comments)[0]];
+      delete newState[Object.keys(action.commentId)[0]];
       return newState;
-
-    case _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_JOKE"]:
-      return Object.assign({}, Object.values(action.joke)[0].comments);
 
     default:
       return state;
@@ -3263,11 +3315,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postComment", function() { return postComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateComment", function() { return updateComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteComment", function() { return deleteComment; });
-var fetchComments = function fetchComments(commentId, start) {
+var fetchComments = function fetchComments(comment, start) {
   return $.ajax({
     method: 'GET',
-    url: "/api/jokes/".concat(commentId, "/comments"),
+    url: "/api/jokes/".concat(comment.commentableId, "/comments"),
     data: {
+      comment: comment,
       start: start
     }
   });
@@ -3293,7 +3346,7 @@ var updateComment = function updateComment(comment) {
 var deleteComment = function deleteComment(comment) {
   return $.ajax({
     method: "DELETE",
-    url: "/api/jokes/".concat(comment.comment_type, "/comments/").concat(comment.id)
+    url: "/api/jokes/".concat(comment.commentable_id, "/comments/").concat(comment.id)
   });
 };
 

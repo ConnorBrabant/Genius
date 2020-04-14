@@ -1,8 +1,8 @@
-export const fetchComments = (commentId, start) => (
+export const fetchComments = (comment, start) => (
     $.ajax({
         method: 'GET',
-        url: `/api/jokes/${commentId}/comments`,
-        data: { start }
+        url: `/api/jokes/${comment.commentableId}/comments`,
+        data: { comment, start }
     })
 )
 
@@ -25,6 +25,6 @@ export const updateComment = (comment) => (
 export const deleteComment = (comment) => (
     $.ajax({
         method: "DELETE",
-        url: `/api/jokes/${comment.comment_type}/comments/${comment.id}`
+        url: `/api/jokes/${comment.commentable_id}/comments/${comment.id}`
     })
 )
