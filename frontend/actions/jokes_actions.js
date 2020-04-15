@@ -23,6 +23,7 @@ const receiveErrors = (errors) => ({
     type: RECEIVE_JOKE_ERRORS,
     errors
 })
+
 export const fetchJokes = (start) => dispatch => (
     JokesUtil.fetchJokes(start).then(jokes => dispatch(receiveJokes(jokes)),
     (errors) => dispatch(receiveErrors(errors.responseJSON)))

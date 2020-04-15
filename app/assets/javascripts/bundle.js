@@ -90,7 +90,7 @@
 /*!*************************************************!*\
   !*** ./frontend/actions/annotations_actions.js ***!
   \*************************************************/
-/*! exports provided: RECEIVE_ANNOTATIONS, RECEIVE_ANNOTATION, REMOVE_ANNOTATION, OPEN_ANNOTATION, CLOSE_ANNOTATION, postAnnotation, updateAnnotation, deleteAnnotation */
+/*! exports provided: RECEIVE_ANNOTATIONS, RECEIVE_ANNOTATION, REMOVE_ANNOTATION, OPEN_ANNOTATION, CLOSE_ANNOTATION, RECEIVE_ANNOTATION_ERRORS, postAnnotation, updateAnnotation, deleteAnnotation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -100,6 +100,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_ANNOTATION", function() { return REMOVE_ANNOTATION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OPEN_ANNOTATION", function() { return OPEN_ANNOTATION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLOSE_ANNOTATION", function() { return CLOSE_ANNOTATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ANNOTATION_ERRORS", function() { return RECEIVE_ANNOTATION_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postAnnotation", function() { return postAnnotation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateAnnotation", function() { return updateAnnotation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteAnnotation", function() { return deleteAnnotation; });
@@ -110,6 +111,7 @@ var RECEIVE_ANNOTATION = 'RECEIVE_ANNOTATION';
 var REMOVE_ANNOTATION = 'REMOVE_ANNOTATION';
 var OPEN_ANNOTATION = 'OPEN_ANNOTATION';
 var CLOSE_ANNOTATION = 'CLOSE_ANNOTATION';
+var RECEIVE_ANNOTATION_ERRORS = 'RECEIVE_ANNOTATION_ERRORS';
 
 var receiveAnnotations = function receiveAnnotations(annotations) {
   return {
@@ -129,6 +131,13 @@ var removeAnnotation = function removeAnnotation(annotation) {
   return {
     type: REMOVE_ANNOTATION,
     annotation: annotation
+  };
+};
+
+var receiveErrors = function receiveErrors(errors) {
+  return {
+    type: RECEIVE_ANNOTATION_ERRORS,
+    errors: errors
   };
 };
 
@@ -160,7 +169,7 @@ var deleteAnnotation = function deleteAnnotation(annotationId) {
 /*!**********************************************!*\
   !*** ./frontend/actions/comments_actions.js ***!
   \**********************************************/
-/*! exports provided: RECEIVE_COMMENT, REMOVE_COMMENT, RECEIVE_COMMENTS, fetchComments, postComment, updateComment, deleteComment */
+/*! exports provided: RECEIVE_COMMENT, REMOVE_COMMENT, RECEIVE_COMMENTS, RECEIVE_COMMENT_ERRORS, fetchComments, postComment, updateComment, deleteComment */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -168,6 +177,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_COMMENT", function() { return RECEIVE_COMMENT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_COMMENT", function() { return REMOVE_COMMENT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_COMMENTS", function() { return RECEIVE_COMMENTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_COMMENT_ERRORS", function() { return RECEIVE_COMMENT_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchComments", function() { return fetchComments; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postComment", function() { return postComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateComment", function() { return updateComment; });
@@ -177,6 +187,7 @@ __webpack_require__.r(__webpack_exports__);
 var RECEIVE_COMMENT = 'RECEIVE_COMMENT';
 var REMOVE_COMMENT = 'REMOVE_COMMENT';
 var RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
+var RECEIVE_COMMENT_ERRORS = 'RECEIVE_COMMENT_ERRORS';
 
 var receiveComments = function receiveComments(comments) {
   return {
@@ -199,10 +210,19 @@ var removeComment = function removeComment(commentId) {
   };
 };
 
+var receiveErrors = function receiveErrors(errors) {
+  return {
+    type: RECEIVE_COMMENT_ERRORS,
+    errors: errors
+  };
+};
+
 var fetchComments = function fetchComments(commentInfo, start) {
   return function (dispatch) {
     return _util_comments__WEBPACK_IMPORTED_MODULE_0__["fetchComments"](commentInfo, start).then(function (comments) {
       return dispatch(receiveComments(comments));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
     });
   };
 };
@@ -210,6 +230,8 @@ var postComment = function postComment(comment) {
   return function (dispatch) {
     return _util_comments__WEBPACK_IMPORTED_MODULE_0__["postComment"](comment).then(function (comment) {
       return dispatch(receiveComment(comment));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
     });
   };
 };
@@ -217,6 +239,8 @@ var updateComment = function updateComment(comment) {
   return function (dispatch) {
     return _util_comments__WEBPACK_IMPORTED_MODULE_0__["updateComment"](comment).then(function (comment) {
       return dispatch(receiveComment(comment));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
     });
   };
 };
@@ -224,6 +248,8 @@ var deleteComment = function deleteComment(commentId) {
   return function (dispatch) {
     return _util_comments__WEBPACK_IMPORTED_MODULE_0__["deleteComment"](commentId).then(function (comment) {
       return dispatch(removeComment(comment));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
     });
   };
 };

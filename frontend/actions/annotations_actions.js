@@ -5,6 +5,7 @@ export const RECEIVE_ANNOTATION = 'RECEIVE_ANNOTATION'
 export const REMOVE_ANNOTATION = 'REMOVE_ANNOTATION'
 export const OPEN_ANNOTATION = 'OPEN_ANNOTATION'
 export const CLOSE_ANNOTATION = 'CLOSE_ANNOTATION'
+export const RECEIVE_ANNOTATION_ERRORS = 'RECEIVE_ANNOTATION_ERRORS'
 
 const receiveAnnotations = (annotations) => ({
     type: RECEIVE_ANNOTATIONS,
@@ -19,6 +20,11 @@ const receiveAnnotation = (annotation) => ({
 const removeAnnotation = (annotation) => ({
     type: REMOVE_ANNOTATION,
     annotation
+})
+
+const receiveErrors = errors => ({
+    type: RECEIVE_ANNOTATION_ERRORS,
+    errors
 })
 
 export const postAnnotation = (annotation) => dispatch => (
