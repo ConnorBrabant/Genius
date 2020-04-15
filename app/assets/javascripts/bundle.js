@@ -169,7 +169,7 @@ var deleteAnnotation = function deleteAnnotation(annotationId) {
 /*!**********************************************!*\
   !*** ./frontend/actions/comments_actions.js ***!
   \**********************************************/
-/*! exports provided: RECEIVE_COMMENT, REMOVE_COMMENT, RECEIVE_COMMENTS, RECEIVE_COMMENT_ERRORS, fetchComments, postComment, updateComment, deleteComment */
+/*! exports provided: RECEIVE_COMMENT, REMOVE_COMMENT, RECEIVE_COMMENTS, RECEIVE_COMMENT_ERRORS, fetchComments, postComment, omment, deleteComment */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -180,7 +180,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_COMMENT_ERRORS", function() { return RECEIVE_COMMENT_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchComments", function() { return fetchComments; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postComment", function() { return postComment; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateComment", function() { return updateComment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "omment", function() { return omment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteComment", function() { return deleteComment; });
 /* harmony import */ var _util_comments__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/comments */ "./frontend/util/comments.jsx");
 
@@ -235,7 +235,7 @@ var postComment = function postComment(comment) {
     });
   };
 };
-var updateComment = function updateComment(comment) {
+var omment = function omment(comment) {
   return function (dispatch) {
     return _util_comments__WEBPACK_IMPORTED_MODULE_0__["updateComment"](comment).then(function (comment) {
       return dispatch(receiveComment(comment));
@@ -3332,14 +3332,13 @@ var deleteAnnotation = function deleteAnnotation(annotation) {
 /*!************************************!*\
   !*** ./frontend/util/comments.jsx ***!
   \************************************/
-/*! exports provided: fetchComments, postComment, updateComment, deleteComment */
+/*! exports provided: fetchComments, postComment, deleteComment */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchComments", function() { return fetchComments; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postComment", function() { return postComment; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateComment", function() { return updateComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteComment", function() { return deleteComment; });
 var fetchComments = function fetchComments(comment, start) {
   return $.ajax({
@@ -3354,21 +3353,19 @@ var fetchComments = function fetchComments(comment, start) {
 var postComment = function postComment(comment) {
   return $.ajax({
     method: "POST",
-    url: "/api/jokes/".concat(comment.comment_type, "/comments"),
+    url: "/api/jokes/".concat(comment.commentableId, "/comments"),
     data: {
       comment: comment
     }
   });
-};
-var updateComment = function updateComment(comment) {
-  return $.ajax({
-    method: "PATCH",
-    url: "/api/jokes/".concat(comment.comment_type, "/comments/").concat(comment.id),
-    data: {
-      comment: comment
-    }
-  });
-};
+}; // export const updateComment = (comment) => (
+//     $.ajax({
+//         method: "PATCH",
+//         url: `/api/jokes/${comment.comment_type}/comments/${comment.id}`,
+//         data: { comment }
+//     })
+// )
+
 var deleteComment = function deleteComment(comment) {
   return $.ajax({
     method: "DELETE",

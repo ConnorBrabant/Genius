@@ -9,18 +9,18 @@ export const fetchComments = (comment, start) => (
 export const postComment = (comment) => (
     $.ajax({
         method: "POST",
-        url: `/api/jokes/${comment.comment_type}/comments`,
+        url: `/api/jokes/${comment.commentableId}/comments`,
         data: { comment }
     })
 )
 
-export const updateComment = (comment) => (
-    $.ajax({
-        method: "PATCH",
-        url: `/api/jokes/${comment.comment_type}/comments/${comment.id}`,
-        data: { comment }
-    })
-)
+// export const updateComment = (comment) => (
+//     $.ajax({
+//         method: "PATCH",
+//         url: `/api/jokes/${comment.comment_type}/comments/${comment.id}`,
+//         data: { comment }
+//     })
+// )
 
 export const deleteComment = (comment) => (
     $.ajax({

@@ -35,7 +35,7 @@ export const postComment = (comment) => dispatch => (
     errors => dispatch(receiveErrors(errors.responseJSON)))
 );
 
-export const updateComment = (comment) => dispatch => (
+export const omment = (comment) => dispatch => (
     CommentsUtil.updateComment(comment).then(comment => dispatch(receiveComment(comment)), 
     errors => dispatch(receiveErrors(errors.responseJSON)))
 );
