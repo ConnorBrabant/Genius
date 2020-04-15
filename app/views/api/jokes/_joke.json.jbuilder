@@ -22,11 +22,14 @@ json.set! joke.id do
         end 
     end
     json.comments do 
-        json.array! joke.comments.each do |comment|
-            json.id comment.id 
-            json.content comment.content
-            json.user_id comment.user_id
-            json.username comment.user 
+        joke.comments.each do |comment|
+            json.set! comment.id do 
+                json.id comment.id 
+                json.content comment.content
+                json.user_id comment.user_id
+                json.username comment.user 
+                json.commentable_type comment.commentable_type
+            end 
         end 
     end 
 end

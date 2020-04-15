@@ -83,4 +83,9 @@
   margin-top: 20px;
   padding: 0px;
   justify-content: left;
+  margin-bottom: 15px;
+}
+
+.annotation-showpage-description {
+  margin-bottom: 10px;
 }

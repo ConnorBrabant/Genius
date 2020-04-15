@@ -22,14 +22,10 @@ class CommentForm extends React.Component {
 
     render () {
         return (
-        <div className='comment-container'>
-            <div className='comment-div'>
-                <form className='comment-form' onSubmit={this.handleSubmit} >
-                    <textarea placeholder='Add a comment' onChange={this.update('content')} value={this.state.content}></textarea>
-                    <button className='annotation-button-save comment-button' type='submit'>Submit</button>
-                </form> 
-            </div>
-        </div>
+            <form className='comment-form' onSubmit={this.handleSubmit} >
+                <textarea placeholder='Add a comment' onChange={this.update('content')} value={this.state.content}></textarea>
+                <button className='annotation-button-save comment-button' type='submit'>Submit</button>
+            </form>  
         )
     }
 }

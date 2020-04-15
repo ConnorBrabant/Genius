@@ -1,20 +1,19 @@
 
 .comment-section {
     background-color: rgba(204,204,204,.2);
+    padding: 12px;
 }
 
 .comment-form {
-    padding: 12px;
     display: flex;
     flex-direction: column;
-    box-sizing: border-box;
 }
 
 .comment-form > textarea {
     border: .15rem solid #ccc;
-    display: block;
-    width: 100%; 
-    height: 50px;
+    resize: none;
+    width: 97.5%; 
+    min-height: 58.7812px;
     padding: 4px;
     margin-bottom: 10px;
 
@@ -28,4 +27,32 @@
 
 .comment-button {
     margin-bottom: 10px;
+}
+
+.comment-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-list > li {
+    border-top: 1px solid #99a7ee;
+    padding: 24px 0px 0px;
+    margin: 16px 0px 0px;
+}
+
+.comment-username {
+    font-weight: 600;
+    padding-bottom: 25px;
+}
+
+.comment-content {
+    margin-top: 15px;
+}
+
+.comment-delete {
+    margin-top: 15px;
+}
+
+.comment-load {
+    margin-top: 15px;
 }

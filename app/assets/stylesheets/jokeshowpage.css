@@ -50,17 +50,18 @@
     display: flex;
     justify-content: center;
     background-color: white;
-    max-width: 950px;
+    width: 950px;
 
 }
 
 .show-comments {
     width: 40%;
     border-left: solid 4px #99a7ee;
-    padding: 16px 0px 0px 20px;
+    padding: 16px 16px 0px 20px;
     margin-top: 40px;
     margin-bottom: 40px;
     min-height: 600px;
+    position: relative;
 } 
 
 .show-description {
@@ -69,7 +70,6 @@
     margin-bottom: 40px;
     word-wrap: initial;
     font-size: 18px;
-    padding: 0px 16px 0px 24px;
     font-size: 1.125em;
     margin-right: 20px;
     font-family: Programme,sans-serif;
@@ -79,9 +79,10 @@
 
 .show-content-left {
     width: 60%;
+    padding: 0px 16px 16px 16px;
 }
 
-/* .show-comments {
-    margin-top: 40px;
-    padding: 0px 0px 0px 14px;
-} */
+.comment-showbar {
+    position: sticky;
+    top: 100px;
+} 

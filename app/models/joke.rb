@@ -12,8 +12,7 @@
 #  image       :string
 #
 class Joke < ApplicationRecord
-    validates :title, presence: true
-    validates :joke, presence: true 
+    validates :title, :joke, presence: true
 
     belongs_to :user,
         primary_key: :id,

@@ -32,26 +32,13 @@ class Joke extends React.Component {
             localStorage.setItem('joke', JSON.stringify(this.props.joke));
             this.setState({ joke: this.props.joke })
         } else {
-            this.setState({ joke: JSON.parse(localStorage.getItem('joke')) })
-        }
-        if (this.props.joke) {
-            this.props.fetchJoke(this.props.joke.id);
+            let jokeStored = JSON.parse(localStorage.getItem('joke'));
+            this.props.fetchJoke(jokeStored.id).then((joke) => {
+                debugger
+                this.setState({ joke: Object.values(joke.joke)[0]} )
+            });
         }
     }
-
-    // componentDidUpdate(prevProps) {
-
-    //     if (prevProps.annotations !== this.props.annotations) {
-    //         this.props.fetchJoke(this.props.joke.id)
-    //     }
-        // document.getElementById('formatJoke').innerHTML = this.state.joke.joke;
-    //}
-
-
-
-    // script to remove all the <a> in order to determine index //
-    // calculate offset and use that but joke is now modified to have <a> //
-    // iterate through current innerHTML to find 
 
     startAnnotation(e) {
         this.setState({
@@ -126,6 +113,16 @@ class Joke extends React.Component {
         } else {
             return 1
     }});
+    let commentShow;
+    if (typeof this.state.joke.id === 'number') {
+        commentShow = <CommentShow
+            commentableType='Joke'
+            commentableId={this.state.joke.id}
+        />
+    } else {
+        commentShow = null;
+    }
+    debugger
     return (
         <div className='show-whole'> 
             <div className='show-header'>
@@ -144,13 +141,12 @@ class Joke extends React.Component {
                         annotation={this.annotation}
                         displayAnnotation={this.displayAnnotation}
                     />
-                    <CommentShow 
-                        commentableType='Joke' 
-                        commentableId={this.props.joke.id}
-                        comments={this.props.joke.comments} />
+                    {commentShow}
                 </div>
                 <div className='show-comments'>
-                    {comments}
+                    <div className='comment-showbar'>
+                        {comments}
+                    </div>
                 </div>
 
             </div>
