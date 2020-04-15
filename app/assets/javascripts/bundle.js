@@ -2907,7 +2907,6 @@ var annotationsReducer = function annotationsReducer() {
     case _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_ANNOTATION"]:
       var newState = Object.assign({}, state);
       delete newState[Object.keys(action.annotation.annotations)[0]];
-      er;
       return newState;
 
     case _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_JOKE"]:
