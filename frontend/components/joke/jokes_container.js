@@ -13,7 +13,8 @@ const msp = (state, ownProps) => {
     } else if (Object.keys(state.entities.jokes).length) {
         return({
             joke: Object.values(state.entities.jokes)[Object.keys(state.entities.jokes).length - 1],
-            annotations: Object.values(state.entities.annotations)
+            annotations: Object.values(state.entities.annotations),
+            currentUser: state.session.id
         });
     }
 }
@@ -22,8 +23,6 @@ const mdp = dispatch => ({
     updateJoke: (joke) => dispatch(updateJoke(joke)),
     deleteJoke: (jokeId) => dispatch(deleteJoke(jokeId)),
     fetchJoke: (jokeId) => dispatch(fetchJoke(jokeId)),
-    openModal: (params) => dispatch(openAnnotationModal(params)),
-    closeModal: () => dispatch(closeModal())
 })
 
 export default connect(msp, mdp)(Jokes);

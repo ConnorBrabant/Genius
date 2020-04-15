@@ -275,10 +275,19 @@ var removeJoke = function removeJoke() {
   };
 };
 
+var receiveErrors = function receiveErrors(errors) {
+  return {
+    type: RECEIVE_JOKE_ERRORS,
+    errors: errors
+  };
+};
+
 var fetchJokes = function fetchJokes(start) {
   return function (dispatch) {
     return _util_jokes__WEBPACK_IMPORTED_MODULE_0__["fetchJokes"](start).then(function (jokes) {
       return dispatch(receiveJokes(jokes));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
     });
   };
 };
@@ -286,6 +295,8 @@ var fetchJoke = function fetchJoke(jokeId) {
   return function (dispatch) {
     return _util_jokes__WEBPACK_IMPORTED_MODULE_0__["fetchJoke"](jokeId).then(function (joke) {
       return dispatch(receiveJoke(joke));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
     });
   };
 };
@@ -293,6 +304,8 @@ var postJoke = function postJoke(joke) {
   return function (dispatch) {
     return _util_jokes__WEBPACK_IMPORTED_MODULE_0__["postJoke"](joke).then(function (joke) {
       return dispatch(receiveJoke(joke));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
     });
   };
 };
@@ -300,6 +313,8 @@ var updateJoke = function updateJoke(joke) {
   return function (dispatch) {
     return _util_jokes__WEBPACK_IMPORTED_MODULE_0__["updateJoke"](joke).then(function (joke) {
       return dispatch(receiveJoke(joke));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
     });
   };
 };
@@ -307,6 +322,8 @@ var deleteJoke = function deleteJoke(jokeId) {
   return function (dispatch) {
     return _util_jokes__WEBPACK_IMPORTED_MODULE_0__["deleteJoke"](jokeId).then(function () {
       return dispatch(removeJoke());
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
     });
   };
 };
@@ -760,6 +777,8 @@ var AnnotationShow = /*#__PURE__*/function (_React$Component) {
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "annotation-showpage"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "annotation-fixed"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", {
         className: "annotation-showpage-user"
       }, this.props.annotation.user), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
@@ -771,7 +790,7 @@ var AnnotationShow = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_comment_show_comment_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
         commentableType: "Annotation",
         commentableId: this.props.annotation.id
-      }));
+      })));
     }
   }]);
 
@@ -1080,8 +1099,6 @@ var CommentShow = /*#__PURE__*/function (_React$Component) {
         commentableType: this.props.commentableType
       };
       this.props.fetchComments(commentInfo, 0).then(function (comments) {
-        debugger;
-
         var generatedComments = _this2.generateComments(Object.values(comments.comments));
 
         _this2.setState({
@@ -1093,7 +1110,6 @@ var CommentShow = /*#__PURE__*/function (_React$Component) {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
       if (this.props.comments !== prevProps.comments) {
-        debugger;
         var generatedComments = this.generateComments(Object.values(this.props.comments));
         this.setState({
           comments: generatedComments
@@ -1105,7 +1121,6 @@ var CommentShow = /*#__PURE__*/function (_React$Component) {
     value: function generateComments(comments) {
       var _this3 = this;
 
-      debugger;
       var scopedComments = [];
       comments.map(function (comment) {
         if (comment.commentable_type === _this3.props.commentableType) {
@@ -1148,12 +1163,13 @@ var CommentShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "comment-section"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_new_comment_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      var commentForm = this.props.currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_new_comment_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
         commentableType: this.props.commentableType,
         commentableId: this.props.commentableId
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Sign In or Sign Up to Comment!");
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "comment-section"
+      }, commentForm, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "comment-list"
       }, this.state.comments), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "comment-load",
@@ -1616,30 +1632,24 @@ var Joke = /*#__PURE__*/function (_React$Component) {
   _createClass(Joke, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this2 = this;
+
       if (!localStorage.getItem('joke')) {
         localStorage.setItem('joke', JSON.stringify(this.props.joke));
         this.setState({
           joke: this.props.joke
         });
       } else {
-        this.setState({
-          joke: JSON.parse(localStorage.getItem('joke'))
+        var jokeStored = JSON.parse(localStorage.getItem('joke'));
+        this.props.fetchJoke(jokeStored.id).then(function (joke) {
+          debugger;
+
+          _this2.setState({
+            joke: Object.values(joke.joke)[0]
+          });
         });
       }
-
-      if (this.props.joke) {
-        this.props.fetchJoke(this.props.joke.id);
-      }
-    } // componentDidUpdate(prevProps) {
-    //     if (prevProps.annotations !== this.props.annotations) {
-    //         this.props.fetchJoke(this.props.joke.id)
-    //     }
-    // document.getElementById('formatJoke').innerHTML = this.state.joke.joke;
-    //}
-    // script to remove all the <a> in order to determine index //
-    // calculate offset and use that but joke is now modified to have <a> //
-    // iterate through current innerHTML to find 
-
+    }
   }, {
     key: "startAnnotation",
     value: function startAnnotation(e) {
@@ -1724,6 +1734,18 @@ var Joke = /*#__PURE__*/function (_React$Component) {
           return 1;
         }
       });
+      var commentShow;
+
+      if (typeof this.state.joke.id === 'number') {
+        commentShow = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comment_show_comment_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          commentableType: "Joke",
+          commentableId: this.state.joke.id
+        });
+      } else {
+        commentShow = null;
+      }
+
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "show-whole"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1747,12 +1769,11 @@ var Joke = /*#__PURE__*/function (_React$Component) {
         startAnnotation: this.startAnnotation,
         annotation: this.annotation,
         displayAnnotation: this.displayAnnotation
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comment_show_comment_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        commentableType: "Joke",
-        commentableId: this.props.joke.id
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), commentShow), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "show-comments"
-      }, comments)));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "comment-showbar"
+      }, comments))));
     }
   }]);
 
@@ -1791,7 +1812,8 @@ var msp = function msp(state, ownProps) {
   } else if (Object.keys(state.entities.jokes).length) {
     return {
       joke: Object.values(state.entities.jokes)[Object.keys(state.entities.jokes).length - 1],
-      annotations: Object.values(state.entities.annotations)
+      annotations: Object.values(state.entities.annotations),
+      currentUser: state.session.id
     };
   }
 };
@@ -1806,12 +1828,6 @@ var mdp = function mdp(dispatch) {
     },
     fetchJoke: function fetchJoke(jokeId) {
       return dispatch(Object(_actions_jokes_actions__WEBPACK_IMPORTED_MODULE_1__["fetchJoke"])(jokeId));
-    },
-    openModal: function openModal(params) {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openAnnotationModal"])(params));
-    },
-    closeModal: function closeModal() {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["closeModal"])());
     }
   };
 };
@@ -2183,50 +2199,35 @@ __webpack_require__.r(__webpack_exports__);
       className: "navbar"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
       className: "navbar-main"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "search"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       to: "/",
       onClick: props.resetState,
       className: "navbar-title"
-    }, "LUDICROUS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-      className: "login-options"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      className: "nav iq"
-    }, "EARN IQ"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      className: "nav messages"
-    }, "MESSAGES"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      className: "nav me"
-    }, "ME"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      className: "nav feed"
-    }, "FEED"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      className: "nav forums"
-    }, "FORUMS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    }, "LUDICROUS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      className: "session-link logout",
       onClick: props.logoutUser
-    }, "Logout"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+    }, "SIGN OUT")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
       className: "navbar-menu"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      className: "nav featured"
-    }, "FEATURED"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      className: "nav charts"
-    }, "CHARTS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      className: "nav videos"
-    }, "VIDEOS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      className: "nav shop"
-    }, "SHOP"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      className: "nav forums"
-    }, "FORUMS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      className: "nav"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "https://github.com/ConnorBrabant/"
+    }, "GITHUB")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      className: "nav"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "https://www.linkedin.com/in/connor-brabant-81b1a1168/"
+    }, "LINKEDIN")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       className: "nav new"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       className: "newjokelink",
       to: "/new"
-    }, "ADD A JOKE")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      className: "nav icons"
-    }, "ICONS"))));
+    }, "ADD A JOKE")))));
   } else if (props.location.pathname === '/signup' || props.location.pathname === '/login') {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "navbar"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
       className: "navbar-main"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "search"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       to: "/",
       className: "navbar-title"
     }, "LUDICROUS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2244,24 +2245,20 @@ __webpack_require__.r(__webpack_exports__);
     }, "SIGN IN"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
       className: "navbar-menu"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      className: "nav featured"
-    }, "FEATURED"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      className: "nav charts"
-    }, "CHARTS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      className: "nav videos"
-    }, "VIDEOS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      className: "nav shop"
-    }, "SHOP"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      className: "nav forums"
-    }, "FORUMS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      className: "nav icons"
-    }, "ICONS"))));
+      className: "nav"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "https://github.com/ConnorBrabant/"
+    }, "Github")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      className: "nav"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "https://www.linkedin.com/in/connor-brabant-81b1a1168/"
+    }, "LinkedIn")))));
   } else {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "navbar"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
       className: "navbar-main"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "search"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       to: "/",
       className: "navbar-title"
     }, "LUDICROUS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2275,18 +2272,14 @@ __webpack_require__.r(__webpack_exports__);
     }, "SIGN IN"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
       className: "navbar-menu"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      className: "nav featured"
-    }, "FEATURED"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      className: "nav charts"
-    }, "CHARTS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      className: "nav videos"
-    }, "VIDEOS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      className: "nav shop"
-    }, "SHOP"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      className: "nav forums"
-    }, "FORUMS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      className: "nav icons"
-    }, "ICONS"))));
+      className: "nav"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "https://github.com/ConnorBrabant/"
+    }, "Github")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      className: "nav"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "https://www.linkedin.com/in/connor-brabant-81b1a1168/"
+    }, "LinkedIn")))));
   }
 });
 
@@ -2888,7 +2881,7 @@ var annotationsReducer = function annotationsReducer() {
     case _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_ANNOTATION"]:
       var newState = Object.assign({}, state);
       delete newState[Object.keys(action.annotation.annotations)[0]];
-      debugger;
+      er;
       return newState;
 
     case _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_JOKE"]:
@@ -2926,17 +2919,14 @@ __webpack_require__.r(__webpack_exports__);
       return Object.assign({}, state, action.comments);
 
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COMMENT"]:
-      debugger;
       return Object.assign({}, state, action.comment);
 
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_COMMENT"]:
       var newState = Object.assign({}, state);
       delete newState[Object.keys(action.commentId)[0]];
-      debugger;
       return newState;
 
     case _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_JOKE"]:
-      debugger;
       return Object.assign({}, Object.values(action.joke)[0].comments);
 
     default:

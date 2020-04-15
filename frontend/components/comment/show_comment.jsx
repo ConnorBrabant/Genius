@@ -16,7 +16,6 @@ class CommentShow extends React.Component {
             commentableType: this.props.commentableType
         }
         this.props.fetchComments(commentInfo, 0).then((comments) => {
-            debugger
             let generatedComments = this.generateComments(Object.values(comments.comments));
             this.setState({ comments: generatedComments })
         })
@@ -24,14 +23,12 @@ class CommentShow extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (this.props.comments !== prevProps.comments) {
-            debugger
             let generatedComments = this.generateComments(Object.values(this.props.comments));
             this.setState({ comments: generatedComments })
         }
     }
 
     generateComments(comments) {
-        debugger
         let scopedComments = [];
         comments.map(comment => {
             if (comment.commentable_type === this.props.commentableType) {
@@ -60,12 +57,17 @@ class CommentShow extends React.Component {
     }
 
     render () {
-    return (
-            <div className='comment-section'>
-                <CommentForm 
+        let commentForm = this.props.currentUser ? (
+            <CommentForm 
                     commentableType={this.props.commentableType}
                     commentableId={this.props.commentableId}
                 />
+            ) : (
+                <span>Sign In or Sign Up to Comment!</span>
+            )
+    return (
+            <div className='comment-section'>
+                {commentForm}
                 <ul className='comment-list'>
                     {this.state.comments}
                 </ul>

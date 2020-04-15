@@ -19,22 +19,31 @@ const removeJoke = () => ({
     type: REMOVE_JOKE,
 })
 
+const receiveErrors = (errors) => ({
+    type: RECEIVE_JOKE_ERRORS,
+    errors
+})
 export const fetchJokes = (start) => dispatch => (
-    JokesUtil.fetchJokes(start).then(jokes => dispatch(receiveJokes(jokes)))
+    JokesUtil.fetchJokes(start).then(jokes => dispatch(receiveJokes(jokes)),
+    (errors) => dispatch(receiveErrors(errors.responseJSON)))
 );
 
 export const fetchJoke = (jokeId) => dispatch => (
-    JokesUtil.fetchJoke(jokeId).then(joke => dispatch(receiveJoke(joke)))
+    JokesUtil.fetchJoke(jokeId).then(joke => dispatch(receiveJoke(joke)), 
+        (errors) => dispatch(receiveErrors(errors.responseJSON)))
 );
 
 export const postJoke = (joke) => dispatch => (
-    JokesUtil.postJoke(joke).then(joke => dispatch(receiveJoke(joke)))
+    JokesUtil.postJoke(joke).then(joke => dispatch(receiveJoke(joke)),
+        (errors) => dispatch(receiveErrors(errors.responseJSON)))
 );
 
 export const updateJoke = (joke) => dispatch => (
-    JokesUtil.updateJoke(joke).then(joke => dispatch(receiveJoke(joke)))
+    JokesUtil.updateJoke(joke).then(joke => dispatch(receiveJoke(joke)),
+        (errors) => dispatch(receiveErrors(errors.responseJSON)))
 );
 
 export const deleteJoke = (jokeId) => dispatch => (
-    JokesUtil.deleteJoke(jokeId).then(() => dispatch(removeJoke()))
+    JokesUtil.deleteJoke(jokeId).then(() => dispatch(removeJoke()),
+        (errors) => dispatch(receiveErrors(errors.responseJSON)))
 );

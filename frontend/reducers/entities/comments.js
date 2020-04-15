@@ -7,15 +7,12 @@ export default (state = {}, action) => {
         case RECEIVE_COMMENTS:
             return Object.assign({}, state, action.comments)
         case RECEIVE_COMMENT: 
-            debugger
             return Object.assign({}, state, action.comment)
         case REMOVE_COMMENT:
             let newState = Object.assign({}, state);
             delete newState[Object.keys(action.commentId)[0]];
-            debugger
             return newState;        
         case RECEIVE_JOKE:
-            debugger
             return Object.assign({}, Object.values(action.joke)[0].comments)
         default: 
             return state;

@@ -26,7 +26,6 @@
     width: 90vh;
     min-height: 900px;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     margin-bottom: 30px;
 }
@@ -88,4 +87,8 @@ a {
     width: 140px;
     justify-content: center;
     margin-top: 40px;
+}
+
+.homepage-title {
+    margin-top: 50px;
 }

@@ -4,8 +4,8 @@
    align-items: center;
    height: 41px;
    width: 100%;
-   justify-content: space-between;
    position: relative;
+   justify-content: flex-end;
 }
 
 .session-link{
@@ -20,7 +20,7 @@
 
 .navbar-title {
     position: absolute;
-    left: 46.5%;
+    right: 46%;
     text-decoration: none;
     text-shadow: -2px 2px black;
     font-weight: bold;
@@ -39,7 +39,6 @@
     min-height: 100%;
 }
 
-
 .navbar-menu ul{
     height: 41px;
     display: flex;
@@ -49,7 +48,7 @@
     background-color: black;
 }
 
-.navbar-menu li {
+.nav {
     border-right: 1px solid white;
     padding: 0px 36px;
     font-family: sans-serif;
@@ -58,10 +57,19 @@
     color: white;
 }
 
+.nav a {
+    color: white;
+}
 .navbar-menu li:last-of-type {
     border: none;
 }
 
 .newjokelink {
     color: white;
+}
+
+.logout {
+    padding: 0px;
+    margin-right: 10px;
+    cursor: pointer;
 }

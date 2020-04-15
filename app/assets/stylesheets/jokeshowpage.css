@@ -50,7 +50,7 @@
     display: flex;
     justify-content: center;
     background-color: white;
-    max-width: 950px;
+    width: 950px;
 
 }
 
@@ -61,6 +61,7 @@
     margin-top: 40px;
     margin-bottom: 40px;
     min-height: 600px;
+    position: relative;
 } 
 
 .show-description {
@@ -81,7 +82,7 @@
     padding: 0px 16px 16px 16px;
 }
 
-/* .show-comments {
-    margin-top: 40px;
-    padding: 0px 0px 0px 14px;
-} */
+.comment-showbar {
+    position: sticky;
+    top: 100px;
+} 
