@@ -36,8 +36,26 @@ class NewJoke extends React.Component {
         return (e) => this.setState({ [type]: e.target.value })
     }
 
-    render() {
+    renderErrors() {
+        if (this.props.errors) {
+            debugger 
+        }
+    }
 
+    render() {
+    let titleError = [];
+    let jokeError = [];
+    let comedianError = [];
+    this.props.errors.forEach(error => {
+        if (error.includes('Title')) {
+            titleError = 'This field is required'
+        } else if (error.includes('Joke')) {
+            jokeError = 'This field is required'
+        } else if (error.includes('Comedian')) {
+            comedianError = 'This field is required'
+        }
+    })
+    debugger
     return (
         <div className='new-joke-page'>
             <div className='new-joke-content'>
@@ -51,16 +69,19 @@ class NewJoke extends React.Component {
                 <form className='new-joke-form' onSubmit={this.handleSubmit}>
                     <label htmlFor='by' className='newform-label'>BY *</label>
                     <div className='input-push'>
-                        <input id='by' className='newform-input-text' type='text' placeholder='The primary comedian, author, etc' onChange={this.update('comedian')} value={this.state.comedian} />
+                        <input id='by' className={this.props.errors.length ? 'newform-input-text nj-errors' : 'newform-input-text'} type='text' placeholder='The primary comedian, author, etc' onChange={this.update('comedian')} value={this.state.comedian} />
                     </div>
+                    <div className='new-joke-errors'>{comedianError}</div>
                     <label htmlFor='title' className='newform-label'>TITLE *</label>
                     <div className='input-push'>
-                        <input id='title' className='newform-input-text' type='text' placeholder='Title' onChange={this.update('title')} value={this.state.title} />
+                        <input id='title' className={this.props.errors.length ? 'newform-input-text nj-errors' : 'newform-input-text'} type='text' placeholder='Title' onChange={this.update('title')} value={this.state.title} />
                     </div>
+                    <div className='new-joke-errors'>{titleError}</div>
                     <label htmlFor='joke' className='newform-label'>JOKES *</label>
                     <div className='input-push'>
-                        <textarea id='joke' className='newform-input' onChange={this.update('joke')} value={this.state.joke} />
+                        <textarea id='joke' className={this.props.errors.length ? 'newform-input-text nj-errors' : 'newform-input-text'} onChange={this.update('joke')} value={this.state.joke} />
                     </div>
+                    <div className='new-joke-errors'>{jokeError}</div>
                     <h3 className='new-joke-meta'>Additional Metadata</h3>
                     <label className='newform-label' htmlFor='image'>IMAGE</label>
                     <div className='input-push image'>

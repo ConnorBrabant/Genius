@@ -66,7 +66,7 @@ class Joke extends React.Component {
         const endOffset = parseInt(e.target.getAttribute('data-offset'))
         const startPosition = startIndex + startOffset;
         const endPosition = endIndex + endOffset;
-        if ( !this.props.currentUser ||Boolean(startPosition) === false || Boolean(endPosition) === false || endPosition <= startPosition) {
+        if ( !this.props.currentUser || Boolean(startPosition) === false || Boolean(endPosition) === false || endPosition <= startPosition) {
             this.closeAnnotation()
         } else {  
             this.setState({

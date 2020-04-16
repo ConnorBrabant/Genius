@@ -107,9 +107,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var RECEIVE_ANNOTATIONS = 'RECEIVE_ANNOTATIONS';
 var RECEIVE_ANNOTATION = 'RECEIVE_ANNOTATION';
-var REMOVE_ANNOTATION = 'REMOVE_ANNOTATION'; // export const OPEN_ANNOTATION = 'OPEN_ANNOTATION'
-// export const CLOSE_ANNOTATION = 'CLOSE_ANNOTATION'
-
+var REMOVE_ANNOTATION = 'REMOVE_ANNOTATION';
 var RECEIVE_ANNOTATION_ERRORS = 'RECEIVE_ANNOTATION_ERRORS';
 
 var receiveAnnotations = function receiveAnnotations(annotations) {
@@ -144,6 +142,8 @@ var fetchAnnotations = function fetchAnnotations(jokeId) {
   return function (dispatch) {
     return _util_annotations__WEBPACK_IMPORTED_MODULE_0__["fetchAnnotations"](jokeId).then(function (annotations) {
       return dispatch(receiveAnnotations(annotations));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
     });
   };
 };
@@ -151,6 +151,8 @@ var postAnnotation = function postAnnotation(annotation) {
   return function (dispatch) {
     return _util_annotations__WEBPACK_IMPORTED_MODULE_0__["postAnnotation"](annotation).then(function (annotation) {
       return dispatch(receiveAnnotation(annotation));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
     });
   };
 };
@@ -158,6 +160,8 @@ var updateAnnotation = function updateAnnotation(annotation) {
   return function (dispatch) {
     return _util_annotations__WEBPACK_IMPORTED_MODULE_0__["updateAnnotation"](annotation).then(function (annotation) {
       return dispatch(receiveAnnotation(annotation));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
     });
   };
 };
@@ -165,6 +169,8 @@ var deleteAnnotation = function deleteAnnotation(annotationId) {
   return function (dispatch) {
     return _util_annotations__WEBPACK_IMPORTED_MODULE_0__["deleteAnnotation"](annotationId).then(function (annotation) {
       return dispatch(removeAnnotation(annotation));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
     });
   };
 };
@@ -239,11 +245,7 @@ var postComment = function postComment(comment) {
       return dispatch(receiveErrors(errors.responseJSON));
     });
   };
-}; // export const omment = (comment) => dispatch => (
-//     CommentsUtil.updateComment(comment).then(comment => dispatch(receiveComment(comment)), 
-//     errors => dispatch(receiveErrors(errors.responseJSON)))
-// );
-
+};
 var deleteComment = function deleteComment(commentId) {
   return function (dispatch) {
     return _util_comments__WEBPACK_IMPORTED_MODULE_0__["deleteComment"](commentId).then(function (comment) {
@@ -2045,8 +2047,28 @@ var NewJoke = /*#__PURE__*/function (_React$Component) {
       };
     }
   }, {
+    key: "renderErrors",
+    value: function renderErrors() {
+      if (this.props.errors) {
+        debugger;
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
+      var titleError = [];
+      var jokeError = [];
+      var comedianError = [];
+      this.props.errors.forEach(function (error) {
+        if (error.includes('Title')) {
+          titleError = 'This field is required';
+        } else if (error.includes('Joke')) {
+          jokeError = 'This field is required';
+        } else if (error.includes('Comedian')) {
+          comedianError = 'This field is required';
+        }
+      });
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "new-joke-page"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2069,34 +2091,40 @@ var NewJoke = /*#__PURE__*/function (_React$Component) {
         className: "input-push"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         id: "by",
-        className: "newform-input-text",
+        className: this.props.errors.length ? 'newform-input-text nj-errors' : 'newform-input-text',
         type: "text",
         placeholder: "The primary comedian, author, etc",
         onChange: this.update('comedian'),
         value: this.state.comedian
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "new-joke-errors"
+      }, comedianError), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "title",
         className: "newform-label"
       }, "TITLE *"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "input-push"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         id: "title",
-        className: "newform-input-text",
+        className: this.props.errors.length ? 'newform-input-text nj-errors' : 'newform-input-text',
         type: "text",
         placeholder: "Title",
         onChange: this.update('title'),
         value: this.state.title
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "new-joke-errors"
+      }, titleError), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "joke",
         className: "newform-label"
       }, "JOKES *"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "input-push"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         id: "joke",
-        className: "newform-input",
+        className: this.props.errors.length ? 'newform-input-text nj-errors' : 'newform-input-text',
         onChange: this.update('joke'),
         value: this.state.joke
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "new-joke-errors"
+      }, jokeError), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "new-joke-meta"
       }, "Additional Metadata"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "newform-label",
@@ -2139,6 +2167,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var msp = function msp(state) {
+  return {
+    errors: state.errors.joke
+  };
+};
+
 var mdp = function mdp(dispatch) {
   return {
     postJoke: function postJoke(joke) {
@@ -2147,7 +2181,7 @@ var mdp = function mdp(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(null, mdp)(_newjoke__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(_newjoke__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
 /***/ }),
 
@@ -3300,6 +3334,72 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./frontend/reducers/errors/annotation_errors.js":
+/*!*******************************************************!*\
+  !*** ./frontend/reducers/errors/annotation_errors.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/annotations_actions */ "./frontend/actions/annotations_actions.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ANNOTATION"]:
+      return [];
+
+    case _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_ANNOTATION"]:
+      return [];
+
+    case _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ANNOTATION_ERRORS"]:
+      return action.errors;
+
+    default:
+      return state;
+  }
+});
+
+/***/ }),
+
+/***/ "./frontend/reducers/errors/comment_errors.js":
+/*!****************************************************!*\
+  !*** ./frontend/reducers/errors/comment_errors.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/annotations_actions */ "./frontend/actions/annotations_actions.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COMMENT"]:
+      return [];
+
+    case _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_COMMENT"]:
+      return [];
+
+    case _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COMMENT_ERRORS"]:
+      return action.errors;
+
+    default:
+      return state;
+  }
+});
+
+/***/ }),
+
 /***/ "./frontend/reducers/errors/errors.js":
 /*!********************************************!*\
   !*** ./frontend/reducers/errors/errors.js ***!
@@ -3310,12 +3410,51 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _session_errors__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./session_errors */ "./frontend/reducers/errors/session_errors.js");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _joke_errors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./joke_errors */ "./frontend/reducers/errors/joke_errors.js");
+/* harmony import */ var _comment_errors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./comment_errors */ "./frontend/reducers/errors/comment_errors.js");
+/* harmony import */ var _annotation_errors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./annotation_errors */ "./frontend/reducers/errors/annotation_errors.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_1__["combineReducers"])({
-  session: _session_errors__WEBPACK_IMPORTED_MODULE_0__["default"]
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_4__["combineReducers"])({
+  session: _session_errors__WEBPACK_IMPORTED_MODULE_0__["default"],
+  joke: _joke_errors__WEBPACK_IMPORTED_MODULE_1__["default"],
+  comment: _comment_errors__WEBPACK_IMPORTED_MODULE_2__["default"],
+  annotation: _annotation_errors__WEBPACK_IMPORTED_MODULE_3__["default"]
 }));
+
+/***/ }),
+
+/***/ "./frontend/reducers/errors/joke_errors.js":
+/*!*************************************************!*\
+  !*** ./frontend/reducers/errors/joke_errors.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/jokes_actions */ "./frontend/actions/jokes_actions.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_JOKE"]:
+      return [];
+
+    case _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_JOKE_ERRORS"]:
+      return action.errors;
+
+    default:
+      return state;
+  }
+});
 
 /***/ }),
 

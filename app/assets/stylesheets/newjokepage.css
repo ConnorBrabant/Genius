@@ -100,3 +100,15 @@ textarea {
     border-bottom: 1px solid rgba(154,154,154,.35);
     margin-bottom: 20px;
 }
+
+.new-joke-errors {
+    color: #FF2D2D;
+    margin-left: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.nj-errors {
+    background-color: #FADCDC;
+}
