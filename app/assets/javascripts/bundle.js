@@ -90,7 +90,7 @@
 /*!*************************************************!*\
   !*** ./frontend/actions/annotations_actions.js ***!
   \*************************************************/
-/*! exports provided: RECEIVE_ANNOTATIONS, RECEIVE_ANNOTATION, REMOVE_ANNOTATION, OPEN_ANNOTATION, CLOSE_ANNOTATION, RECEIVE_ANNOTATION_ERRORS, postAnnotation, updateAnnotation, deleteAnnotation */
+/*! exports provided: RECEIVE_ANNOTATIONS, RECEIVE_ANNOTATION, REMOVE_ANNOTATION, RECEIVE_ANNOTATION_ERRORS, fetchAnnotations, postAnnotation, updateAnnotation, deleteAnnotation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98,9 +98,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ANNOTATIONS", function() { return RECEIVE_ANNOTATIONS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ANNOTATION", function() { return RECEIVE_ANNOTATION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_ANNOTATION", function() { return REMOVE_ANNOTATION; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OPEN_ANNOTATION", function() { return OPEN_ANNOTATION; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLOSE_ANNOTATION", function() { return CLOSE_ANNOTATION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ANNOTATION_ERRORS", function() { return RECEIVE_ANNOTATION_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAnnotations", function() { return fetchAnnotations; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postAnnotation", function() { return postAnnotation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateAnnotation", function() { return updateAnnotation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteAnnotation", function() { return deleteAnnotation; });
@@ -108,9 +107,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var RECEIVE_ANNOTATIONS = 'RECEIVE_ANNOTATIONS';
 var RECEIVE_ANNOTATION = 'RECEIVE_ANNOTATION';
-var REMOVE_ANNOTATION = 'REMOVE_ANNOTATION';
-var OPEN_ANNOTATION = 'OPEN_ANNOTATION';
-var CLOSE_ANNOTATION = 'CLOSE_ANNOTATION';
+var REMOVE_ANNOTATION = 'REMOVE_ANNOTATION'; // export const OPEN_ANNOTATION = 'OPEN_ANNOTATION'
+// export const CLOSE_ANNOTATION = 'CLOSE_ANNOTATION'
+
 var RECEIVE_ANNOTATION_ERRORS = 'RECEIVE_ANNOTATION_ERRORS';
 
 var receiveAnnotations = function receiveAnnotations(annotations) {
@@ -141,6 +140,13 @@ var receiveErrors = function receiveErrors(errors) {
   };
 };
 
+var fetchAnnotations = function fetchAnnotations(jokeId) {
+  return function (dispatch) {
+    return _util_annotations__WEBPACK_IMPORTED_MODULE_0__["fetchAnnotations"](jokeId).then(function (annotations) {
+      return dispatch(receiveAnnotations(annotations));
+    });
+  };
+};
 var postAnnotation = function postAnnotation(annotation) {
   return function (dispatch) {
     return _util_annotations__WEBPACK_IMPORTED_MODULE_0__["postAnnotation"](annotation).then(function (annotation) {
@@ -169,7 +175,7 @@ var deleteAnnotation = function deleteAnnotation(annotationId) {
 /*!**********************************************!*\
   !*** ./frontend/actions/comments_actions.js ***!
   \**********************************************/
-/*! exports provided: RECEIVE_COMMENT, REMOVE_COMMENT, RECEIVE_COMMENTS, RECEIVE_COMMENT_ERRORS, fetchComments, postComment, omment, deleteComment */
+/*! exports provided: RECEIVE_COMMENT, REMOVE_COMMENT, RECEIVE_COMMENTS, RECEIVE_COMMENT_ERRORS, fetchComments, postComment, deleteComment */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -180,7 +186,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_COMMENT_ERRORS", function() { return RECEIVE_COMMENT_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchComments", function() { return fetchComments; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postComment", function() { return postComment; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "omment", function() { return omment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteComment", function() { return deleteComment; });
 /* harmony import */ var _util_comments__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/comments */ "./frontend/util/comments.jsx");
 
@@ -234,16 +239,11 @@ var postComment = function postComment(comment) {
       return dispatch(receiveErrors(errors.responseJSON));
     });
   };
-};
-var omment = function omment(comment) {
-  return function (dispatch) {
-    return _util_comments__WEBPACK_IMPORTED_MODULE_0__["updateComment"](comment).then(function (comment) {
-      return dispatch(receiveComment(comment));
-    }, function (errors) {
-      return dispatch(receiveErrors(errors.responseJSON));
-    });
-  };
-};
+}; // export const omment = (comment) => dispatch => (
+//     CommentsUtil.updateComment(comment).then(comment => dispatch(receiveComment(comment)), 
+//     errors => dispatch(receiveErrors(errors.responseJSON)))
+// );
+
 var deleteComment = function deleteComment(commentId) {
   return function (dispatch) {
     return _util_comments__WEBPACK_IMPORTED_MODULE_0__["deleteComment"](commentId).then(function (comment) {
@@ -350,6 +350,85 @@ var deleteJoke = function deleteJoke(jokeId) {
       return dispatch(removeJoke());
     }, function (errors) {
       return dispatch(receiveErrors(errors.responseJSON));
+    });
+  };
+};
+
+/***/ }),
+
+/***/ "./frontend/actions/likes_actions.js":
+/*!*******************************************!*\
+  !*** ./frontend/actions/likes_actions.js ***!
+  \*******************************************/
+/*! exports provided: postCommentLike, postAnnotationLike, deleteCommentLike, deleteAnnotationLike */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postCommentLike", function() { return postCommentLike; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postAnnotationLike", function() { return postAnnotationLike; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteCommentLike", function() { return deleteCommentLike; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteAnnotationLike", function() { return deleteAnnotationLike; });
+/* harmony import */ var _util_likes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/likes */ "./frontend/util/likes.jsx");
+/* harmony import */ var _jokes_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./jokes_actions */ "./frontend/actions/jokes_actions.js");
+/* harmony import */ var _annotations_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./annotations_actions */ "./frontend/actions/annotations_actions.js");
+
+
+
+
+var receiveCommentLike = function receiveCommentLike(comment) {
+  return {
+    type: 'RECEIVE_COMMENT',
+    comment: comment
+  };
+};
+
+var receiveAnnotationLike = function receiveAnnotationLike(annotation) {
+  return {
+    type: 'RECEIVE_ANNOTATION',
+    annotation: annotation
+  };
+};
+
+var removeCommentLike = function removeCommentLike(comment) {
+  return {
+    type: 'RECEIVE_COMMENT',
+    comment: comment
+  };
+};
+
+var removeAnnotationLike = function removeAnnotationLike(annotation) {
+  return {
+    type: 'RECEIVE_ANNOTATION',
+    annotation: annotation
+  };
+};
+
+var postCommentLike = function postCommentLike(like) {
+  return function (dispatch) {
+    return _util_likes__WEBPACK_IMPORTED_MODULE_0__["postLike"](like).then(function (comment) {
+      return dispatch(receiveCommentLike(comment));
+    });
+  };
+};
+var postAnnotationLike = function postAnnotationLike(like) {
+  return function (dispatch) {
+    return _util_likes__WEBPACK_IMPORTED_MODULE_0__["postLike"](like).then(function (annotation) {
+      return dispatch(receiveAnnotationLike(annotation));
+    });
+  };
+};
+var deleteCommentLike = function deleteCommentLike(like) {
+  return function (dispatch) {
+    return _util_likes__WEBPACK_IMPORTED_MODULE_0__["deleteLike"](like).then(function (comment) {
+      return dispatch(removeCommentLike(comment));
+    });
+  };
+};
+var deleteAnnotationLike = function deleteAnnotationLike(like) {
+  return function (dispatch) {
+    return _util_likes__WEBPACK_IMPORTED_MODULE_0__["deleteLike"](like).then(function (annotation) {
+      return dispatch(removeAnnotationLike(annotation));
     });
   };
 };
@@ -689,6 +768,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _edit_annotation_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit_annotation_container */ "./frontend/components/annotation/edit_annotation_container.js");
 /* harmony import */ var _comment_show_comment_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../comment/show_comment_container */ "./frontend/components/comment/show_comment_container.js");
+/* harmony import */ var _likes_show_likes_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../likes/show_likes_container */ "./frontend/components/likes/show_likes_container.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -712,6 +792,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -811,8 +892,10 @@ var AnnotationShow = /*#__PURE__*/function (_React$Component) {
         className: "annotation-showpage-description"
       }, this.props.annotation.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "annotation-showpage-option"
-      }, annotationModify), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: ""
+      }, annotationModify), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_likes_show_likes_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        likableType: "Annotation",
+        likableId: this.props.annotation.id,
+        likes: this.props.annotation.likes
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_comment_show_comment_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
         commentableType: "Annotation",
         commentableId: this.props.annotation.id
@@ -1072,6 +1155,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _new_comment_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./new_comment_container */ "./frontend/components/comment/new_comment_container.js");
+/* harmony import */ var _likes_show_likes_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../likes/show_likes_container */ "./frontend/components/likes/show_likes_container.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1093,6 +1177,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -1160,12 +1245,18 @@ var CommentShow = /*#__PURE__*/function (_React$Component) {
           className: "comment-username"
         }, comment.username.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "comment-content"
-        }, comment.content), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        }, comment.content), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "comment-interaction"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_likes_show_likes_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          likableType: "Comment",
+          likableId: comment.id,
+          likes: comment.likes
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "comment-delete",
           onClick: function onClick() {
             return _this3.props.deleteComment(comment);
           }
-        }, "Delete"));
+        }, "Delete")));
       });
       return commentsLI;
     }
@@ -1533,7 +1624,14 @@ var AnnotatedJoke = /*#__PURE__*/function (_React$Component) {
       var annotatedJoke = [];
       var prevIndex = 0;
       var key = 0;
-      annotations.forEach(function (annotation, idx) {
+      var sorted = Object.values(annotations).sort(function (a, b) {
+        if (a.start_index < b.start_index) {
+          return -1;
+        } else {
+          return 1;
+        }
+      });
+      sorted.forEach(function (annotation, idx) {
         var jokeSlice = joke.slice(annotation.start_index, annotation.end_index);
         var before = joke.slice(prevIndex, annotation.start_index);
         annotatedJoke.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -1646,7 +1744,8 @@ var Joke = /*#__PURE__*/function (_React$Component) {
       startIndex: 0,
       endIndex: 0,
       annotation: false,
-      showingAnnotation: false
+      showingAnnotation: false,
+      currentAnnotations: []
     };
     _this.annotation = _this.annotation.bind(_assertThisInitialized(_this));
     _this.startAnnotation = _this.startAnnotation.bind(_assertThisInitialized(_this));
@@ -1662,16 +1761,20 @@ var Joke = /*#__PURE__*/function (_React$Component) {
 
       if (!localStorage.getItem('joke')) {
         localStorage.setItem('joke', JSON.stringify(this.props.joke));
-        this.setState({
-          joke: this.props.joke
+        this.props.fetchAnnotations(this.props.joke.id).then(function (annotations) {
+          _this2.setState({
+            joke: _this2.props.joke,
+            currentAnnotations: annotations.annotations
+          });
         });
       } else {
         var jokeStored = JSON.parse(localStorage.getItem('joke'));
         this.props.fetchJoke(jokeStored.id).then(function (joke) {
-          debugger;
-
-          _this2.setState({
-            joke: Object.values(joke.joke)[0]
+          _this2.props.fetchAnnotations(jokeStored.id).then(function (annotations) {
+            _this2.setState({
+              joke: Object.values(joke.joke)[0],
+              currentAnnotations: annotations.annotations
+            });
           });
         });
       }
@@ -1743,23 +1846,6 @@ var Joke = /*#__PURE__*/function (_React$Component) {
         comments = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Drag and Click to begin a new annotation or select one on the page to read its description");
       }
 
-      var currentAnnotations;
-
-      if (this.props.annotations) {
-        currentAnnotations = this.props.annotations;
-      } else if (this.state.joke.annotations) {
-        currentAnnotations = this.state.joke.annotations;
-      } else {
-        currentAnnotations = [];
-      }
-
-      currentAnnotations.sort(function (a, b) {
-        if (a.start_index < b.start_index) {
-          return -1;
-        } else {
-          return 1;
-        }
-      });
       var commentShow;
 
       if (typeof this.state.joke.id === 'number') {
@@ -1771,7 +1857,6 @@ var Joke = /*#__PURE__*/function (_React$Component) {
         commentShow = null;
       }
 
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "show-whole"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1791,7 +1876,7 @@ var Joke = /*#__PURE__*/function (_React$Component) {
         className: "show-content-left"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_joke_annotated__WEBPACK_IMPORTED_MODULE_1__["default"], {
         joke: this.state.joke.joke,
-        annotations: currentAnnotations,
+        annotations: this.state.currentAnnotations,
         startAnnotation: this.startAnnotation,
         annotation: this.annotation,
         displayAnnotation: this.displayAnnotation
@@ -1822,7 +1907,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/jokes_actions */ "./frontend/actions/jokes_actions.js");
 /* harmony import */ var _jokes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./jokes */ "./frontend/components/joke/jokes.jsx");
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/annotations_actions */ "./frontend/actions/annotations_actions.js");
 
 
 
@@ -1832,13 +1917,13 @@ var msp = function msp(state, ownProps) {
   if (ownProps.location.state) {
     return {
       joke: state.entities.jokes[ownProps.location.state.id],
-      annotations: Object.values(state.entities.annotations),
+      annotations: state.entities.annotations,
       currentUser: state.session.id
     };
   } else if (Object.keys(state.entities.jokes).length) {
     return {
       joke: Object.values(state.entities.jokes)[Object.keys(state.entities.jokes).length - 1],
-      annotations: Object.values(state.entities.annotations),
+      annotations: state.entities.annotations,
       currentUser: state.session.id
     };
   }
@@ -1846,6 +1931,9 @@ var msp = function msp(state, ownProps) {
 
 var mdp = function mdp(dispatch) {
   return {
+    fetchAnnotations: function fetchAnnotations(jokeId) {
+      return dispatch(Object(_actions_annotations_actions__WEBPACK_IMPORTED_MODULE_3__["fetchAnnotations"])(jokeId));
+    },
     updateJoke: function updateJoke(joke) {
       return dispatch(Object(_actions_jokes_actions__WEBPACK_IMPORTED_MODULE_1__["updateJoke"])(joke));
     },
@@ -2060,6 +2148,165 @@ var mdp = function mdp(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(null, mdp)(_newjoke__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/likes/show_likes.jsx":
+/*!**************************************************!*\
+  !*** ./frontend/components/likes/show_likes.jsx ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var Likes = /*#__PURE__*/function (_React$Component) {
+  _inherits(Likes, _React$Component);
+
+  var _super = _createSuper(Likes);
+
+  function Likes(props) {
+    var _this;
+
+    _classCallCheck(this, Likes);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      likableType: _this.props.likableType,
+      likableId: _this.props.likableId
+    };
+    _this.liked = _this.liked.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(Likes, [{
+    key: "liked",
+    value: function liked(vote) {
+      if (vote === 'up') {
+        this.state.likableType === 'Comment' ? this.props.postCommentLike(Object.assign({}, this.state, {
+          value: 1
+        })) : this.props.postAnnotationLike(Object.assign({}, this.state, {
+          value: 1
+        }));
+      } else {
+        this.state.likableType === 'Comment' ? this.props.postCommentLike(Object.assign({}, this.state, {
+          value: -1
+        })) : this.props.postAnnotationLike(Object.assign({}, this.state, {
+          value: -1
+        }));
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var likeCount = 0;
+
+      if (this.props.likes) {
+        Object.values(this.props.likes).forEach(function (like) {
+          return likeCount += like.value;
+        });
+      }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "like-buttons"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "thumbsup",
+        onClick: function onClick() {
+          return _this2.liked('up');
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        "class": "far fa-thumbs-up"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "like-count"
+      }, likeCount), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "thumbsdown",
+        onClick: function onClick() {
+          return _this2.liked('down');
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        "class": "far fa-thumbs-down"
+      })));
+    }
+  }]);
+
+  return Likes;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Likes);
+
+/***/ }),
+
+/***/ "./frontend/components/likes/show_likes_container.js":
+/*!***********************************************************!*\
+  !*** ./frontend/components/likes/show_likes_container.js ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _show_likes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./show_likes */ "./frontend/components/likes/show_likes.jsx");
+/* harmony import */ var _actions_likes_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/likes_actions */ "./frontend/actions/likes_actions.js");
+
+
+
+
+var msp = function msp(state, ownProps) {
+  return {
+    currentUser: state.session.id,
+    likableType: ownProps.likableType,
+    likableId: ownProps.likableId,
+    likes: ownProps.likes
+  };
+};
+
+var mdp = function mdp(dispatch) {
+  return {
+    postCommentLike: function postCommentLike(like) {
+      return dispatch(Object(_actions_likes_actions__WEBPACK_IMPORTED_MODULE_2__["postCommentLike"])(like));
+    },
+    postAnnotationLike: function postAnnotationLike(like) {
+      return dispatch(Object(_actions_likes_actions__WEBPACK_IMPORTED_MODULE_2__["postAnnotationLike"])(like));
+    },
+    deleteCommentLike: function deleteCommentLike(like) {
+      return dispatch(Object(_actions_likes_actions__WEBPACK_IMPORTED_MODULE_2__["deleteCommentLike"])(like));
+    },
+    deleteAnnotationLike: function deleteAnnotationLike(like) {
+      return dispatch(Object(_actions_likes_actions__WEBPACK_IMPORTED_MODULE_2__["deleteAnnotationLike"])(like));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(_show_likes__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
@@ -2902,7 +3149,7 @@ var annotationsReducer = function annotationsReducer() {
       return Object.assign({}, state, action.annotation.annotations);
 
     case _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ANNOTATIONS"]:
-      return Object.assign({}, action.annotation.annotations);
+      return Object.assign({}, action.annotations);
 
     case _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_ANNOTATION"]:
       var newState = Object.assign({}, state);
@@ -3286,16 +3533,16 @@ __webpack_require__.r(__webpack_exports__);
 /*!***************************************!*\
   !*** ./frontend/util/annotations.jsx ***!
   \***************************************/
-/*! exports provided: fetchAnnontations, postAnnotation, updateAnnotation, deleteAnnotation */
+/*! exports provided: fetchAnnotations, postAnnotation, updateAnnotation, deleteAnnotation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAnnontations", function() { return fetchAnnontations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAnnotations", function() { return fetchAnnotations; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postAnnotation", function() { return postAnnotation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateAnnotation", function() { return updateAnnotation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteAnnotation", function() { return deleteAnnotation; });
-var fetchAnnontations = function fetchAnnontations(jokeId) {
+var fetchAnnotations = function fetchAnnotations(jokeId) {
   return $.ajax({
     method: "GET",
     url: "/api/jokes/".concat(jokeId, "/annotations")
@@ -3426,6 +3673,35 @@ var deleteJoke = function deleteJoke(jokeId) {
   return $.ajax({
     method: 'DELETE',
     url: "/api/jokes/".concat(jokeId)
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/likes.jsx":
+/*!*********************************!*\
+  !*** ./frontend/util/likes.jsx ***!
+  \*********************************/
+/*! exports provided: postLike, deleteLike */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postLike", function() { return postLike; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteLike", function() { return deleteLike; });
+var postLike = function postLike(like) {
+  return $.ajax({
+    method: 'POST',
+    url: '/api/likes',
+    data: {
+      like: like
+    }
+  });
+};
+var deleteLike = function deleteLike(likeId) {
+  return $.ajax({
+    method: 'DELETE',
+    url: "api/likes/".concat(likeId)
   });
 };
 

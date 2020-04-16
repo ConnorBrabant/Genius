@@ -35,10 +35,10 @@ export const postComment = (comment) => dispatch => (
     errors => dispatch(receiveErrors(errors.responseJSON)))
 );
 
-export const omment = (comment) => dispatch => (
-    CommentsUtil.updateComment(comment).then(comment => dispatch(receiveComment(comment)), 
-    errors => dispatch(receiveErrors(errors.responseJSON)))
-);
+// export const omment = (comment) => dispatch => (
+//     CommentsUtil.updateComment(comment).then(comment => dispatch(receiveComment(comment)), 
+//     errors => dispatch(receiveErrors(errors.responseJSON)))
+// );
 
 export const deleteComment = (commentId) => dispatch => (
     CommentsUtil.deleteComment(commentId).then(comment => dispatch(removeComment(comment)), 

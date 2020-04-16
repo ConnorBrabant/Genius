@@ -3,8 +3,8 @@ import * as AnnotationsUtil from '../util/annotations'
 export const RECEIVE_ANNOTATIONS = 'RECEIVE_ANNOTATIONS'
 export const RECEIVE_ANNOTATION = 'RECEIVE_ANNOTATION'
 export const REMOVE_ANNOTATION = 'REMOVE_ANNOTATION'
-export const OPEN_ANNOTATION = 'OPEN_ANNOTATION'
-export const CLOSE_ANNOTATION = 'CLOSE_ANNOTATION'
+// export const OPEN_ANNOTATION = 'OPEN_ANNOTATION'
+// export const CLOSE_ANNOTATION = 'CLOSE_ANNOTATION'
 export const RECEIVE_ANNOTATION_ERRORS = 'RECEIVE_ANNOTATION_ERRORS'
 
 const receiveAnnotations = (annotations) => ({
@@ -26,6 +26,10 @@ const receiveErrors = errors => ({
     type: RECEIVE_ANNOTATION_ERRORS,
     errors
 })
+
+export const fetchAnnotations = (jokeId) => dispatch => (
+    AnnotationsUtil.fetchAnnotations(jokeId).then(annotations => dispatch(receiveAnnotations(annotations)))
+)
 
 export const postAnnotation = (annotation) => dispatch => (
     AnnotationsUtil.postAnnotation(annotation).then(annotation => dispatch(receiveAnnotation(annotation)))

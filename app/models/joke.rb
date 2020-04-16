@@ -28,6 +28,7 @@ class Joke < ApplicationRecord
         foreign_key: :joke_id,
         class_name: :Annotation
 
-    has_many :comments, as: :commentable
+    has_many :comments, as: :commentable 
+
 end
 

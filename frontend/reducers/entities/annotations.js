@@ -7,7 +7,7 @@ const annotationsReducer = (state = {}, action) => {
         case RECEIVE_ANNOTATION:
             return Object.assign({}, state, action.annotation.annotations);
         case RECEIVE_ANNOTATIONS:
-            return Object.assign({}, action.annotation.annotations);
+            return Object.assign({}, action.annotations);
         case REMOVE_ANNOTATION:
             let newState = Object.assign({}, state);
             delete newState[Object.keys(action.annotation.annotations)[0]];

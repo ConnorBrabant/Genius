@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :annotations, only: [:create, :destroy, :update, :show, :index]
       resources :comments, only: [:create, :destroy, :update, :index]
     end
+    resources :likes, only: [:create, :destroy]
   end 
   root to: 'root#root'
 end

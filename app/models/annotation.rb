@@ -23,4 +23,6 @@ class Annotation < ApplicationRecord
         class_name: :Joke
 
     has_many :comments, as: :commentable
+
+    has_many :likes, as: :likable
 end

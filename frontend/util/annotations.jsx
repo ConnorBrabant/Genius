@@ -1,9 +1,9 @@
-export const fetchAnnontations = (jokeId) => (
-    $.ajax({
+export const fetchAnnotations = (jokeId) => {
+    return $.ajax({
         method: "GET",
         url: `/api/jokes/${jokeId}/annotations`
     })
-)
+}
 
 export const postAnnotation = (annotation) => (
     $.ajax({

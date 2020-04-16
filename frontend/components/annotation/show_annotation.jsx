@@ -2,6 +2,7 @@ import { render } from "react-dom"
 import React from 'react';
 import AnnotationEdit from './edit_annotation_container'
 import CommentShow from '../comment/show_comment_container'
+import LikeShow from '../likes/show_likes_container'
 
 class AnnotationShow extends React.Component {
     constructor (props) {
@@ -57,7 +58,11 @@ class AnnotationShow extends React.Component {
                 <h2 className='annotation-showpage-user'>{this.props.annotation.user}</h2>
                 <p className='annotation-showpage-description'>{this.props.annotation.description}</p>
                 <div className='annotation-showpage-option'>{annotationModify}</div>
-                <div className=''></div>
+                <LikeShow 
+                    likableType='Annotation'
+                    likableId={this.props.annotation.id}
+                    likes={this.props.annotation.likes}
+                />
                 <CommentShow 
                     commentableType='Annotation'
                     commentableId={this.props.annotation.id}

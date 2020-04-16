@@ -1,5 +1,7 @@
 class Api::AnnotationsController < ApplicationController 
     def index  
+        @annotations = Joke.find(params[:joke_id]).annotations
+        render :index
     end 
 
     def create

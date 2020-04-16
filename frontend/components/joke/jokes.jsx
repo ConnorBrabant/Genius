@@ -20,6 +20,7 @@ class Joke extends React.Component {
             endIndex: 0,
             annotation: false,
             showingAnnotation: false,
+            currentAnnotations: []
         }
         this.annotation = this.annotation.bind(this);
         this.startAnnotation = this.startAnnotation.bind(this);
@@ -30,15 +31,25 @@ class Joke extends React.Component {
     componentDidMount() {
         if (!localStorage.getItem('joke')) {
             localStorage.setItem('joke', JSON.stringify(this.props.joke));
-            this.setState({ joke: this.props.joke })
+            this.props.fetchAnnotations(this.props.joke.id).then(annotations => {
+                this.setState({ 
+                    joke: this.props.joke,
+                    currentAnnotations: annotations.annotations
+                })
+            });
         } else {
             let jokeStored = JSON.parse(localStorage.getItem('joke'));
-            this.props.fetchJoke(jokeStored.id).then((joke) => {
-                debugger
-                this.setState({ joke: Object.values(joke.joke)[0]} )
+            this.props.fetchJoke(jokeStored.id).then(joke => {
+                this.props.fetchAnnotations(jokeStored.id).then(annotations => {
+                    this.setState({ 
+                        joke: Object.values(joke.joke)[0],
+                        currentAnnotations: annotations.annotations
+                    })
             });
-        }
+        })
     }
+    }
+
 
     startAnnotation(e) {
         this.setState({
@@ -99,20 +110,6 @@ class Joke extends React.Component {
             to read its description
         </p>
     }
-    let currentAnnotations;
-    if (this.props.annotations) {
-        currentAnnotations = this.props.annotations
-    } else if (this.state.joke.annotations) {
-        currentAnnotations = this.state.joke.annotations;
-    } else {
-        currentAnnotations = [];
-    }
-    currentAnnotations.sort((a,b) => {
-        if (a.start_index < b.start_index) {
-            return -1 
-        } else {
-            return 1
-    }});
     let commentShow;
     if (typeof this.state.joke.id === 'number') {
         commentShow = <CommentShow
@@ -122,7 +119,6 @@ class Joke extends React.Component {
     } else {
         commentShow = null;
     }
-    debugger
     return (
         <div className='show-whole'> 
             <div className='show-header'>
@@ -136,7 +132,7 @@ class Joke extends React.Component {
                 <div className='show-content-left'>
                     <AnnotatedJoke 
                         joke={this.state.joke.joke}
-                        annotations={currentAnnotations}
+                        annotations={this.state.currentAnnotations}
                         startAnnotation={this.startAnnotation}
                         annotation={this.annotation}
                         displayAnnotation={this.displayAnnotation}

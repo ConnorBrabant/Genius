@@ -21,8 +21,15 @@ class AnnotatedJoke extends React.Component {
         const { joke, annotations, startAnnotation, annotation, displayAnnotation } = this.props;
         let annotatedJoke = [];
         let prevIndex = 0;
-        let key = 0;
-        annotations.forEach((annotation, idx) => {
+        let key = 0; 
+        let sorted = Object.values(annotations).sort((a, b) => {
+            if (a.start_index < b.start_index) {
+                return -1
+            } else {
+                return 1
+            }
+        });
+        sorted.forEach((annotation, idx) => {
             const jokeSlice = joke.slice(annotation.start_index, annotation.end_index);
             let before = joke.slice(prevIndex, annotation.start_index)
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import CommentForm from './new_comment_container'
+import LikesShow from '../likes/show_likes_container'
 
 class CommentShow extends React.Component {
     constructor (props) {
@@ -39,7 +40,14 @@ class CommentShow extends React.Component {
             <li key={idx}>
                 <span className='comment-username'>{comment.username.username}</span>
                 <p className='comment-content'>{comment.content}</p>
-                <button className='comment-delete' onClick={() => this.props.deleteComment(comment)}>Delete</button>
+                <div className='comment-interaction'>
+                    <LikesShow 
+                        likableType='Comment'
+                        likableId={comment.id}
+                        likes={comment.likes} 
+                    />
+                    <button className='comment-delete' onClick={() => this.props.deleteComment(comment)}>Delete</button>
+                </div>
             </li>
         ));
         return commentsLI;

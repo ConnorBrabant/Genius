@@ -47,12 +47,17 @@
 
 .comment-content {
     margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .comment-delete {
-    margin-top: 15px;
+    margin-top: 10px;
+    border: none;
+    background-color: inherit;
 }
 
-.comment-load {
-    margin-top: 15px;
+.comment-interaction {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
 }
