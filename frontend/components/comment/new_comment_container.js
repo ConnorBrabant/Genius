@@ -4,7 +4,8 @@ import { postComment } from '../../actions/comments_actions';
 
 const msp = (state, ownProps) => ({
     commentableType: ownProps.commentableType,
-    commentableId: ownProps.commentableId
+    commentableId: ownProps.commentableId,
+    errors: state.errors.comment
 })
 
 const mdp = dispatch => ({

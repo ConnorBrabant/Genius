@@ -61,3 +61,8 @@
     display: flex;
     justify-content: space-between;
 }
+
+.comment-errors {
+    background-color: #ff1414;
+    font-size: .875erm;
+}

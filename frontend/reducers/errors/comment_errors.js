@@ -1,4 +1,4 @@
-import { RECEIVE_COMMENT_ERRORS, RECEIVE_COMMENT, REMOVE_COMMENT } from '../../actions/annotations_actions'
+import { RECEIVE_COMMENT_ERRORS, RECEIVE_COMMENT, REMOVE_COMMENT } from '../../actions/comments_actions'
 
 export default (state = [], action) => {
     Object.freeze(state);

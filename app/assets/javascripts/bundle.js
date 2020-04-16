@@ -1083,16 +1083,37 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      var _this3 = this;
+
       e.preventDefault();
-      this.props.action(this.state);
+      this.props.action(this.state).then(function () {
+        return _this3.setState({
+          content: ''
+        });
+      });
     }
   }, {
     key: "render",
     value: function render() {
+      // let errorsForJoke;
+      // let errorsForAnnotation;
+      // if (this.props.errors.length && this.props.commentableType === 'Joke') {
+      //     errorsForJoke = 'PLEASE ENTER A COMMENT'
+      // } else if (this.props.errors.length && this.props.commentableType === 'Annotation') {
+      //     errorsForAnnotation = 'PLEASE ENTER A COMMENT'
+      // }
+      var errors;
+
+      if (this.props.errors.length) {
+        errors = 'PLEASE ENTER A COMMENT';
+      }
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "comment-form",
         onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "comment-errors"
+      }, errors), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         placeholder: "Add a comment",
         onChange: this.update('content'),
         value: this.state.content
@@ -1129,7 +1150,8 @@ __webpack_require__.r(__webpack_exports__);
 var msp = function msp(state, ownProps) {
   return {
     commentableType: ownProps.commentableType,
-    commentableId: ownProps.commentableId
+    commentableId: ownProps.commentableId,
+    errors: state.errors.comment
   };
 };
 
@@ -3376,7 +3398,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/annotations_actions */ "./frontend/actions/annotations_actions.js");
+/* harmony import */ var _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/comments_actions */ "./frontend/actions/comments_actions.js");
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
@@ -3384,13 +3406,13 @@ __webpack_require__.r(__webpack_exports__);
   Object.freeze(state);
 
   switch (action.type) {
-    case _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COMMENT"]:
+    case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COMMENT"]:
       return [];
 
-    case _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_COMMENT"]:
+    case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_COMMENT"]:
       return [];
 
-    case _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COMMENT_ERRORS"]:
+    case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COMMENT_ERRORS"]:
       return action.errors;
 
     default:
