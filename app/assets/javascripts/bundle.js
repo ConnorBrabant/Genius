@@ -1314,10 +1314,7 @@ var CommentShow = /*#__PURE__*/function (_React$Component) {
         className: "comment-section"
       }, commentForm, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "comment-list"
-      }, this.state.comments), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "comment-load",
-        onClick: this.loadMoreComments
-      }, "SHOW MORE"));
+      }, this.state.comments));
     }
   }]);
 

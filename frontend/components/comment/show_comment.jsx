@@ -79,7 +79,6 @@ class CommentShow extends React.Component {
                 <ul className='comment-list'>
                     {this.state.comments}
                 </ul>
-                <button className='comment-load' onClick={this.loadMoreComments}>SHOW MORE</button>
             </div>
         )
     }
