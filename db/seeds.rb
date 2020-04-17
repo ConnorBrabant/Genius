@@ -316,7 +316,7 @@ collected, and then you do a second show about Xzibit trying to raise 30 babies 
 user_id: User1.id)
 joke9.photo.attach(io: open("https://ludicrous-seed.s3.amazonaws.com/ludicrous+seed+pics/ansari-buriedalive.jpg"), filename: "ansari-buriedalive.jpg")
 
-joke10 = Joke.create!(title: '100% Fresh', comedian_id: AdamSandler.id, 
+joke10 = Joke.create!(title: '100 Percent Fresh', comedian_id: AdamSandler.id, 
 joke: "Hello. You ever… How about the times you wake up… Ever wake up like 4:30 
 in the morning and you’re like, “God damn it. What am I doing up right now?” 
 4:30, can’t fall asleep… I’m ruined for the day. Ever do one of those things 

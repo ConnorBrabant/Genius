@@ -2609,11 +2609,11 @@ __webpack_require__.r(__webpack_exports__);
       className: "nav"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "https://github.com/ConnorBrabant/"
-    }, "Github")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    }, "GITHUB")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       className: "nav"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "https://www.linkedin.com/in/connor-brabant-81b1a1168/"
-    }, "LinkedIn")))));
+    }, "LINKEDIN")))));
   } else {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "navbar"
@@ -2636,11 +2636,11 @@ __webpack_require__.r(__webpack_exports__);
       className: "nav"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "https://github.com/ConnorBrabant/"
-    }, "Github")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    }, "GITHUB")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       className: "nav"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "https://www.linkedin.com/in/connor-brabant-81b1a1168/"
-    }, "LinkedIn")))));
+    }, "LINKEDIN")))));
   }
 });
 
