@@ -18,7 +18,9 @@ export const postJoke = joke => (
     $.ajax({
         method: 'POST',
         url: '/api/jokes',
-        data: { joke }
+        data: joke,
+        contentType: false,
+        processData: false
     })
 )
 

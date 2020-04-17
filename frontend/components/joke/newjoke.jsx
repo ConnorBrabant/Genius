@@ -7,9 +7,10 @@ class NewJoke extends React.Component {
             title: '',
             comedian: '',
             joke: '',
-            image: ''
+            image: null
         }
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleFile = this.handleFile.bind(this);
     }
 
     formatRoute(title, comedian) {
@@ -22,14 +23,23 @@ class NewJoke extends React.Component {
     } 
 
     handleSubmit(e) {
-
         e.preventDefault();
-        this.props.postJoke(this.state).then((joke) => {
+        const formData = new FormData();
+        formData.append('joke[title]', this.state.title);
+        formData.append('joke[comedian]', this.state.comedian);
+        formData.append('joke[joke]', this.state.joke);
+        formData.append('joke[photo]', this.state.image);
+        this.props.postJoke(formData).then((joke) => {
             let key = Object.keys(joke.joke)[0];
             let jokeObj = joke.joke[key]
             this.props.history.push(this.formatRoute(jokeObj.title, jokeObj.comedian.name))
         })
         // this.props.postJoke(this.state).then(joke => this.props.history.push('/'))
+    }
+
+    handleFile(e) {
+        debugger
+        return (e) => this.setState({ image: e.currentTarget.files[0] });
     }
 
     update(type) {
@@ -85,7 +95,7 @@ class NewJoke extends React.Component {
                     <h3 className='new-joke-meta'>Additional Metadata</h3>
                     <label className='newform-label' htmlFor='image'>IMAGE</label>
                     <div className='input-push image'>
-                        <input id='image' type='text' className='newform-input-text new-image' onChange={this.update('image')} value={this.state.image} />
+                        <input id='image' type='file' className='newform-input-text new-image' onChange={this.handleFile('image')} />
                     </div>
                     <button type='submit' className='new-joke-button'>Submit</button>
                 </form>

@@ -12,10 +12,10 @@ export default (props) => {
             <section className='navbar-menu'>
                 <ul>
                     <li className='nav'>
-                        <a href='https://github.com/ConnorBrabant/'>GITHUB</a>
+                        <a target='blank' href='https://github.com/ConnorBrabant/'>GITHUB</a>
                     </li>
                     <li className='nav'>
-                        <a href='https://www.linkedin.com/in/connor-brabant-81b1a1168/'>LINKEDIN</a>
+                        <a target='blank' href='https://www.linkedin.com/in/connor-brabant-81b1a1168/'>LINKEDIN</a>
                     </li>
                     <li className='nav new'>
                         <Link className='newjokelink' to='/new'>ADD A JOKE</Link>

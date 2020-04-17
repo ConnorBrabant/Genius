@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
 import AnnotationShow from './show_annotation'
-import { fetchAnnotations, deleteAnnotation, updateAnnotation } from '../../actions/annotations_actions' 
+import { deleteAnnotation, updateAnnotation } from '../../actions/annotations_actions' 
 
 const msp = (state, ownProps) => {
+    debugger
     return ({
-        annotation: ownProps.annotation,
+        annotation: state.entities.annotations[ownProps.annotation] ? state.entities.annotations[ownProps.annotation] : '',
         currentUser: state.session.id,
         closeAnnotation: ownProps.closeAnnotation,
     })

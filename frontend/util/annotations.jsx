@@ -1,7 +1,8 @@
 export const fetchAnnotations = (jokeId) => {
     return $.ajax({
         method: "GET",
-        url: `/api/jokes/${jokeId}/annotations`
+        url: `/api/jokes/${jokeId}/annotations`,
+        
     })
 }
 

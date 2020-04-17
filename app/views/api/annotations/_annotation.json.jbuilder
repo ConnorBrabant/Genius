@@ -1,5 +1,5 @@
 json.extract! annotation, :id, :description, :user_id, :joke_id, :start_index, :end_index
-json.set! :username, annotation.user
+json.set! :username, annotation.user.username
 json.likes do 
     annotation.likes.each do |like| 
         json.set! like.id do 

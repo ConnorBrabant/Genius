@@ -53,6 +53,6 @@ class Api::JokesController < ApplicationController
 
     private 
     def joke_params 
-        params.require(:joke).permit(:title, :joke, :image)
+        params.require(:joke).permit(:title, :joke, :photo)
     end
 end 

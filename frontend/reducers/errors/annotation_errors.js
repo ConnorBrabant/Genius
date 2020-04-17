@@ -7,8 +7,8 @@ export default (state = [], action) => {
             return [];
         case REMOVE_ANNOTATION: 
             return [];
-        case RECEIVE_ANNOTATION_ERRORS:
-            return action.errors;
+        // case RECEIVE_ANNOTATION_ERRORS:
+        //     return action.errors;
         default:
             return state;
     }

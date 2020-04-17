@@ -44,7 +44,7 @@ class AnnotatedJoke extends React.Component {
                 </a>
             )
             prevIndex = annotation.end_index;
-            if (idx === annotations.length - 1) {
+            if (idx === Object.keys(annotations).length - 1) {
                 annotatedJoke.push(
                     <span
                         key={key++}
@@ -55,7 +55,6 @@ class AnnotatedJoke extends React.Component {
             }
 
         })
-        // let displayJoke = this.formatJoke(joke);
         if (annotatedJoke.length) {
             return (
                 <p className='show-description' onMouseDown={startAnnotation} onMouseUp={annotation}>

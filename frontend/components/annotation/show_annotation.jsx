@@ -23,7 +23,6 @@ class AnnotationShow extends React.Component {
         this.props.update
     }
 
-    // doesnt edit the form but instead adds another edit with the new info //
     displayEditForm() {
         this.setState( {
             edit: true,
@@ -42,11 +41,13 @@ class AnnotationShow extends React.Component {
 
     render () {     
         let annotationModify;
+        debugger
         if (this.state.edit) {
             annotationModify = <AnnotationEdit annotation={this.props.annotation} closeForm={this.closeEditForm} />
         } else if (this.props.currentUser === this.props.annotation.user_id) {
             annotationModify = 
                 <div className='annotation-modify'>
+                    <button className='annotation-button-edit' onClick={() => this.displayEditForm()}>Edit</button>
                     <button className='annotation-button-delete' onClick={() => this.delete()}>Remove</button>
                 </div>
         } else {
@@ -55,7 +56,7 @@ class AnnotationShow extends React.Component {
         return (
         <div className='annotation-showpage'>
             <div className='annotation-fixed'>
-                <h2 className='annotation-showpage-user'>{this.props.annotation.user}</h2>
+                <h2 className='annotation-showpage-user'>{this.props.annotation.username}</h2>
                 <p className='annotation-showpage-description'>{this.props.annotation.description}</p>
                 <div className='annotation-showpage-option'>{annotationModify}</div>
                 <LikeShow 

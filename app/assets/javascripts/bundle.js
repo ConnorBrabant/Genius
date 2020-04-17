@@ -834,8 +834,7 @@ var AnnotationShow = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit(e) {
       e.preventDefault();
       this.props.update;
-    } // doesnt edit the form but instead adds another edit with the new info //
-
+    }
   }, {
     key: "displayEditForm",
     value: function displayEditForm() {
@@ -865,6 +864,7 @@ var AnnotationShow = /*#__PURE__*/function (_React$Component) {
       var _this4 = this;
 
       var annotationModify;
+      debugger;
 
       if (this.state.edit) {
         annotationModify = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_edit_annotation_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -875,6 +875,11 @@ var AnnotationShow = /*#__PURE__*/function (_React$Component) {
         annotationModify = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
           className: "annotation-modify"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+          className: "annotation-button-edit",
+          onClick: function onClick() {
+            return _this4.displayEditForm();
+          }
+        }, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
           className: "annotation-button-delete",
           onClick: function onClick() {
             return _this4["delete"]();
@@ -890,7 +895,7 @@ var AnnotationShow = /*#__PURE__*/function (_React$Component) {
         className: "annotation-fixed"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", {
         className: "annotation-showpage-user"
-      }, this.props.annotation.user), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+      }, this.props.annotation.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
         className: "annotation-showpage-description"
       }, this.props.annotation.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "annotation-showpage-option"
@@ -929,8 +934,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state, ownProps) {
+  debugger;
   return {
-    annotation: ownProps.annotation,
+    annotation: state.entities.annotations[ownProps.annotation] ? state.entities.annotations[ownProps.annotation] : '',
     currentUser: state.session.id,
     closeAnnotation: ownProps.closeAnnotation
   };
@@ -1671,13 +1677,13 @@ var AnnotatedJoke = /*#__PURE__*/function (_React$Component) {
         }, jokeSlice));
         prevIndex = annotation.end_index;
 
-        if (idx === annotations.length - 1) {
+        if (idx === Object.keys(annotations).length - 1) {
           annotatedJoke.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
             key: key++,
             "data-offset": prevIndex
           }, joke.slice(prevIndex, joke.length)));
         }
-      }); // let displayJoke = this.formatJoke(joke);
+      });
 
       if (annotatedJoke.length) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -1804,6 +1810,15 @@ var Joke = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (prevProps.annotations !== this.props.annotations) {
+        this.setState({
+          currentAnnotations: this.props.annotations
+        });
+      }
+    }
+  }, {
     key: "startAnnotation",
     value: function startAnnotation(e) {
       this.setState({
@@ -1864,7 +1879,7 @@ var Joke = /*#__PURE__*/function (_React$Component) {
       } else if (this.state.showingAnnotation) {
         comments = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_annotation_show_annotation_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
           closeAnnotation: this.closeAnnotation,
-          annotation: this.state.showingAnnotation
+          annotation: this.state.showingAnnotation.id
         });
       } else {
         comments = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Drag and Click to begin a new annotation or select one on the page to read its description");
@@ -2026,9 +2041,10 @@ var NewJoke = /*#__PURE__*/function (_React$Component) {
       title: '',
       comedian: '',
       joke: '',
-      image: ''
+      image: null
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2052,7 +2068,12 @@ var NewJoke = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       e.preventDefault();
-      this.props.postJoke(this.state).then(function (joke) {
+      var formData = new FormData();
+      formData.append('joke[title]', this.state.title);
+      formData.append('joke[comedian]', this.state.comedian);
+      formData.append('joke[joke]', this.state.joke);
+      formData.append('joke[photo]', this.state.image);
+      this.props.postJoke(formData).then(function (joke) {
         var key = Object.keys(joke.joke)[0];
         var jokeObj = joke.joke[key];
 
@@ -2060,12 +2081,24 @@ var NewJoke = /*#__PURE__*/function (_React$Component) {
       }); // this.props.postJoke(this.state).then(joke => this.props.history.push('/'))
     }
   }, {
-    key: "update",
-    value: function update(type) {
+    key: "handleFile",
+    value: function handleFile(e) {
       var _this3 = this;
 
+      debugger;
       return function (e) {
-        return _this3.setState(_defineProperty({}, type, e.target.value));
+        return _this3.setState({
+          image: e.currentTarget.files[0]
+        });
+      };
+    }
+  }, {
+    key: "update",
+    value: function update(type) {
+      var _this4 = this;
+
+      return function (e) {
+        return _this4.setState(_defineProperty({}, type, e.target.value));
       };
     }
   }, {
@@ -2155,10 +2188,9 @@ var NewJoke = /*#__PURE__*/function (_React$Component) {
         className: "input-push image"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         id: "image",
-        type: "text",
+        type: "file",
         className: "newform-input-text new-image",
-        onChange: this.update('image'),
-        value: this.state.image
+        onChange: this.handleFile('image')
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         className: "new-joke-button"
@@ -2262,6 +2294,11 @@ var Likes = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Likes, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      debugger;
+    }
+  }, {
     key: "liked",
     value: function liked(vote) {
       if (vote === 'up') {
@@ -2299,7 +2336,7 @@ var Likes = /*#__PURE__*/function (_React$Component) {
           return _this2.liked('up');
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        "class": "far fa-thumbs-up"
+        className: "far fa-thumbs-up"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "like-count"
       }, likeCount), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -2308,7 +2345,7 @@ var Likes = /*#__PURE__*/function (_React$Component) {
           return _this2.liked('down');
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        "class": "far fa-thumbs-down"
+        className: "far fa-thumbs-down"
       })));
     }
   }]);
@@ -2540,10 +2577,12 @@ __webpack_require__.r(__webpack_exports__);
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       className: "nav"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      target: "blank",
       href: "https://github.com/ConnorBrabant/"
     }, "GITHUB")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       className: "nav"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      target: "blank",
       href: "https://www.linkedin.com/in/connor-brabant-81b1a1168/"
     }, "LINKEDIN")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       className: "nav new"
@@ -3378,9 +3417,8 @@ __webpack_require__.r(__webpack_exports__);
 
     case _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_ANNOTATION"]:
       return [];
-
-    case _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ANNOTATION_ERRORS"]:
-      return action.errors;
+    // case RECEIVE_ANNOTATION_ERRORS:
+    //     return action.errors;
 
     default:
       return state;
@@ -3816,9 +3854,9 @@ var postJoke = function postJoke(joke) {
   return $.ajax({
     method: 'POST',
     url: '/api/jokes',
-    data: {
-      joke: joke
-    }
+    data: joke,
+    contentType: false,
+    processData: false
   });
 };
 var updateJoke = function updateJoke(joke) {

@@ -89,3 +89,16 @@
 .annotation-showpage-description {
   margin-bottom: 10px;
 }
+
+.comment-section {
+  margin-top: 10px;
+}
+
+.annotation-button-edit {
+
+    border-color: black;
+    background-color: transparent;
+    border-width: .15rem;
+    cursor: pointer;
+    margin-right: 10px;
+}

@@ -10,6 +10,10 @@ class Likes extends React.Component {
         this.liked = this.liked.bind(this);
     }
 
+    componentDidUpdate() {
+        debugger 
+    }
+
 
     liked(vote) {
         if (vote === 'up') {
@@ -34,9 +38,9 @@ class Likes extends React.Component {
         }
         return (
             <div className='like-buttons'>
-                <a className='thumbsup' onClick={() => this.liked('up')}><i class="far fa-thumbs-up"></i></a>
+                <a className='thumbsup' onClick={() => this.liked('up')}><i className="far fa-thumbs-up"></i></a>
                 <div className='like-count'>{likeCount}</div>
-                <a className='thumbsdown' onClick={() => this.liked('down')}><i class="far fa-thumbs-down"></i></a>
+                <a className='thumbsdown' onClick={() => this.liked('down')}><i className="far fa-thumbs-down"></i></a>
             </div>
         )
     }

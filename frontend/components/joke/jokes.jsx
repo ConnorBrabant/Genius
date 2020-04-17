@@ -50,6 +50,12 @@ class Joke extends React.Component {
     }
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.annotations !== this.props.annotations) {
+            this.setState({ currentAnnotations: this.props.annotations})
+        }
+    }
+
 
     startAnnotation(e) {
         this.setState({
@@ -103,7 +109,7 @@ class Joke extends React.Component {
     } else if (this.state.showingAnnotation) {
         comments = <AnnotationShow 
                     closeAnnotation={this.closeAnnotation}
-                    annotation={this.state.showingAnnotation} />
+                    annotation={this.state.showingAnnotation.id} />
     } else {
         comments = <p> 
             Drag and Click to begin a new annotation or select one on the page
