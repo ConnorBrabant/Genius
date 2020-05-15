@@ -110,7 +110,12 @@ class Joke extends React.Component {
         comments = <AnnotationShow 
                     closeAnnotation={this.closeAnnotation}
                     annotation={this.state.showingAnnotation.id} />
-    } else {
+    } else if (!this.props.currentUser)  {
+        comments = <p>
+            Please Sign in or Sign up to create annotations!
+        </p>
+    }
+    else {
         comments = <p> 
             Drag and Click to begin a new annotation or select one on the page
             to read its description

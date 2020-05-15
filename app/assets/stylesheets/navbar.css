@@ -8,7 +8,8 @@
    justify-content: flex-end;
 }
 
-.session-link{
+.session-link {
+    position: relative;
     text-decoration: none;
     font-size: .75em;
     font-family: Programme, sans-serif;
@@ -18,9 +19,14 @@
     padding-left: 0.5rem;
 }
 
-.navbar-title {
+.ludicrous-pos {
     position: absolute;
-    right: 46%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-title {
     text-decoration: none;
     text-shadow: -2px 2px black;
     font-weight: bold;
@@ -28,8 +34,7 @@
     font-size: 20px;
     font-family: sans-serif;
     letter-spacing: 4px;
-    
-}
+} 
 
 .login-options {
     display: flex;

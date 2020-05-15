@@ -28,6 +28,9 @@ SarahSilverman = Comedian.create(name: 'Sarah Silverman', description: 'quite a 
 WandaSykes = Comedian.create(name:'Wanda Sykes', description: 'too funny for her own good')
 AzizAnsari = Comedian.create(name: 'Aziz Ansari', description: 'hilarious guy. On the Parks and Rec aka the wannabe office')
 AdamSandler = Comedian.create(name: 'Adam Sandler', description: 'goat actor. big daddy is elite')
+PeteDavidson = Comedian.create(name: 'Pete Davidson', description: 'funny dude from NY')
+DaveChappelle = Comedian.crete(name: 'Dave Chappelle', description: 'does he need one?')
+KevinHart = Comedian.create(name: 'Kevin Hart', description: 'short dude whos funny ')
 
 joke1 = Joke.create!(title: "I'm Telling You for the Last Time", comedian_id: JerrySeinfeld.id, 
 joke: 'So, anyway, I’m thrilled to be back here in New York. 
@@ -344,3 +347,133 @@ Just, she kept going, “Ooh.” And I was saying, “It’s tradition. We can�
 Grandma.” She was like, “I want to break tradition.” I was like, “Well, you can’t. 
 So, just deal with 94 more.” And bam. “Oh!”", user_id: User1.id)
 joke10.photo.attach(io: open("https://ludicrous-seed.s3.amazonaws.com/ludicrous+seed+pics/sandler-fresh.jpg"), filename:"sandler-fresh.jpg")
+
+joke11 = Joke.create!(title: 'Alive from New York', comedian_id: PeteDavidson.id,
+joke: 'My friend, uh, that I financially support, uh, had a kid, so, uh, I’m a dad. 
+Yeah, I wasn’t exactly ready for it. Uh… He gave me a call. He was all excited. 
+He was like, “Yo, bro. I got great news.” I was like, “You got a job?” And he was 
+like, “No, bro. I had a kid.” And I was like, “Wow, that’s, like, the exact opposite 
+of a job.” I can’t wait to have a kid. I’m very excited. I don’t think it’s very 
+hard at all. No, ’cause all my friends are havin’ ’em, and their complaints, uh, 
+they don’t, uh, bother me very much. All their complaints are the same. They’re 
+like, “Bro, it cries!” And I’m like, “Oh, man, go in the other room.” Yeah, everything 
+cries. You know? You try to make it stop, and then you leave. I cry all the time. 
+Eventually, my friends are like, “Yo, dude, I gotta go to work. I don’t know. 
+Figure it out. Get offline.” So that, they say it cries, uh, and the other complaint is, 
+they’re like, “Yo, it, like, shits all the time.” And that doesn’t really bother 
+me either, because, like, you know, so do I. You know, so I don’t mind cleaning 
+it up at, like, a smaller scale, you know? Plus, when you clean kids, sometimes 
+you see spots that, like, you might have missed on yourself, you know? Yeah. 
+You know? You’re like, “Wow, I’ve never seen my butt from this angle before.” 
+You’re like, “I will dab that corner when I hop out the shower.” You hop out the 
+shower, you’re like, -“Son of a b.”', user_id: User1.id)
+
+joke12 = Joke.create!(title: 'The Age of Spin', comedian_id: DaveChappelle.id 
+joke: 'Everybody’s mad at police now. I watched that– You see that show on Netflix, 
+Making a Murderer? The Steven Avery story. If you haven’t seen it, check it out. 
+Steven Avery is in more trouble than any white person in the history of the United 
+States has ever been in! In a justice system designed for him to thrive, he’s failed 
+miserably twice. I can’t even wrap my mind around it. If Making a Murderer was about 
+a black dude, that shit would be called Duh! Of course everything would go wrong. 
+Seems like he did it, all right. The dude even had $200,000 for his legal defense. 
+That should get you off in Wisconsin. That’s like OJ money. All he needed to get off that 
+he didn’t have was a single black juror. That’s all it would’ve took. Because only a black 
+dude in the United States can look at other dudes and be like, “I think the police did this.” 
+He’s messed up in the game. That’s how OJ got off.
+
+I’ve been watching that new OJ show. I can’t get enough of that. Doesn’t it 
+bring back good memories? But I forgot just how polarizing that OJ case was. And 
+you know, I’ve met OJ Simpson on four different occasions in my life. And before 
+the end of the show, I will tell you about each of those occasions. The first time 
+I met OJ Simpson, I was in Santa Monica. -Santa Monica! -Yeah! I can’t believe a 
+black dude was like, “Santa Monica!” You the last person I would expect to say 
+that. Let me see your shoes. You got some Vans on, dude? What you got? “Santa Monica!” 
+You? At the time, I was. I had done a show, and the guy from the club came up 
+and was like, “Hey, OJ Simpson’s here, and he said he wants to meet you.” I said, 
+“What? Hell yeah!” I ran down the steps, and OJ was down there. He’s like, “Hey,
+young man. How are you? It’s very good to meet you. And you’re doing really good
+work, and I hope good things happen for you in your life.” I was like, “Man, 
+thanks, Mr. Juice.” Standing beside him, was– I don’t know the nice way to say 
+this– his soon-to-be-slain wife. Ladies and gentlemen, man up, or you’re not 
+gonna make it to the end of this show. Just man up. She’s dead. We 
+already know what happened. We don’t know who did it, but we know what happened. 
+I should tell you, that woman was very nice to me. She actually embraced me. She 
+said, “I think you’re adorable,” and she hugged me. She goes, “Good luck to you,” 
+and she held me for a long time. And I whispered in her ear, “Are you trying 
+to get us both killed?” I’m just kidding. I didn’t say that, but… that was the 
+first time, in a nutshell.', user_id: User1.id)
+
+joke13 =  Joke.create!(title: 'Killin Them Softly', comedian_id: DaveChappelle.id 
+joke: 'Sometimes, that’s gonna be too much to deal with. That show business be crazy. 
+That’s where the cultures really collide. Show business bring a lot of races together. 
+Sometimes it works, sometimes it don’t. This is one thing that happens that’s funny. 
+You sometimes I’ll be on a business call, right? You know, like, with… with a lawyer 
+or something. You know, my lawyers be white. And uh… So like, we’ll be on a call, 
+right? And they’ll be like: “OK, Dave, we’re gonna close the deal.” Is that fine 
+with you? I’ll be, like, “Yeah, that’s good for me.” “Great! Great. You have a good 
+weekend, Dave.” I’ll be like, “Alright. You too, man. Peace.” “Uh… all right now. 
+Bye-bye.” They don’t know what to say, right? So sometimes I’ll make up stuff that’s 
+not even slang. Just to see how they handle it and shit. It’ll be the same thing, 
+they just go: “All right, we’re gonna close the deal. Is that fine with you, Dave?” 
+“Yeah, it sounds good to me.” “Great. You have a good weekend, Dave.” “All right, buddy. 
+Zip it up, and zip it out.” He’ll be like… “Uh…” All right. “Zippity-doo-dah, bye-BYE.”
+
+Sometimes, you know, sometimes racism works out in black people’s favor. It doesn’t 
+happen often. It happens very rarely. But… when it happens, it is fucking sweet. 
+I’m serious. One time, racism saved my life, man. I was… I was on a plane. I was c… I was coming from overseas. 
+And… I don’t know how this guy got a machine gun on the plane, but he stood up, 
+man. He said: “Everybody! Get on the fucking ground.” NOBODY LOOK AT MY FACE!” 
+I started freaking out. Cause he was Chinese. I was like, “Why is he talking like that?” 
+He was screaming and crying. I was the only brother on the plane. Well, I thought 
+I was the only brother. I looked over, there was one other black dude. He was from
+Nigeria. I looked over at him, he was looking right at my face, man. He didn’t say 
+two words, he was like: He didn’t need to talk. I knew just what he was talking 
+about. I looked right back at him. I was like (gives thumbs up) Some white dudes 
+on the front of the plane seen us. They were like: “Oh my God.” “I think those 
+black guys are gonna try to save us.” Nuh-MMMM. We were just communicating that 
+we understood the situation. We were both seeing the same thing. What we understood 
+was simple. Terrorists don’t take black hostages. That’s the truth. I have yet to 
+see one of us on the news reading a hostage letter. “Mm.” They is treating us good. 
+Uh, we all chillin’. I’d like to give a shout out to Ray-Ray and Big 
+Steve in… “Newport.” You’re not gonna see it. Terrorists are smart. They know 
+what they’re doing. They’re, you know… They’re terrorists. They know that black 
+people is bad bargaining chips. They call the White House, they say: “Hello.” 
+We have got five black… “Hello?”', user_id: User1.id)
+
+joke14 = Joke.create!(title: 'Seriously Funny', comedian_id: KevinHart.id,
+joke: 'I love to talk about my babies. Two babies— Little boy and little girl. 
+Now I used to talk about my son being a dumb baby. I used to. I’m serious, I did. 
+I thought my baby was a dumb baby. But now I’ve realized he’s not dumb, he just 
+does dumb things. Like, I don’t like the way my son throws his tantrums. You know, 
+when a baby throws a tantrum he’s supposed to fall out, cry, roll on the ground. 
+That’s a tantrum. This is not a joke, this is for real. This is what my son does 
+when he gets mad. I’m not lying. Don’t make me laugh. Look. This is what he do. 
+He goes… This is what he do. He go… It’s the most stupid thing I’ve ever seen 
+in my life. I can’t say nothing. I got to wait till he’s finished then explain to 
+people what happened. Then explain to people what happened. He got an attitude 
+’cause he can’t get no candy. My baby is weird, man. When he gets mad he gets in 
+the oven. I swear to God. He gets in the oven. Then get an attitude with me when 
+I get him out. Boy, get your butt out of the damn oven. Get your butt out of the 
+oven before I turn it on. When I say that he go, “hot. Hot. That thing hot, daddy.” 
+I love him to death though, man.
+
+Two— A little boy and little girl. Now my daughter, my daughter’s a different ballgame. 
+My daughter’s spoiled, man. About to be five. Spoiled. I’m not gonna lie. I spoil her. 
+That’s what I’m supposed to do. She’s at that age now though where she knows. She knows 
+how to play me and her mom against each other. She knows how to make us fight.
+Here’s how she got me in trouble the other day. She came in the room, she hit me 
+with the soft voice. She’s like, “dad, can I have a cookie?” I said, “yeah, baby. 
+Let’s go get a cookie.” I start walking towards the kitchen. Out of nowhere all 
+I hear is, “don’t give her no goddamn cookie!” Scared me. I stopped. 
+I didn’t know what it was. I thought it was Jesus at first. I went, “why can’t she 
+have a cookie, Jesus? What did she do?” But here’s how smart she is. She knew how 
+to get a reaction out of me. She looked at me. She said, “dad, I thought you was 
+the king of the house.” When she said that, it set me off. It riled me up. So I snapped. 
+I said, “what you mean she can’t have no goddamn cookie? Why’d you buy 
+the cookies if can’t nobody eat a cookie? That makes you stupid for buying uneatable 
+cookies. Ain’t nobody getting a cookie.” I shut the whole cookie operation down. 
+I grabbed the cookies, got my ladder, put them on top of the refrigerator. Then 
+I hid my ladder. It wasn’t a big ladder. Three steps. It’s a ladder for thugs. 
+pap pap, real quick. Little thug ladder.', user_id: User1.id)
+
+joke15 = Joke.create!(title:'')

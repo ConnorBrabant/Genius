@@ -6,7 +6,9 @@ export default (props) => {
         return (
         <div className='navbar'>
             <section className='navbar-main'>
-                <Link to='/' onClick={(props.resetState)} className='navbar-title'>LUDICROUS</Link>
+                <div className='ludicrous-pos'>
+                    <Link to='/' onClick={(props.resetState)} className='navbar-title'>LUDICROUS</Link>
+                </div>
                 <a className='session-link logout' onClick={props.logoutUser}>SIGN OUT</a>
             </section>
             <section className='navbar-menu'>
@@ -34,7 +36,9 @@ export default (props) => {
         return (
             <div className='navbar'>
                 <section className='navbar-main'>
-                    <Link to='/' className='navbar-title'>LUDICROUS</Link>
+                    <div className='ludicrous-pos'>
+                        <Link to='/' onClick={(props.resetState)} className='navbar-title'>LUDICROUS</Link>
+                    </div>
                     <div className='navbar-links'>
                         <a onClick={() => props.openModal('signup')} className='session-link session-hover'>SIGN UP</a>
                         <a onClick={() => props.openModal('signin')} className='session-link session-hover'>SIGN IN</a>
@@ -62,7 +66,9 @@ export default (props) => {
         return (
             <div className='navbar'>
                 <section className='navbar-main'>
-                    <Link to='/' className='navbar-title'>LUDICROUS</Link>
+                    <div className='ludicrous-pos'>
+                        <Link to='/' onClick={(props.resetState)} className='navbar-title'>LUDICROUS</Link>
+                    </div>
                     <div className='navbar-links'>
                         <Link to='/signup' className='session-link'>SIGN UP</Link>
                         <Link to='/login' className='session-link'>SIGN IN</Link>
