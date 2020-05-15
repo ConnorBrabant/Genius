@@ -2116,7 +2116,6 @@ var NewJoke = /*#__PURE__*/function (_React$Component) {
           comedianError = 'This field is required';
         }
       });
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "new-joke-page"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3015,11 +3014,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-/*NOTES FOR PAGE:
-    -add terms of service link, sign in here.
-    - google signup button?
-    - render header/footer for page 
-    */
 
 
 var SignUp = /*#__PURE__*/function (_React$Component) {
@@ -3057,6 +3051,9 @@ var SignUp = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
+
+      if (this.state.username === '') {}
+
       this.props.createUser(this.state).then(this.props.closeModal);
     }
   }, {
@@ -3073,13 +3070,30 @@ var SignUp = /*#__PURE__*/function (_React$Component) {
     value: function showForm(errors) {
       var _this3 = this;
 
-      var errorsSection = errors.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+      var usernameEmpty;
+      var emailEmpty;
+      var passwordEmpty;
+      var filteredErrors = errors.filter(function (error) {
+        if (error !== 'Email is invalid' && error !== "Username can't be blank" && error !== "Enter a password") {
+          return error;
+        } else if (error === 'Email is invalid') {
+          emailEmpty = 'Enter your email address';
+        } else if (error === "Username can't be blank") {
+          usernameEmpty = 'Enter a nickname';
+        } else if (error === 'Enter a password') passwordEmpty = error;
+      });
+      var renderErrors = filteredErrors.map(function (error, i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: i
+        }, error);
+      });
+      var errorsSection = renderErrors.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "errors"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "errors-header"
       }, "Whoops"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "errors-list"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "There must be some mistake"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, errors))) : null;
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "There must be some mistake"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, renderErrors))) : null;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "signup-form",
         onSubmit: this.handleSubmit
@@ -3088,29 +3102,35 @@ var SignUp = /*#__PURE__*/function (_React$Component) {
         className: "signin-child signin-label"
       }, "Ludicrous Nickname"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         id: "username",
-        className: "signin-child",
+        className: errors.includes("Username can't be blank") ? 'signup-errors' : 'signin-child',
         type: "text",
         onChange: this.update('username'),
         value: this.state.username
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "signup-error-text"
+      }, usernameEmpty), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "email",
         className: "signup-child signin-label"
       }, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         id: "email",
-        className: "signup-child",
+        className: errors.includes("Email is invalid") ? 'signup-errors' : 'signin-child',
         type: "text",
         onChange: this.update('email'),
         value: this.state.email
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "signup-error-text"
+      }, emailEmpty), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "password",
         className: "signup-child signin-label"
       }, "Password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         id: "password",
-        className: "signup-child",
+        className: errors.includes("Enter a password") ? 'signup-errors' : 'signin-child',
         type: "password",
         onChange: this.update('password'),
         value: this.state.password
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "signup-error-text"
+      }, passwordEmpty), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "terms-p"
       }, "By clicking \"Create Account\", you are indicating that you have read and agree to the Terms of Service."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "align-demo"
@@ -3129,11 +3149,6 @@ var SignUp = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      var errors = this.props.errors.map(function (error, i) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: i
-        }, error);
-      });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-page"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3153,7 +3168,7 @@ var SignUp = /*#__PURE__*/function (_React$Component) {
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-envelope"
-      }), "Sign up with email"), this.state.formPresent ? this.showForm(errors) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), "Sign up with email"), this.state.formPresent ? this.showForm(this.props.errors) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "signup-signin"
@@ -3667,36 +3682,6 @@ var _nullSession = {
 
 /***/ }),
 
-/***/ "./frontend/reducers/ui/annotations.js":
-/*!*********************************************!*\
-  !*** ./frontend/reducers/ui/annotations.js ***!
-  \*********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/annotations_actions */ "./frontend/actions/annotations_actions.js");
-
-/* harmony default export */ __webpack_exports__["default"] = (function () {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-  Object.freeze(state);
-
-  switch (action.type) {
-    case _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__["OPEN_ANNOTATION"]:
-      return true;
-
-    case _actions_annotations_actions__WEBPACK_IMPORTED_MODULE_0__["CLOSE_ANNOTATION"]:
-      return null;
-
-    default:
-      return state;
-  }
-});
-
-/***/ }),
-
 /***/ "./frontend/reducers/ui/modals.js":
 /*!****************************************!*\
   !*** ./frontend/reducers/ui/modals.js ***!
@@ -3740,8 +3725,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _modals__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modals */ "./frontend/reducers/ui/modals.js");
-/* harmony import */ var _annotations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./annotations */ "./frontend/reducers/ui/annotations.js");
-
 
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({

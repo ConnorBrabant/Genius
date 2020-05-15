@@ -4,8 +4,22 @@ class Api::UsersController < ApplicationController
         if @user.save
             login!(@user)
             render :show
-        else 
-            render json: @user.errors.full_messages, status: 401
+        else
+            errors = []
+            @user.errors.full_messages.each do |error|
+                if (error == 'Username has already been taken')
+                    errors.push('That nickname is taken!')
+                elsif (error == 'Email has already been taken')
+                    errors.push('Email has already been taken')
+                elsif (error == 'Password is too short (minimum is 4 characters)' && params[:user][:password] != '')
+                    errors.push('Password is too short (minimum is 4 characters)')
+                elsif (error == 'Password is too short (minimum is 4 characters)' && params[:user][:password] == '') 
+                    errors.push('Enter a password')
+                else 
+                    errors.push(error)
+                end
+            end
+            render json: errors, status: 401
         end
     end
 

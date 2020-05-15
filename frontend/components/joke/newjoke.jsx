@@ -65,7 +65,7 @@ class NewJoke extends React.Component {
             comedianError = 'This field is required'
         }
     })
-    debugger
+
     return (
         <div className='new-joke-page'>
             <div className='new-joke-content'>

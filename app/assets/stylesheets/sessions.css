@@ -184,3 +184,22 @@ input {
     border-bottom: 6.5px solid red;
     padding-bottom: 5.5px;
 }
+
+.signin-button:hover {
+    background-color: #333;
+}
+
+.signup-button:hover {
+    background-color: #333;
+}
+
+.signup-errors {
+    background-color: #2A0009;
+}
+
+.signup-error-text {
+    color: #FF2D2D;
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-top: -10px;
+}
