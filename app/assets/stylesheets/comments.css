@@ -26,7 +26,12 @@
 }
 
 .comment-button {
+    display: none;
     margin-bottom: 10px;
+}
+
+.comment-button-show {
+    display: block;
 }
 
 .comment-list {

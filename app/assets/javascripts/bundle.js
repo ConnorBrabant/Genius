@@ -1070,6 +1070,7 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
       commentableId: _this.props.commentableId
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.showButton = _this.showButton.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1095,15 +1096,20 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "showButton",
+    value: function showButton() {
+      console.log('hit');
+      var commentButton = document.getElementById('comment-button');
+      commentButton.classList.add('comment-button-show');
+      document.addEventListener('click', function (e) {
+        if (e.target.id != 'comment-input') commentButton.classList.remove('comment-button-show');
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      // let errorsForJoke;
-      // let errorsForAnnotation;
-      // if (this.props.errors.length && this.props.commentableType === 'Joke') {
-      //     errorsForJoke = 'PLEASE ENTER A COMMENT'
-      // } else if (this.props.errors.length && this.props.commentableType === 'Annotation') {
-      //     errorsForAnnotation = 'PLEASE ENTER A COMMENT'
-      // }
+      var _this4 = this;
+
       var errors;
 
       if (this.props.errors.length) {
@@ -1116,10 +1122,15 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-errors"
       }, errors), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        id: "comment-input",
         placeholder: "Add a comment",
+        onClick: function onClick() {
+          return _this4.showButton();
+        },
         onChange: this.update('content'),
         value: this.state.content
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        id: "comment-button",
         className: "annotation-button-save comment-button",
         type: "submit"
       }, "Submit"));
