@@ -29,12 +29,15 @@
 
 .right-side-footer {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     width: 50%;
 }
 
-.footerlist li {
+.footer-nav {
     margin-bottom: 20px;
     margin-top: 0px;
-    margin-right: 100px;
+}
+
+.footer-nav a {
+    color: white;
 }

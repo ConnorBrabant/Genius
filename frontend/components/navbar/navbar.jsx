@@ -12,10 +12,16 @@ export default (props) => {
             <section className='navbar-menu'>
                 <ul>
                     <li className='nav'>
-                        <a target='blank' href='https://github.com/ConnorBrabant/'>GITHUB</a>
+                        <a target='_blank' href='https://github.com/ConnorBrabant/'>GITHUB</a>
                     </li>
                     <li className='nav'>
-                        <a target='blank' href='https://www.linkedin.com/in/connor-brabant-81b1a1168/'>LINKEDIN</a>
+                        <a target='_blank' href='https://www.linkedin.com/in/connor-brabant-81b1a1168/'>LINKEDIN</a>
+                    </li>
+                    <li className='nav'>
+                            <a target='_blank' href='https://angel.co/u/connor-brabant'>ANGELLIST</a>
+                    </li>
+                    <li className='nav'>
+                        <a target='_blank' href='https://connorbrabant.github.io/'>PERSONAL</a>
                     </li>
                     <li className='nav new'>
                         <Link className='newjokelink' to='/new'>ADD A JOKE</Link>
@@ -37,10 +43,16 @@ export default (props) => {
                 <section className='navbar-menu'>
                     <ul>
                         <li className='nav'>
-                            <a href='https://github.com/ConnorBrabant/'>GITHUB</a>
+                            <a target='_blank' href='https://github.com/ConnorBrabant/'>GITHUB</a>
                         </li>
                         <li className='nav'>
-                            <a href='https://www.linkedin.com/in/connor-brabant-81b1a1168/'>LINKEDIN</a>
+                            <a target='_blank' href='https://www.linkedin.com/in/connor-brabant-81b1a1168/'>LINKEDIN</a>
+                        </li>
+                        <li className='nav'>
+                            <a target='_blank' href='https://angel.co/u/connor-brabant'>ANGELLIST</a>
+                        </li>
+                        <li className='nav'>
+                            <a target='_blank' href='https://connorbrabant.github.io/'>PERSONAL</a>
                         </li>
                     </ul>
                 </section>
@@ -59,10 +71,16 @@ export default (props) => {
                 <section className='navbar-menu'>
                     <ul>
                         <li className='nav'>
-                            <a href='https://github.com/ConnorBrabant/'>GITHUB</a>
+                            <a target='_blank' href='https://github.com/ConnorBrabant/'>GITHUB</a>
                         </li>
                         <li className='nav'>
-                            <a href='https://www.linkedin.com/in/connor-brabant-81b1a1168/'>LINKEDIN</a>
+                            <a target='_blank' href='https://www.linkedin.com/in/connor-brabant-81b1a1168/'>LINKEDIN</a>
+                        </li>
+                        <li className='nav'>
+                            <a target='_blank' href='https://angel.co/u/connor-brabant'>ANGELLIST</a>
+                        </li>
+                        <li className='nav'>
+                            <a target='_blank' href='https://connorbrabant.github.io/'>PERSONAL</a>
                         </li>
                     </ul>
                 </section>

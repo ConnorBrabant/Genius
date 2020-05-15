@@ -13,24 +13,22 @@ export default (props) => {
                 <div className='right-side-footer'>
                     <div className='left-list'>
                         <ul className='footerlist'>
-                            <li>About Genius</li>
-                            <li>Contributor Guidlines</li>
-                            <li>Press</li>
-                            <li>Advertise</li>
-                            <li>Event Space</li>
-                            <li>Privacy Policy</li>
-                            <li>Delete Account</li>
                         </ul>
                     </div>
                     <div>
                         <ul className='footerlist'>
-                            <li>Licensing</li>
-                            <li>Jobs</li>
-                            <li>Developers</li>
-                            <li>Copyright Policy</li>
-                            <li>Contact Us</li>
-                            <li>Sign Out</li>
-                            <li>Do Not Sell My Personal Information</li>
+                            <li className='footer-nav'>
+                                <a target='_blank' href='https://github.com/ConnorBrabant/'>GitHub</a>
+                            </li>
+                            <li className='footer-nav'>
+                                <a target='_blank' href='https://www.linkedin.com/in/connor-brabant-81b1a1168/'>LinkedIn</a>
+                            </li>
+                            <li className='footer-nav'>
+                                <a target='_blank' href='https://angel.co/u/connor-brabant'>AngelList</a>
+                            </li>
+                            <li className='footer-nav'>
+                                <a target='_blank' href='https://connorbrabant.github.io/'>Personal Site</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
