@@ -31,6 +31,8 @@ AdamSandler = Comedian.create(name: 'Adam Sandler', description: 'goat actor. bi
 PeteDavidson = Comedian.create(name: 'Pete Davidson', description: 'funny dude from NY')
 DaveChappelle = Comedian.crete(name: 'Dave Chappelle', description: 'does he need one?')
 KevinHart = Comedian.create(name: 'Kevin Hart', description: 'short dude whos funny ')
+AmySchumer = Comedian.create(name: 'Amy Schumer', description: 'Amy Schumer is funny')
+BillBurr = Comedian.create(name: 'Bill Burr', description: 'Actually dont know who he is')
 
 joke1 = Joke.create!(title: "I'm Telling You for the Last Time", comedian_id: JerrySeinfeld.id, 
 joke: 'So, anyway, I’m thrilled to be back here in New York. 
@@ -210,14 +212,14 @@ employees… All… day… long. And God forbid if you ask for guacamole… oh, 
 the whole store goes into a panic attack. They don’t even know how to tell you 
 it’s extra money, right? You’re, like, “Put some guac on that…?” “Uh…” “It’s $1.80 
 extra. Is that o… is that okay?” Yeah… it’s okay. Most stressful job at Chipotle
- has to be wrapping these damn things, right? By the time the wrapper gets it, 
- his employees have populated the burrito with so much ingredients, the guy can’t 
- even find the tortilla. He starts sweating. He’s, like, “How am I gonna wrap 
- this damn thing?” Right? It’s a workout. He’s gotta get down, gotta use some quads, a 
- little core, start… tucking and fold… tuck and fold. It took me 23 minutes to get 
- a burrito out of this place, huh? I felt, at the end of this, Chipotle owed me 
- something. So I asked for a water; I filled it up with Coca-Cola. Huh? Least I 
- could do. 23 minutes in line, I go to the Coca-Cola machine, and I stare at them 
+has to be wrapping these damn things, right? By the time the wrapper gets it, 
+his employees have populated the burrito with so much ingredients, the guy can’t 
+even find the tortilla. He starts sweating. He’s, like, “How am I gonna wrap 
+this damn thing?” Right? It’s a workout. He’s gotta get down, gotta use some quads, a 
+little core, start… tucking and fold… tuck and fold. It took me 23 minutes to get 
+a burrito out of this place, huh? I felt, at the end of this, Chipotle owed me 
+something. So I asked for a water; I filled it up with Coca-Cola. Huh? Least I 
+could do. 23 minutes in line, I go to the Coca-Cola machine, and I stare at them 
 while I fill, like this. Coca-Cola in the see-through glass… what are you 
 gonna do? What are you gonna do about it? It’s everywhere you go.', user_id: User1.id)
 joke6.photo.attach(io: open("https://ludicrous-seed.s3.amazonaws.com/ludicrous+seed+pics/mani-embarassed.jpg"), filename: "mani-embarassed.jpg")
@@ -367,6 +369,8 @@ you see spots that, like, you might have missed on yourself, you know? Yeah.
 You know? You’re like, “Wow, I’ve never seen my butt from this angle before.” 
 You’re like, “I will dab that corner when I hop out the shower.” You hop out the 
 shower, you’re like, -“Son of a b.”', user_id: User1.id)
+joke11.photo.attach(io: open("https://ludicrous-seed.s3.amazonaws.com/ludicrous+seed+pics/davidson-alivefromny.jpeg"), filename:"davidson-alivefromny.jpg")
+
 
 joke12 = Joke.create!(title: 'The Age of Spin', comedian_id: DaveChappelle.id 
 joke: 'Everybody’s mad at police now. I watched that– You see that show on Netflix, 
@@ -402,6 +406,7 @@ said, “I think you’re adorable,” and she hugged me. She goes, “Good luck
 and she held me for a long time. And I whispered in her ear, “Are you trying 
 to get us both killed?” I’m just kidding. I didn’t say that, but… that was the 
 first time, in a nutshell.', user_id: User1.id)
+joke12.photo.attach(io: open("https://ludicrous-seed.s3.amazonaws.com/ludicrous+seed+pics/chappelle-ageofspin.jpg"), filename:"chappelle-ageofspin.jpg")
 
 joke13 =  Joke.create!(title: 'Killin Them Softly', comedian_id: DaveChappelle.id 
 joke: 'Sometimes, that’s gonna be too much to deal with. That show business be crazy. 
@@ -439,6 +444,7 @@ Steve in… “Newport.” You’re not gonna see it. Terrorists are smart. They
 what they’re doing. They’re, you know… They’re terrorists. They know that black 
 people is bad bargaining chips. They call the White House, they say: “Hello.” 
 We have got five black… “Hello?”', user_id: User1.id)
+joke13.photo.attach(io: open("https://ludicrous-seed.s3.amazonaws.com/ludicrous+seed+pics/chappelle-killinsoftly.jpg"), filename:"chappelle-killinsoftly.jpg")
 
 joke14 = Joke.create!(title: 'Seriously Funny', comedian_id: KevinHart.id,
 joke: 'I love to talk about my babies. Two babies— Little boy and little girl. 
@@ -475,5 +481,209 @@ cookies. Ain’t nobody getting a cookie.” I shut the whole cookie operation d
 I grabbed the cookies, got my ladder, put them on top of the refrigerator. Then 
 I hid my ladder. It wasn’t a big ladder. Three steps. It’s a ladder for thugs. 
 pap pap, real quick. Little thug ladder.', user_id: User1.id)
+joke14.photo.attach(io: open("https://ludicrous-seed.s3.amazonaws.com/ludicrous+seed+pics/hart-seriouslyfunny.jpeg"), filename:"hart-seriouslyfunny.jpg")
 
-joke15 = Joke.create!(title:'')
+joke15 = Joke.create!(title: 'The Leather Special', comedian_id: AmySchumer.id,
+joke: 'I am the worst famous person, okay? I’m a bad famous person. Yes, 
+I know. I always– I can’t believe it’s still going on. I say what I mean. I dress 
+like garbage. Like, my sister and I… And I tried really hard. I’m like, “Okay, 
+like, let’s do our best and tape it up and spackle it down and…” But after 
+I leave here, I will look like a newly homeless person very quickly. Very quickly, 
+trust me. My sister dresses the same, but they’ll still write about us as if we’re 
+the Kardashians. They’ll be like, “The Schumer sisters stepped out today. Amy opted 
+for performance fleece… and a pleather jacket from Forever 21.” And my favorite 
+thing they ever wrote was, “And Kim chose to wear a bright red-and-gold beanie 
+to add to her ensemble.” It was a Gryffindor hat. Like, look at this. It’s a 
+Gryffindor hat. The most disappointing people ever to be photographed. 
+Look at this. It looks like we were moving, and we ran out of bags, so we’re like, 
+“Let’s just wear it all. We’ll just wear it all. Never a bra. Never a problem.” 
+Look at my sister’s shoe game. Can you check this out? Ballet flats from Payless. 
+H&M zebra pants. What’s up? What’s up now, Internet? They photographed me once, 
+and this was the headline: “Schumer buys pastry so she can work out.” Kind of mean, 
+right? No, they hit the nail right on the head. That’s what I do to work out. 
+That’s what I do. Before I work out, I go buy a scone, and then I slowly walk 
+around a reservoir, and I eat it. My workouts are like a woman in hospice. Just, 
+like, nibbling on a baked good, looking at the trees and the birds. “Mmm.” I’m so 
+disappointing to them as a famous person that they’ll try to make it sound sexier 
+than it is. They’re like, “Schumer flaunting her legs in teeny-tiny shorts.” And 
+you guys have eyes. You understand that that is not available to me. Like, 
+there’s no separation between church and state up here, okay? This area does not– 
+There’s no– It’s not happening. I didn’t even know what a thigh gap was. I was 
+like, “Is that like the wage gap? Do we need to rally against this?” Since I’m 
+ten years old, I can’t wear tiny shorts. If I take one step, all the material 
+shoots up me. I have to pull it out like a magician. A dove. Just,
+like, “Fly!” I have to lather deodorant in my crotch, so I don’t chafe to the 
+point of bleeding out. Right here is when my thighs stop touching for the first 
+time. Together. Apart. Together. Apart. Together. Apart. The teeny-tiny 
+shorts. I got photographed paddleboarding, standup paddleboarding, 
+which– Can we all just agree to stop pretending like that’s fun? What do we– Just what? 
+“Would you like the sensation of being in a canoe, without the comfort of a seat or 
+the safety of sides?” “No.” “Have you often wondered what it’s like to work on a 
+gondola?” “I can’t say that I have. No.” The picture of me, I didn’t even recognize 
+myself because, obviously, I don’t suck in anyway. It was just, like– I looked at 
+it, and I was like, “Oh, my God, Alfred Hitchcock is alive… and loves water sports! 
+Hell, yeah,” you know? I was so psyched.', user_id: User1.id)
+joke15.photo.attach(io: open("https://ludicrous-seed.s3.amazonaws.com/ludicrous+seed+pics/schumer-leather.jpeg"), filename:"schumer-leather.jpeg")
+
+joke16 = Joke.create!(title: 'You People Are All The Same', comedian_id: BillBurr.id,
+joke: 'Speaking of no boozing, man, I been really trying to clean up my act as far 
+as that boozing thing goes. Just really been laying off it, you know? I don’t know 
+what it is. Your head gets big as you get older, you know? You keep boozing, 
+you start getting that big Alec Baldwin / John Travolta head. And you don’t notice 
+though, ’cause every day, you’re brushing your teeth and you’re seeing your head, 
+it’s just getting a little bit bigger. Keep drinking. “I’ll have another one” right? 
+Then one day you go to take that cell phone picture, and you’re just, like, 6 inches 
+in front of everybody else. You don’t think it’s a big deal. Maybe you leaned in, 
+’cause you’re feeling good, right? Then all of a sudden, you look at the picture. 
+It’s like, “Yeah! Whoo!” It’s like, “I gotta lay off this shit.”
+
+So I’ve been trying to learn… learn how to fix stuff around the house. That’s what’s 
+filling up all this time of just being sober. That’s brutal, dude. You have no idea 
+how long a year is until you’re stone sober. It’s fucking brutal. So I’m learning how 
+to fix stuff, right? My girlfriend doesn’t like it ’cause she says I have a temper, 
+you know? She’s like, “You know, it’s just not that you’re trying to fix things, 
+it’s that you get frustrated, you punch the wall, the dog starts shaking. I just 
+don’t think it’s a good idea. You know, you’re a comedian. You should tell jokes. 
+He’s a plumber. He should plumb, right?” I’m trying to explain to her that 
+losing your cool is part of the process of fixing something, right? Everybody does that. 
+Right? Yeah! You buy something at Ikea. You get halfway through putting it together. 
+You’re like, “Dude, where the is the… oh, there it is. There it is. 
+There it is. Honey, I didn’t see it. I didn’t see it! Why, you wanna put it together? 
+You wanna… well, then you put it together. You put together this particle 
+board piece of crap. These instructions make no sense! I will buy another 
+one! I will buy another one. I’ll buy five and smash four if I want to. 
+Don’t tell me what to do! Oh, go to your mother’s. I don’t give a care. Jesus Ch… yeah, 
+what story you gonna tell? This one, right? Not the part about how I pay all the bills, 
+right? How was that uncalled for? How was that uncalled for? I wasn’t even talking 
+to you! I was talking to the thing! I was talking to the thing! 
+I know what I said. I know what I said, okay? You don’t need to tell me. I know 
+what I said, yes. I am working on it. I am working on it, all right? Look… look, 
+you think I wanna be this guy? You think I wanna be the guy who flips out about 
+the tables? I don’t, okay? This isn’t who I am. This is who I became, 
+all right? I’m working through this. You didn’t have to speak… well, you 
+do things too, okay? You do things too. Well, I thought you were going to your mother’s!”',
+user_id: User1.id)
+joke16.photo.attach(io: open("https://ludicrous-seed.s3.amazonaws.com/ludicrous+seed+pics/burr-people.jpeg"), filename:"burr-people.jpg")
+
+joke17 = Joke.create(title: 'Jesus is Magic', comedian_id: SarahSilverman.id,
+joke: 'I wear this saint Christopher medal sometimes because I’m Jewish but my 
+boyfriend is Catholic and it was just…. It was cute the way he gave it to me, 
+you know. He said if it doesn’t burn through my skin it will protect me. Who cares. 
+Different religions, you know. I mean… I guess if you in time with an issue, I 
+suppose would be like if you’re having a baby… You got to figure out like how you 
+wanna raise your baby. …or whatever, you know. Which wouldn’t even still not be 
+an issue for us because we’d be honest, you know… … and just say, you know like 
+Mammy is one of the chosen people and … … and daddy believes that Jesus is magic. 
+not nice. You know Jesus is magic you know because he turn water to wine and he… 
+I think he made the Stature of Liberty disappear. … or something. You know that 
+Jews got all, you know they don’t want. But then Jesus movie came out, you know, 
+and but now the Jews didn’t want people to see it. Because they felt… Everybody 
+blames the Jews for killing Christ and then the Jews try to pass it off on the 
+Romans. I’m one of the few people that believes it was the blacks. I don’t care. 
+Good. I hope the Jews did kill Christ. I’d do it again, I’d do it again 
+on the second. By here is breaking stocks clacking. This way.', user_id: User1.id)
+joke17.photo.attach(io: open("https://ludicrous-seed.s3.amazonaws.com/ludicrous+seed+pics/silverman-jesusmagic.jpeg"), filename:"silverman-jesusmagic.jpg")
+
+joke18 = Joke.create(title: 'Delirious', comedian_id: EddieMurphy.id,
+joke: `Remember when the ice cream man used to come to town when you was little? 
+And no matter what you was doing you would stop and lose your fucking mind! 
+There's something about the ice-cream truck that makes kids lose it.
+And they can hear that shit from ten blocks away. They don't hear their mothers 
+calling but they hear that motherfucking ice cream truck. And no matter what was 
+going on, the iceman came, it stopped. You be getting some marbles and shit:
+"ice cream! Ice cream! The ice cream man is coming! The ice cream man is coming!
+Mom! Mom! Throw down some money! The ice cream man is coming!"
+Then your mother come to the window and be throwing change and say:
+"Get your father toasted almond boy, get your brother icy, get yourself vanilla cone and bring back my change."
+Catch all that and run down the street, top speed. Chasing the Icecream truck and:
+"Icecream!" Ice cream man always drove extra blocks away though. And I know he's 
+seen us, but I think he just be in the car with his friends and say:
+"Watch me how fast I make these kids run" You'd be behind him doing 50mph and going:
+"Icecream!" You stop, you be out of wind saying: "Icecream man, can I have this, 
+I want this over there, toasted almond for my father, and give me this ice cream 
+over here and vanilla cone. Thank you, icecream man! Thank you!"
+I'd get my ice cream and I didn't eat it just sing for a little while. You know how kids are.
+"I have some ice cream, I have some ice cream, and I'm gonna eat it all, I'm gonna eat it all..."
+The ice cream be running down your arm and shit
+"You don't have no icecream! You didn't get none! You didn't get none!
+'cos you are on the welfare, you can't afford it."
+Other kids would join in: "You can't afford it, and his father is an alcoholic!"
+"You dropped your ice cream, you dropped your ice cream..."
+Eat it. I could drop my icecream in a pile of shit and eat it. I would be like "It's just sprinkles"`,
+user_id: User1.id)
+joke18.photo.attach(io: open("https://ludicrous-seed.s3.amazonaws.com/ludicrous+seed+pics/murphy-delirious.jpg"), filename:"murphy-delirious.jpg")
+
+joke19 = Joke.create!(title: 'The Comeback Kid', comedian_id: JohnMulaney.id,
+joke: 'I talked to a lot of people before I got engaged, you know. And I heard 
+this expression about whether or not you should get married. This is an old expression. 
+People say this. They say, “Why buy the cow when you can get the milk for free?” 
+You ever heard that before? It’s a bananas insulting expression… to an entire gender. 
+But also, it makes no sense. “Why buy the cow when you can get the milk for free?” 
+You’re not allowed to milk a cow that you don’t own. That’s not even a situation. 
+Was that a problem at one point? Like, in the dairy community? Was that happening 
+a hundred years ago in some village? Some Dutch guy was sneaking in at night 
+being like, “Ah-ha-ha, I take your milk.” And the farmer was like, “Well, then, 
+this is your cow now.” And he was like, “No, no proof of purchase.” And he ran 
+off into the night. That sounded Dutch, right? You know what that… you know what 
+that expression means? It means, “Why would you marry a woman if she’s already 
+having sex with you?” Which has nothing to do with what relationships are even 
+like anymore. Now, it’s like, “Why buy the cow?” Uh, maybe because, every day, 
+the cow asks you when you’re gonna buy it. And… … you live in a really small 
+apartment with the cow, so you can’t avoid that question at all. And also, the 
+is way better at arguing than you are. And the cow grew up in a family that knows 
+how to argue. “Why buy the cow?” Uh, maybe because every time another cow gets 
+bought, you have to go to the sale and you have to sit next to your cow at the 
+sale, and your cow looks over at you the entire time like… And does not enjoy 
+the sale at all… even though she’s the one that wanted to go to the sale. And 
+she’s especially mad because that farmer and cow met, like, eight months after 
+you guys met. “Why buy the cow?” Well, let’s be real here. You’re very lucky to 
+have the cow that you do have. “Roping in cows and getting milk out of them was
+never anything you were known for, John.” By the most liberal of estimates, there 
+have been about eight cows total, several unmilked, and… a lot of people think that 
+you like bulls, and if you just bought… They assume it. When you search your name, 
+the third thing to come up is like, “John Mulaney bull?” And if you just bought the 
+cow, nobody would say that anymore. They’ll still say it. ‘Cause there are those 
+guys who, they buy a cow, and then on the side, total matador, but… But, for real, 
+Chicago, why buy the cow? Let’s be real. Why buy the cow? Because you love her. 
+You really do. And, yeah, yeah… Sure, she’s a bossy little Jew, but… … she takes 
+care of you. And you don’t wanna be some old man stumbling around, like, “Hey, you seen any loose milk?”',
+user_id: User1.id)
+joke19.photo.attach(io: open("https://ludicrous-seed.s3.amazonaws.com/ludicrous+seed+pics/mulaney-comebackkid.jpeg"), filename:"mulaney-comebackkid.jpg")
+
+joke20 = Joke.create!(title: 'The Beginning', comedian_id: EllenDeGeneres.id,
+joke: 'There are things that need to be said that I will say… I will… I know, a 
+lot of people don’t want me to say them, cause people think once something has 
+stayed a certain way for a certain amount of time, leave it alone, don’t change 
+it. But I think, things need to change… and I will point them out to you tonight 
+I will say these things.
+
+For instance: Do we still need directions on the back of a shampoo bottle? Oh 
+yeah, I’ve said it… Whose shampooing for the first time? Anybody? And if you are, 
+can’t read anyway. You’re like a wild crazy ape person that has been raised in 
+the wild by monkeys or wolves or something nurturing that would raise ya. Reptiles 
+won’t raise you, they don’t even raise their own young, Don’t expect them to raise 
+you. Those monitor lizards don’t even look that dangerous, but those tail’ll whip 
+around, slapping your head and break your neck. So if you are in the wild, try to 
+catch the eye of a monkey or a wolf or something like that… Don’t look them directly 
+in the eye, that is threatening to them actually… Just sideways, if you walk next 
+to them, and kinda glance… Actually, if you are lower, that is even less threatening… 
+just… Don’t smile, if you show your teeth, that’s also threatening. So say some 
+hikers find ya… you know… That is a big find; if they find a crazy wild ape person, 
+they’re gonna bring you back to civilization certainly. But they’re not gonna 
+just throw you in the shower and expect you to know how to shampoo your head… 
+They’re gonna shampoo your head for you… And then you would mimic that. That is 
+how you survive so long in the wild by mimicking things… So who needs the directions 
+on the back of a shampoo bottle? And it is not bad enough there are directions, 
+there is a 0800 number on the back. In case the directions are too vague for you. 
+Rinse and repeat, but how many times? To be the only thing to be more pathetic 
+than calling the 0800 number is working at the 0800 number. Alright, let’s go 
+through this again, shall we? Right… I am gonna stop you,… did you wet your hair 
+first? You’re welcome… That’s my job. Thank you… Thank you for holding? It’s about 
+the size of a quarter in the palm of your hand? No, can’t be two dimes and a nickel… 
+No, can’t be three nickels and a dime. What, cause it can’t spread out that way… 
+that’s why… then you just rinse and repeat… Oh my… How old are you? You should repeat 
+seven more times then. What a fascinating story… What did you survive on? Nuts and 
+ or what? Wolves? MY GOODNESS… And they just nuzzled you?! Aaaw… No, I can’t help 
+ you with the conditioner, you’re gonna have to call that line on your own.',
+ user_id: User1.id)
+ joke20.photo.attach(io: open("https://ludicrous-seed.s3.amazonaws.com/ludicrous+seed+pics/degeneres-beginning.jpeg"), filename:"degeneres-beginning.jpg")
