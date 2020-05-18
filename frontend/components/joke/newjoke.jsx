@@ -38,7 +38,6 @@ class NewJoke extends React.Component {
     }
 
     handleFile(e) {
-        debugger
         return (e) => this.setState({ image: e.currentTarget.files[0] });
     }
 
@@ -48,7 +47,6 @@ class NewJoke extends React.Component {
 
     renderErrors() {
         if (this.props.errors) {
-            debugger 
         }
     }
 

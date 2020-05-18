@@ -17,15 +17,31 @@ class Api::LikesController < ApplicationController
         end 
     end 
 
-    def destroy 
+    def update 
+        like = Like.find(params[:id])
+        if (like.value == 1 ? like.update(value: -1) : like.update(value: 1))
+            if like.likable_type == 'Annotation'
+                @annotation = Annotation.find(like.likable_id)
+                render 'api/annotations/show'
+            elsif like.likable_type == 'Comment'
+                @comment = Comment.find(like.likable_id)
+                render 'api/comments/show'
+            end
+        else
+            render json: like.errors.full_messages, status: 401
+        end 
+    end
+
+
+    def destroy
         like = Like.find(params[:id])
         if like.destroy 
             if like.likable_type == 'Annotation'
                 @annotation = Annotation.find(like.likable_id)
-                render json: 'api/annotations/show'
+                render 'api/annotations/show'
             elsif like.likable_type == 'Comment'
                 @comment = Comment.find(like.likable_id)
-                render json: 'api/comments/show'
+                render 'api/comments/show'
             end
         else
             render json: like.errors.full_messages, status: 401 

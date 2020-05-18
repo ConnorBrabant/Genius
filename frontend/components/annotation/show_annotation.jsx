@@ -41,7 +41,6 @@ class AnnotationShow extends React.Component {
 
     render () {     
         let annotationModify;
-        debugger
         if (this.state.edit) {
             annotationModify = <AnnotationEdit annotation={this.props.annotation} closeForm={this.closeEditForm} />
         } else if (this.props.currentUser === this.props.annotation.user_id) {

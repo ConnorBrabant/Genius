@@ -362,13 +362,15 @@ var deleteJoke = function deleteJoke(jokeId) {
 /*!*******************************************!*\
   !*** ./frontend/actions/likes_actions.js ***!
   \*******************************************/
-/*! exports provided: postCommentLike, postAnnotationLike, deleteCommentLike, deleteAnnotationLike */
+/*! exports provided: postCommentLike, postAnnotationLike, updateCommentLike, updateAnnotationLike, deleteCommentLike, deleteAnnotationLike */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postCommentLike", function() { return postCommentLike; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postAnnotationLike", function() { return postAnnotationLike; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateCommentLike", function() { return updateCommentLike; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateAnnotationLike", function() { return updateAnnotationLike; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteCommentLike", function() { return deleteCommentLike; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteAnnotationLike", function() { return deleteAnnotationLike; });
 /* harmony import */ var _util_likes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/likes */ "./frontend/util/likes.jsx");
@@ -416,6 +418,20 @@ var postCommentLike = function postCommentLike(like) {
 var postAnnotationLike = function postAnnotationLike(like) {
   return function (dispatch) {
     return _util_likes__WEBPACK_IMPORTED_MODULE_0__["postLike"](like).then(function (annotation) {
+      return dispatch(receiveAnnotationLike(annotation));
+    });
+  };
+};
+var updateCommentLike = function updateCommentLike(like) {
+  return function (dispatch) {
+    return _util_likes__WEBPACK_IMPORTED_MODULE_0__["updateLike"](like).then(function (comment) {
+      return dispatch(receiveCommentLike(comment));
+    });
+  };
+};
+var updateAnnotationLike = function updateAnnotationLike(like) {
+  return function (dispatch) {
+    return _util_likes__WEBPACK_IMPORTED_MODULE_0__["updateLike"](like).then(function (annotation) {
       return dispatch(receiveAnnotationLike(annotation));
     });
   };
@@ -860,7 +876,6 @@ var AnnotationShow = /*#__PURE__*/function (_React$Component) {
       var _this4 = this;
 
       var annotationModify;
-      debugger;
 
       if (this.state.edit) {
         annotationModify = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_edit_annotation_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -930,7 +945,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state, ownProps) {
-  debugger;
   return {
     annotation: state.entities.annotations[ownProps.annotation] ? state.entities.annotations[ownProps.annotation] : '',
     currentUser: state.session.id,
@@ -2091,7 +2105,6 @@ var NewJoke = /*#__PURE__*/function (_React$Component) {
     value: function handleFile(e) {
       var _this3 = this;
 
-      debugger;
       return function (e) {
         return _this3.setState({
           image: e.currentTarget.files[0]
@@ -2110,9 +2123,7 @@ var NewJoke = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "renderErrors",
     value: function renderErrors() {
-      if (this.props.errors) {
-        debugger;
-      }
+      if (this.props.errors) {}
     }
   }, {
     key: "render",
@@ -2295,36 +2306,56 @@ var Likes = /*#__PURE__*/function (_React$Component) {
       likableId: _this.props.likableId
     };
     _this.liked = _this.liked.bind(_assertThisInitialized(_this));
+    _this.likedByUser = _this.likedByUser.bind(_assertThisInitialized(_this));
+    _this.likeCount = _this.likeCount.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Likes, [{
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      debugger;
+    key: "likedByUser",
+    value: function likedByUser() {
+      var _this2 = this;
+
+      var postLikedByUser = false;
+
+      if (this.props.likes) {
+        Object.values(this.props.likes).forEach(function (ele) {
+          if (ele.user_id === _this2.props.currentUser) {
+            postLikedByUser = ele;
+          }
+        });
+      }
+
+      return postLikedByUser;
     }
   }, {
     key: "liked",
     value: function liked(vote) {
-      if (vote === 'up') {
-        this.state.likableType === 'Comment' ? this.props.postCommentLike(Object.assign({}, this.state, {
-          value: 1
-        })) : this.props.postAnnotationLike(Object.assign({}, this.state, {
-          value: 1
-        }));
+      var like = this.likedByUser();
+
+      if (!like) {
+        if (vote === 1) {
+          this.state.likableType === 'Comment' ? this.props.postCommentLike(Object.assign({}, this.state, {
+            value: 1
+          })) : this.props.postAnnotationLike(Object.assign({}, this.state, {
+            value: 1
+          }));
+        } else {
+          this.state.likableType === 'Comment' ? this.props.postCommentLike(Object.assign({}, this.state, {
+            value: -1
+          })) : this.props.postAnnotationLike(Object.assign({}, this.state, {
+            value: -1
+          }));
+        }
+      } else if (vote === like.value) {
+        this.state.likableType === 'Comment' ? this.props.deleteCommentLike(like.id) : this.props.deleteAnnotationLike(like.id);
       } else {
-        this.state.likableType === 'Comment' ? this.props.postCommentLike(Object.assign({}, this.state, {
-          value: -1
-        })) : this.props.postAnnotationLike(Object.assign({}, this.state, {
-          value: -1
-        }));
+        this.state.likableType === 'Comment' ? this.props.updateCommentLike(like.id) : this.props.updateAnnotationLike(like.id);
       }
     }
   }, {
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
+    key: "likeCount",
+    value: function likeCount() {
       var likeCount = 0;
 
       if (this.props.likes) {
@@ -2333,21 +2364,33 @@ var Likes = /*#__PURE__*/function (_React$Component) {
         });
       }
 
+      if (likeCount) {
+        var likeClass = likeCount > 0 ? 'like-count-positive' : 'like-count-negative';
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: likeClass
+        }, likeCount);
+      } else {
+        return null;
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "like-buttons"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "thumbsup",
         onClick: function onClick() {
-          return _this2.liked('up');
+          return _this3.liked(1);
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "far fa-thumbs-up"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "like-count"
-      }, likeCount), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      })), this.likeCount(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "thumbsdown",
         onClick: function onClick() {
-          return _this2.liked('down');
+          return _this3.liked(-1);
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "far fa-thumbs-down"
@@ -2394,6 +2437,12 @@ var mdp = function mdp(dispatch) {
     },
     postAnnotationLike: function postAnnotationLike(like) {
       return dispatch(Object(_actions_likes_actions__WEBPACK_IMPORTED_MODULE_2__["postAnnotationLike"])(like));
+    },
+    updateCommentLike: function updateCommentLike(like) {
+      return dispatch(Object(_actions_likes_actions__WEBPACK_IMPORTED_MODULE_2__["updateCommentLike"])(like));
+    },
+    updateAnnotationLike: function updateAnnotationLike(like) {
+      return dispatch(Object(_actions_likes_actions__WEBPACK_IMPORTED_MODULE_2__["updateAnnotationLike"])(like));
     },
     deleteCommentLike: function deleteCommentLike(like) {
       return dispatch(Object(_actions_likes_actions__WEBPACK_IMPORTED_MODULE_2__["deleteCommentLike"])(like));
@@ -3932,12 +3981,13 @@ var deleteJoke = function deleteJoke(jokeId) {
 /*!*********************************!*\
   !*** ./frontend/util/likes.jsx ***!
   \*********************************/
-/*! exports provided: postLike, deleteLike */
+/*! exports provided: postLike, updateLike, deleteLike */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postLike", function() { return postLike; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateLike", function() { return updateLike; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteLike", function() { return deleteLike; });
 var postLike = function postLike(like) {
   return $.ajax({
@@ -3946,6 +3996,12 @@ var postLike = function postLike(like) {
     data: {
       like: like
     }
+  });
+};
+var updateLike = function updateLike(like) {
+  return $.ajax({
+    method: 'PATCH',
+    url: "/api/likes/".concat(like)
   });
 };
 var deleteLike = function deleteLike(likeId) {

@@ -6,6 +6,13 @@ export const postLike = (like) => (
     })
 )
 
+export const updateLike = (like) => (
+    $.ajax ({
+        method: 'PATCH',
+        url: `/api/likes/${like}`,
+    })
+)
+
 export const deleteLike = (likeId) => (
     $.ajax({
         method: 'DELETE',

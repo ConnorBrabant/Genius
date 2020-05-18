@@ -29,7 +29,7 @@ WandaSykes = Comedian.create(name:'Wanda Sykes', description: 'too funny for her
 AzizAnsari = Comedian.create(name: 'Aziz Ansari', description: 'hilarious guy. On the Parks and Rec aka the wannabe office')
 AdamSandler = Comedian.create(name: 'Adam Sandler', description: 'goat actor. big daddy is elite')
 PeteDavidson = Comedian.create(name: 'Pete Davidson', description: 'funny dude from NY')
-DaveChappelle = Comedian.crete(name: 'Dave Chappelle', description: 'does he need one?')
+DaveChappelle = Comedian.create(name: 'Dave Chappelle', description: 'does he need one?')
 KevinHart = Comedian.create(name: 'Kevin Hart', description: 'short dude whos funny ')
 AmySchumer = Comedian.create(name: 'Amy Schumer', description: 'Amy Schumer is funny')
 BillBurr = Comedian.create(name: 'Bill Burr', description: 'Actually dont know who he is')
@@ -372,7 +372,7 @@ shower, you’re like, -“Son of a b.”', user_id: User1.id)
 joke11.photo.attach(io: open("https://ludicrous-seed.s3.amazonaws.com/ludicrous+seed+pics/davidson-alivefromny.jpeg"), filename:"davidson-alivefromny.jpg")
 
 
-joke12 = Joke.create!(title: 'The Age of Spin', comedian_id: DaveChappelle.id 
+joke12 = Joke.create!(title: 'The Age of Spin', comedian_id: DaveChappelle.id,
 joke: 'Everybody’s mad at police now. I watched that– You see that show on Netflix, 
 Making a Murderer? The Steven Avery story. If you haven’t seen it, check it out. 
 Steven Avery is in more trouble than any white person in the history of the United 
@@ -408,7 +408,7 @@ to get us both killed?” I’m just kidding. I didn’t say that, but… that w
 first time, in a nutshell.', user_id: User1.id)
 joke12.photo.attach(io: open("https://ludicrous-seed.s3.amazonaws.com/ludicrous+seed+pics/chappelle-ageofspin.jpg"), filename:"chappelle-ageofspin.jpg")
 
-joke13 =  Joke.create!(title: 'Killin Them Softly', comedian_id: DaveChappelle.id 
+joke13 =  Joke.create!(title: 'Killin Them Softly', comedian_id: DaveChappelle.id, 
 joke: 'Sometimes, that’s gonna be too much to deal with. That show business be crazy. 
 That’s where the cultures really collide. Show business bring a lot of races together. 
 Sometimes it works, sometimes it don’t. This is one thing that happens that’s funny. 
@@ -565,7 +565,7 @@ do things too, okay? You do things too. Well, I thought you were going to your m
 user_id: User1.id)
 joke16.photo.attach(io: open("https://ludicrous-seed.s3.amazonaws.com/ludicrous+seed+pics/burr-people.jpeg"), filename:"burr-people.jpg")
 
-joke17 = Joke.create(title: 'Jesus is Magic', comedian_id: SarahSilverman.id,
+joke17 = Joke.create!(title: 'Jesus is Magic', comedian_id: SarahSilverman.id,
 joke: 'I wear this saint Christopher medal sometimes because I’m Jewish but my 
 boyfriend is Catholic and it was just…. It was cute the way he gave it to me, 
 you know. He said if it doesn’t burn through my skin it will protect me. Who cares. 
@@ -584,32 +584,32 @@ Good. I hope the Jews did kill Christ. I’d do it again, I’d do it again
 on the second. By here is breaking stocks clacking. This way.', user_id: User1.id)
 joke17.photo.attach(io: open("https://ludicrous-seed.s3.amazonaws.com/ludicrous+seed+pics/silverman-jesusmagic.jpeg"), filename:"silverman-jesusmagic.jpg")
 
-joke18 = Joke.create(title: 'Delirious', comedian_id: EddieMurphy.id,
-joke: `Remember when the ice cream man used to come to town when you was little? 
+joke18 = Joke.create!(title: 'Delirious', comedian_id: EddieMurphy.id,
+joke: 'Remember when the ice cream man used to come to town when you was little? 
 And no matter what you was doing you would stop and lose your fucking mind! 
-There's something about the ice-cream truck that makes kids lose it.
-And they can hear that shit from ten blocks away. They don't hear their mothers 
+There’s something about the ice-cream truck that makes kids lose it.
+And they can hear that shit from ten blocks away. They don’t hear their mothers 
 calling but they hear that motherfucking ice cream truck. And no matter what was 
 going on, the iceman came, it stopped. You be getting some marbles and shit:
-"ice cream! Ice cream! The ice cream man is coming! The ice cream man is coming!
-Mom! Mom! Throw down some money! The ice cream man is coming!"
+“ice cream! Ice cream! The ice cream man is coming! The ice cream man is coming!
+Mom! Mom! Throw down some money! The ice cream man is coming!“
 Then your mother come to the window and be throwing change and say:
-"Get your father toasted almond boy, get your brother icy, get yourself vanilla cone and bring back my change."
+“Get your father toasted almond boy, get your brother icy, get yourself vanilla cone and bring back my change.“
 Catch all that and run down the street, top speed. Chasing the Icecream truck and:
-"Icecream!" Ice cream man always drove extra blocks away though. And I know he's 
+“Icecream!“ Ice cream man always drove extra blocks away though. And I know he’s 
 seen us, but I think he just be in the car with his friends and say:
-"Watch me how fast I make these kids run" You'd be behind him doing 50mph and going:
-"Icecream!" You stop, you be out of wind saying: "Icecream man, can I have this, 
+“Watch me how fast I make these kids run“ You’d be behind him doing 50mph and going:
+“Icecream!“ You stop, you be out of wind saying: “Icecream man, can I have this, 
 I want this over there, toasted almond for my father, and give me this ice cream 
-over here and vanilla cone. Thank you, icecream man! Thank you!"
-I'd get my ice cream and I didn't eat it just sing for a little while. You know how kids are.
-"I have some ice cream, I have some ice cream, and I'm gonna eat it all, I'm gonna eat it all..."
+over here and vanilla cone. Thank you, icecream man! Thank you!“
+I’d get my ice cream and I didn’t eat it just sing for a little while. You know how kids are.
+“I have some ice cream, I have some ice cream, and I’m gonna eat it all, I’m gonna eat it all...“
 The ice cream be running down your arm and shit
-"You don't have no icecream! You didn't get none! You didn't get none!
-'cos you are on the welfare, you can't afford it."
-Other kids would join in: "You can't afford it, and his father is an alcoholic!"
-"You dropped your ice cream, you dropped your ice cream..."
-Eat it. I could drop my icecream in a pile of shit and eat it. I would be like "It's just sprinkles"`,
+“You don’t have no icecream! You didn’t get none! You didn’t get none!
+’cos you are on the welfare, you can’t afford it.“
+Other kids would join in: “You can’t afford it, and his father is an alcoholic!“
+“You dropped your ice cream, you dropped your ice cream...“
+Eat it. I could drop my icecream in a pile of shit and eat it. I would be like “It’s just sprinkles“',
 user_id: User1.id)
 joke18.photo.attach(io: open("https://ludicrous-seed.s3.amazonaws.com/ludicrous+seed+pics/murphy-delirious.jpg"), filename:"murphy-delirious.jpg")
 

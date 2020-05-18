@@ -31,6 +31,14 @@ export const postAnnotationLike = (like) => dispatch => (
     LikesUtil.postLike(like).then(annotation => dispatch(receiveAnnotationLike(annotation)))
 );
 
+export const updateCommentLike = (like) => dispatch => (
+    LikesUtil.updateLike(like).then(comment => dispatch(receiveCommentLike(comment)))
+);
+
+export const updateAnnotationLike = (like) => dispatch => {
+    return LikesUtil.updateLike(like).then(annotation => dispatch(receiveAnnotationLike(annotation)))
+};
+
 export const deleteCommentLike = (like) => dispatch => (
     LikesUtil.deleteLike(like).then(comment => dispatch(removeCommentLike(comment)))
 );

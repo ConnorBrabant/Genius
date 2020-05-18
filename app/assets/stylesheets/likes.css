@@ -3,8 +3,12 @@
     padding-top: 5px;
 }
 
-.like-count {
+.like-count-positive {
     color: #0EBC27   
+}
+
+.like-count-negative {
+    color: red;
 }
 
 .like-buttons > div {
@@ -15,6 +19,14 @@
     margin-right: 5px;
 }
 
-.fa-thumps-up:hover  {
-   color: #0EBC27
+.fa-thumbs-up:hover {
+   color: #0EBC27;
+}
+
+.fa-thumbs-down:hover {
+    color: red;
+}
+
+.far:hover {
+    cursor: pointer;
 }

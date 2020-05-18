@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Likes from './show_likes';
-import { postCommentLike, postAnnotationLike, deleteCommentLike, deleteAnnotationLike} from '../../actions/likes_actions'
+import { updateCommentLike, updateAnnotationLike, postCommentLike, postAnnotationLike, deleteCommentLike, deleteAnnotationLike} from '../../actions/likes_actions'
 
 const msp = (state, ownProps) => {
     return ({
@@ -13,6 +13,8 @@ const msp = (state, ownProps) => {
 const mdp = dispatch => ({
     postCommentLike: (like) => dispatch(postCommentLike(like)),
     postAnnotationLike: (like) => dispatch(postAnnotationLike(like)),
+    updateCommentLike: (like) => dispatch(updateCommentLike(like)),
+    updateAnnotationLike: (like) => dispatch(updateAnnotationLike(like)),
     deleteCommentLike: (like) => dispatch(deleteCommentLike(like)),
     deleteAnnotationLike: (like) => dispatch(deleteAnnotationLike(like))
 })
