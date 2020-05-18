@@ -1,5 +1,5 @@
 import { REMOVE_COMMENT, RECEIVE_COMMENT, RECEIVE_COMMENTS } from '../../actions/comments_actions'
-import { RECEIVE_JOKE } from '../../actions/jokes_actions';
+import { RECEIVE_JOKE, RECEIVE_JOKES } from '../../actions/jokes_actions';
 
 export default (state = {}, action) => {
     Object.freeze(state);
@@ -14,6 +14,8 @@ export default (state = {}, action) => {
             return newState;        
         case RECEIVE_JOKE:
             return Object.assign({}, Object.values(action.joke)[0].comments)
+        case RECEIVE_JOKES:
+            return {};
         default: 
             return state;
     }

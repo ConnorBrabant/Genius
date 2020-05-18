@@ -1112,8 +1112,7 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "showButton",
     value: function showButton() {
-      console.log('hit');
-      var commentButton = document.getElementById('comment-button');
+      var commentButton = this.props.commentableType === 'Joke' ? document.getElementById('comment-button') : document.getElementsByClassName('comment-button')[1];
       commentButton.classList.add('comment-button-show');
       document.addEventListener('click', function (e) {
         if (e.target.id != 'comment-input') commentButton.classList.remove('comment-button-show');
@@ -3386,6 +3385,9 @@ var annotationsReducer = function annotationsReducer() {
     case _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_JOKE"]:
       return Object.assign({}, Object.values(action.joke)[0].annotations);
 
+    case _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_JOKES"]:
+      return {};
+
     default:
       return state;
   }
@@ -3427,6 +3429,9 @@ __webpack_require__.r(__webpack_exports__);
 
     case _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_JOKE"]:
       return Object.assign({}, Object.values(action.joke)[0].comments);
+
+    case _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_JOKES"]:
+      return {};
 
     default:
       return state;

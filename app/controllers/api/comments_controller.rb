@@ -5,7 +5,7 @@ class Api::CommentsController < ApplicationController
         @comments = Comment.find_by_sql("
             SELECT * 
             FROM comments
-            WHERE commentable_type = '#{params[:comment][:commentableType]}' AND commentable_id = #{params[:comment][:commentableId]}
+            WHERE commentable_type = '#{params[:comment][:commentableType]}' AND commentable_id = '#{params[:comment][:commentableId]}'
             ORDER BY created_at 
             OFFSET #{params[:start]}
             LIMIT 5")

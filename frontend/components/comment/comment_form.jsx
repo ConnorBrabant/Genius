@@ -22,8 +22,7 @@ class CommentForm extends React.Component {
     }
 
     showButton() {
-        console.log('hit')
-        let commentButton = document.getElementById('comment-button');
+        let commentButton = this.props.commentableType === 'Joke' ? document.getElementById('comment-button') : document.getElementsByClassName('comment-button')[1] 
         commentButton.classList.add('comment-button-show');
         document.addEventListener('click', (e) => {
             if (e.target.id != 'comment-input')
