@@ -24,8 +24,22 @@ class CommentShow extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (this.props.comments !== prevProps.comments) {
-            let generatedComments = this.generateComments(Object.values(this.props.comments));
-            this.setState({ comments: generatedComments })
+            let generatedComments;
+            if (Object.keys(prevProps.comments).length) {
+                let newCommentsSorted = [];
+                let commentsLength = Object.keys(this.props.comments).length;
+                for (let i = 0; i < commentsLength; i++) {
+                    if (i < 5) {
+                        newCommentsSorted.push(this.props.comments[i]);
+                    } else {
+                        newCommentsSorted.unshift(this.props.comments[i])
+                    }
+                }
+                generatedComments = this.generateComments(Object.values(newCommentsSorted));
+            } else {
+                generatedComments = this.generateComments(Object.values(this.props.comments));
+            }
+            this.setState({ comments: generatedComments})
         }
     }
 

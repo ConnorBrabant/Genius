@@ -1,4 +1,4 @@
-json.set! comment.id do 
+# json.set! comment.id do 
     json.extract! comment, :id, :content, :user_id, :commentable_type, :commentable_id
     json.set! :username, comment.user
     json.likes do 
@@ -10,4 +10,4 @@ json.set! comment.id do
             end
         end 
     end 
-end
+# end

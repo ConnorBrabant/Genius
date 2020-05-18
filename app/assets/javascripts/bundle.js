@@ -1271,7 +1271,25 @@ var CommentShow = /*#__PURE__*/function (_React$Component) {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
       if (this.props.comments !== prevProps.comments) {
-        var generatedComments = this.generateComments(Object.values(this.props.comments));
+        var generatedComments;
+
+        if (Object.keys(prevProps.comments).length) {
+          var newCommentsSorted = [];
+          var commentsLength = Object.keys(this.props.comments).length;
+
+          for (var i = 0; i < commentsLength; i++) {
+            if (i < 5) {
+              newCommentsSorted.push(this.props.comments[i]);
+            } else {
+              newCommentsSorted.unshift(this.props.comments[i]);
+            }
+          }
+
+          generatedComments = this.generateComments(Object.values(newCommentsSorted));
+        } else {
+          generatedComments = this.generateComments(Object.values(this.props.comments));
+        }
+
         this.setState({
           comments: generatedComments
         });
@@ -3420,7 +3438,9 @@ __webpack_require__.r(__webpack_exports__);
       return Object.assign({}, state, action.comments);
 
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COMMENT"]:
-      return Object.assign({}, state, action.comment);
+      var newComment = {};
+      newComment[Object.keys(state).length] = action.comment;
+      return Object.assign({}, state, newComment);
 
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_COMMENT"]:
       var newState = Object.assign({}, state);

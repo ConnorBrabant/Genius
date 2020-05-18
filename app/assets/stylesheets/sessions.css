@@ -4,6 +4,7 @@
     flex-direction: column;
     align-items: center;
     color: white;
+    min-height: 600px;
 }
 
 .signup-main, .signup-secondary {

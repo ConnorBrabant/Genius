@@ -3,10 +3,13 @@ class Api::CommentsController < ApplicationController
 
     def index 
         @comments = Comment.find_by_sql("
-            SELECT * 
+            SELECT comments.*
             FROM comments
+            JOIN likes
+            ON comments.id = likes.likable_id
             WHERE commentable_type = '#{params[:comment][:commentableType]}' AND commentable_id = '#{params[:comment][:commentableId]}'
-            ORDER BY created_at 
+            GROUP BY comments.id
+            ORDER BY SUM(likes.value) DESC
             OFFSET #{params[:start]}
             LIMIT 5")
         render :index 
