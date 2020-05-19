@@ -1226,9 +1226,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-// WHen more than 5 comments it doesnt load correctly and doesnt assign 
-// the likes to the right one
-// delete comments isnt re-rendering 
 
 
 
@@ -1279,7 +1276,7 @@ var CommentShow = /*#__PURE__*/function (_React$Component) {
           var commentsLength = Object.keys(this.props.comments).length;
 
           for (var i = 0; i < commentsLength; i++) {
-            if (i < 5) {
+            if (i < commentsLength - 1) {
               newCommentsSorted.push(this.props.comments[i]);
             } else {
               newCommentsSorted.unshift(this.props.comments[i]);
@@ -1514,8 +1511,7 @@ var Homepage = /*#__PURE__*/function (_React$Component) {
             }
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
-          className: "chart-jokes",
-          key: joke.id
+          className: "chart-jokes"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
           key: "".concat(i, "-id"),
           className: "chart-element"
@@ -2110,13 +2106,17 @@ var NewJoke = /*#__PURE__*/function (_React$Component) {
       formData.append('joke[title]', this.state.title);
       formData.append('joke[comedian]', this.state.comedian);
       formData.append('joke[joke]', this.state.joke);
-      formData.append('joke[photo]', this.state.image);
+
+      if (this.state.image) {
+        formData.append('joke[photo]', this.state.image);
+      }
+
       this.props.postJoke(formData).then(function (joke) {
         var key = Object.keys(joke.joke)[0];
         var jokeObj = joke.joke[key];
 
         _this2.props.history.push(_this2.formatRoute(jokeObj.title, jokeObj.comedian.name));
-      }); // this.props.postJoke(this.state).then(joke => this.props.history.push('/'))
+      });
     }
   }, {
     key: "handleFile",
@@ -2414,6 +2414,8 @@ var Likes = /*#__PURE__*/function (_React$Component) {
       }
 
       this.setState({
+        likableType: this.props.likableType,
+        likableId: this.props.likableId,
         likes: likeCount,
         thumbColor: thumbColorRender,
         likeColor: likeColorRender
@@ -3898,13 +3900,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
 /* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux-logger */ "./node_modules/redux-logger/dist/redux-logger.js");
 /* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(redux_logger__WEBPACK_IMPORTED_MODULE_3__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root__WEBPACK_IMPORTED_MODULE_1__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_2__["default"], redux_logger__WEBPACK_IMPORTED_MODULE_3___default.a));
+  var middleware = [redux_thunk__WEBPACK_IMPORTED_MODULE_2__["default"], redux_logger__WEBPACK_IMPORTED_MODULE_3___default.a];
+
+  if (false) {}
+
+  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root__WEBPACK_IMPORTED_MODULE_1__["default"], preloadedState, redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"].apply(void 0, _toConsumableArray(middleware)));
 });
 
 /***/ }),

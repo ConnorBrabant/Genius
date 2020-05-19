@@ -3,6 +3,11 @@ import RootReducer from '../reducers/root'
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 
-export default (preloadedState = {}) => (
-    createStore(RootReducer, preloadedState, applyMiddleware(thunk, logger))
-);
+
+export default (preloadedState = {}) => {
+    let middleware = [thunk, logger];
+    if (process.env.NODE_ENV === 'production') {
+        middleware = [thunk];
+    }
+   return createStore(RootReducer, preloadedState, applyMiddleware(...middleware));
+};

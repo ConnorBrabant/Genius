@@ -81,6 +81,8 @@ class Likes extends React.Component {
             likeCount = null;
         }
         this.setState({
+            likableType: this.props.likableType,
+            likableId: this.props.likableId,
             likes: likeCount,
             thumbColor: thumbColorRender,
             likeColor: likeColorRender

@@ -28,13 +28,14 @@ class NewJoke extends React.Component {
         formData.append('joke[title]', this.state.title);
         formData.append('joke[comedian]', this.state.comedian);
         formData.append('joke[joke]', this.state.joke);
-        formData.append('joke[photo]', this.state.image);
+        if (this.state.image) {
+            formData.append('joke[photo]', this.state.image);
+        }
         this.props.postJoke(formData).then((joke) => {
             let key = Object.keys(joke.joke)[0];
             let jokeObj = joke.joke[key]
             this.props.history.push(this.formatRoute(jokeObj.title, jokeObj.comedian.name))
         })
-        // this.props.postJoke(this.state).then(joke => this.props.history.push('/'))
     }
 
     handleFile(e) {

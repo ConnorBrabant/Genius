@@ -1,7 +1,3 @@
-// WHen more than 5 comments it doesnt load correctly and doesnt assign 
-// the likes to the right one
-// delete comments isnt re-rendering 
-
 import React from 'react';
 import CommentForm from './new_comment_container'
 import LikesShow from '../likes/show_likes_container'
@@ -33,7 +29,7 @@ class CommentShow extends React.Component {
                 let newCommentsSorted = [];
                 let commentsLength = Object.keys(this.props.comments).length;
                 for (let i = 0; i < commentsLength; i++) {
-                    if (i < 5) {
+                    if (i < commentsLength - 1) {
                         newCommentsSorted.push(this.props.comments[i]);
                     } else {
                         newCommentsSorted.unshift(this.props.comments[i])
