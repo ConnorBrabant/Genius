@@ -801,8 +801,8 @@ def seedLikes(users)
     Comment.all.each do |comment|
         randomNumber = rand(users.length + 1)
         while (randomNumber != 0)
-            randomValue = rand(2)
-            likeValue = (randomValue == 1 ? 1 : -1)
+            randomValue = rand(3)
+            likeValue = (randomValue < 1 ? -1 : 1)
             Like.create!(likable_id: comment.id, likable_type: 'Comment', user_id: users[randomNumber - 1].id, value: likeValue)
             randomNumber -= 1
         end 
