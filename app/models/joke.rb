@@ -34,7 +34,7 @@ class Joke < ApplicationRecord
     
     def ensure_default_photo
         unless self.photo.attached?
-            self.photo.attach(io: File.open('app/assets/images/favicon/favicon-32x32.png'), filename: "default.jpg", content_type: 'image/png')
+            self.photo.attach(io: File.open('app/assets/images/favicon-32x32.png'), filename: "default.jpg", content_type: 'image/png')
         end
     end
     
