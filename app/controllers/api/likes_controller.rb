@@ -4,7 +4,7 @@ class Api::LikesController < ApplicationController
     def create 
         like = @liker.likes.new(like_params)
         like.user_id = current_user.id
-        if like.save 
+        if like.save! 
             if like.likable_type == 'Annotation'
                 @annotation = Annotation.find(like.likable_id)
                 render 'api/annotations/show'
@@ -19,7 +19,7 @@ class Api::LikesController < ApplicationController
 
     def update 
         like = Like.find(params[:id])
-        if (like.value == 1 ? like.update(value: -1) : like.update(value: 1))
+        if (like.value == 1 ? like.update!(value: -1) : like.update!(value: 1))
             if like.likable_type == 'Annotation'
                 @annotation = Annotation.find(like.likable_id)
                 render 'api/annotations/show'
@@ -35,7 +35,7 @@ class Api::LikesController < ApplicationController
 
     def destroy
         like = Like.find(params[:id])
-        if like.destroy 
+        if like.destroy! 
             if like.likable_type == 'Annotation'
                 @annotation = Annotation.find(like.likable_id)
                 render 'api/annotations/show'

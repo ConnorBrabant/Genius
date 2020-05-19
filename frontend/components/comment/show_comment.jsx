@@ -1,3 +1,7 @@
+// WHen more than 5 comments it doesnt load correctly and doesnt assign 
+// the likes to the right one
+// delete comments isnt re-rendering 
+
 import React from 'react';
 import CommentForm from './new_comment_container'
 import LikesShow from '../likes/show_likes_container'

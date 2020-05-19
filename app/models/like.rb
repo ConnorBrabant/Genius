@@ -11,7 +11,7 @@
 #
 class Like < ApplicationRecord
   validates :value, presence: true 
-  validates :user_id, uniqueness: { scope: :likable_id }
+  # validates :user_id, uniqueness: { scope: :likable_id }
 
   belongs_to :likable, polymorphic: true
 

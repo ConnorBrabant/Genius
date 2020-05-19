@@ -6,12 +6,24 @@ class Likes extends React.Component {
         this.state = {
             likableType: this.props.likableType,
             likableId: this.props.likableId,
+            likes: 0,
+            thumbColor: null,
+            likeColor: null,
         }
         this.liked = this.liked.bind(this);
         this.likedByUser = this.likedByUser.bind(this);
         this.likeCount = this.likeCount.bind(this);
     }
 
+    componentDidMount() {
+       this.likeCount();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps != this.props) {
+            this.likeCount();
+        }
+    }
 
     likedByUser() {
         let postLikedByUser = false;
@@ -48,24 +60,47 @@ class Likes extends React.Component {
 
     likeCount() {
         let likeCount = 0;
+        let thumbColorRender;
+        let likeColorRender;
         if (this.props.likes) {
-            Object.values(this.props.likes).forEach(like => likeCount += like.value)
+            Object.values(this.props.likes).forEach(like => {
+                likeCount += like.value
+                if (like.user_id === this.props.currentUser) {
+                    like.value > 0 ? 
+                    thumbColorRender = 'green'
+                    :
+                    thumbColorRender = 'red'
+                    }
+            })
         }
-        if (likeCount) {
-            let likeClass = likeCount > 0 ? 'like-count-positive' : 'like-count-negative';
-            return <div className={likeClass}>{likeCount}</div>
+        if (likeCount > 0) {
+            likeColorRender = 'like-count-positive'
+        } else if (likeCount < 0) {
+            likeColorRender = 'like-count-negative'
         } else {
-            return null;
+            likeCount = null;
         }
-        
+        this.setState({
+            likes: likeCount,
+            thumbColor: thumbColorRender,
+            likeColor: likeColorRender
+        })
     }
 
-    render() {
+
+    render() { 
+        let currentlyUpvoted;
+        let currentlyDownvoted;
+        if (this.state.thumbColor === 'green') { 
+            currentlyUpvoted = 'like-count-positive' 
+        } else if (this.state.thumbColor === 'red') {
+            currentlyDownvoted = 'like-count-negative'
+        }
         return (
             <div className='like-buttons'>
-                <a className='thumbsup' onClick={() => this.liked(1)}><i className="far fa-thumbs-up"></i></a>
-                {this.likeCount()}
-                <a className='thumbsdown' onClick={() => this.liked(-1)}><i className="far fa-thumbs-down"></i></a>
+                <a className='thumbsup' onClick={() => this.liked(1)}><i className={`far fa-thumbs-up ${currentlyUpvoted}`}></i></a>
+                <div className={this.state.likeColor}>{this.state.likes}</div>
+                <a className='thumbsdown' onClick={() => this.liked(-1)}><i className={`far fa-thumbs-down ${currentlyDownvoted}`}></i></a>
             </div>
         )
     }

@@ -987,9 +987,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _joke_newjoke_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./joke/newjoke_container */ "./frontend/components/joke/newjoke_container.js");
 /* harmony import */ var _components_navbar_footer_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/navbar/footer_container */ "./frontend/components/navbar/footer_container.js");
 /* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modal */ "./frontend/components/modal.jsx");
-/* harmony import */ var _components_annotation_new_annotation_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/annotation/new_annotation_container */ "./frontend/components/annotation/new_annotation_container.js");
-/* harmony import */ var _util_route_utils__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../util/route_utils */ "./frontend/util/route_utils.jsx");
-
+/* harmony import */ var _util_route_utils__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../util/route_utils */ "./frontend/util/route_utils.jsx");
 
 
 
@@ -1011,13 +1009,13 @@ __webpack_require__.r(__webpack_exports__);
     exact: true,
     path: "/",
     component: _homepage_homepage_container__WEBPACK_IMPORTED_MODULE_4__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_11__["AuthRoute"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_10__["AuthRoute"], {
     path: "/signup",
     component: _session_signup_container__WEBPACK_IMPORTED_MODULE_2__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_11__["AuthRoute"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_10__["AuthRoute"], {
     path: "/login",
     component: _session_signin_container__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_11__["ProtectedRoute"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_10__["ProtectedRoute"], {
     exact: true,
     path: "/new",
     component: _joke_newjoke_container__WEBPACK_IMPORTED_MODULE_7__["default"]
@@ -1228,6 +1226,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+// WHen more than 5 comments it doesnt load correctly and doesnt assign 
+// the likes to the right one
+// delete comments isnt re-rendering 
 
 
 
@@ -2320,7 +2321,10 @@ var Likes = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       likableType: _this.props.likableType,
-      likableId: _this.props.likableId
+      likableId: _this.props.likableId,
+      likes: 0,
+      thumbColor: null,
+      likeColor: null
     };
     _this.liked = _this.liked.bind(_assertThisInitialized(_this));
     _this.likedByUser = _this.likedByUser.bind(_assertThisInitialized(_this));
@@ -2329,6 +2333,18 @@ var Likes = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Likes, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.likeCount();
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (prevProps != this.props) {
+        this.likeCount();
+      }
+    }
+  }, {
     key: "likedByUser",
     value: function likedByUser() {
       var _this2 = this;
@@ -2373,44 +2389,68 @@ var Likes = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "likeCount",
     value: function likeCount() {
+      var _this3 = this;
+
       var likeCount = 0;
+      var thumbColorRender;
+      var likeColorRender;
 
       if (this.props.likes) {
         Object.values(this.props.likes).forEach(function (like) {
-          return likeCount += like.value;
+          likeCount += like.value;
+
+          if (like.user_id === _this3.props.currentUser) {
+            like.value > 0 ? thumbColorRender = 'green' : thumbColorRender = 'red';
+          }
         });
       }
 
-      if (likeCount) {
-        var likeClass = likeCount > 0 ? 'like-count-positive' : 'like-count-negative';
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: likeClass
-        }, likeCount);
+      if (likeCount > 0) {
+        likeColorRender = 'like-count-positive';
+      } else if (likeCount < 0) {
+        likeColorRender = 'like-count-negative';
       } else {
-        return null;
+        likeCount = null;
       }
+
+      this.setState({
+        likes: likeCount,
+        thumbColor: thumbColorRender,
+        likeColor: likeColorRender
+      });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
+
+      var currentlyUpvoted;
+      var currentlyDownvoted;
+
+      if (this.state.thumbColor === 'green') {
+        currentlyUpvoted = 'like-count-positive';
+      } else if (this.state.thumbColor === 'red') {
+        currentlyDownvoted = 'like-count-negative';
+      }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "like-buttons"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "thumbsup",
         onClick: function onClick() {
-          return _this3.liked(1);
+          return _this4.liked(1);
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "far fa-thumbs-up"
-      })), this.likeCount(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "far fa-thumbs-up ".concat(currentlyUpvoted)
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: this.state.likeColor
+      }, this.state.likes), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "thumbsdown",
         onClick: function onClick() {
-          return _this3.liked(-1);
+          return _this4.liked(-1);
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "far fa-thumbs-down"
+        className: "far fa-thumbs-down ".concat(currentlyDownvoted)
       })));
     }
   }]);
@@ -3438,13 +3478,29 @@ __webpack_require__.r(__webpack_exports__);
       return Object.assign({}, state, action.comments);
 
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COMMENT"]:
+      var dupState = Object.assign({}, state);
+      var stateLength = Object.values(state).length;
+
+      for (var i = 0; i < stateLength; i++) {
+        if (dupState[i].id == action.comment.id) {
+          dupState[i] = action.comment;
+          return Object.assign({}, dupState);
+        }
+      }
+
       var newComment = {};
       newComment[Object.keys(state).length] = action.comment;
       return Object.assign({}, state, newComment);
 
     case _actions_comments_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_COMMENT"]:
       var newState = Object.assign({}, state);
-      delete newState[Object.keys(action.commentId)[0]];
+
+      for (var _i = 0; _i < Object.keys(newState).length; _i++) {
+        if (newState[_i].id == action.commentId.id) {
+          delete newState[_i];
+        }
+      }
+
       return newState;
 
     case _actions_jokes_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_JOKE"]:

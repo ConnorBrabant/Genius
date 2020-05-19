@@ -7,12 +7,24 @@ export default (state = {}, action) => {
         case RECEIVE_COMMENTS:
             return Object.assign({}, state, action.comments)
         case RECEIVE_COMMENT:
+            let dupState = Object.assign({}, state);
+            let stateLength = Object.values(state).length;
+            for (let i = 0; i < stateLength; i++) {
+                if (dupState[i].id == action.comment.id) {
+                    dupState[i] = action.comment;
+                    return Object.assign({}, dupState);
+                }
+            }
             let newComment = {};
             newComment[Object.keys(state).length] = action.comment;
             return Object.assign({}, state, newComment);
         case REMOVE_COMMENT:
             let newState = Object.assign({}, state);
-            delete newState[Object.keys(action.commentId)[0]];
+            for (let i = 0; i < Object.keys(newState).length; i++) {
+                if (newState[i].id == action.commentId.id) {
+                    delete newState[i]
+                }
+            }
             return newState;        
         case RECEIVE_JOKE:
             return Object.assign({}, Object.values(action.joke)[0].comments)
