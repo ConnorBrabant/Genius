@@ -25,7 +25,7 @@ their mouse to select what part of the transcript they wish to annotation. Upon 
 a text area is rendered where the user can input what they desire about the selected text and then
 click save to add it to the page. 
 
-
+![](./readme_visuals/annotation.gif)
 
 The following code calculates the start and end index of a new annotation.
 
