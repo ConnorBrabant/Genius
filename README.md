@@ -21,6 +21,7 @@ their mouse to select what part of the transcript they wish to annotation. Upon 
 a text area is rendered where the user can input what they desire about the selected text and then
 click save to add it to the page. 
 
+```javascript
 annotation(e) {
         e.preventDefault();
         const highlighted = window.getSelection();
@@ -40,6 +41,7 @@ annotation(e) {
             }
         )}
     }
+```
 
 The annotation functionality of the app was challenging to implement. In order
 to work correctly, it required the unannotated paragraph element to be split 
