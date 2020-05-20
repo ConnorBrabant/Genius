@@ -1,5 +1,5 @@
-Ludicrous is a clone of the website Genius.com. It's core functionality is that 
-it allows users to upload data like joke transcripts and then add annotations 
+Ludicrous is a clone of the website Genius.com. It's core functionality is allowing
+users to upload joke transcripts and then add annotations 
 that can be utilized to expand on jokes and explain them. Along with this, the 
 app allows for users to leave comments on the jokes and annotations, and has an
 upvote system for comments and annotations.
@@ -8,10 +8,38 @@ https://ludicrous.herokuapp.com/#/
 
 ### Technologies 
 
-The app is structured using Ruby on Rails with Postgresql for the backend processes
-with React/Redux to perform frontend functionality. 
+The app is structured using Ruby on Rails with PostgreSQL for the backend processes
+with React/Redux to perform frontend functionality. The site is hosted on Heroku 
+and images are stored via AWS S3.
 
 ### Features
+
+Fundamental to the functionality of the app are: Annotations, Likes, 
+
+Annotations are core of the app. Users that are signed in are able to click and drag
+their mouse to select what part of the transcript they wish to annotation. Upon releasing the mouse,
+a text area is rendered where the user can input what they desire about the selected text and then
+click save to add it to the page. 
+
+annotation(e) {
+        e.preventDefault();
+        const highlighted = window.getSelection();
+        const startIndex = highlighted.anchorOffset;
+        const endIndex = highlighted.focusOffset;
+        const startOffset = parseInt(this.state.startElement.getAttribute('data-offset'))
+        const endOffset = parseInt(e.target.getAttribute('data-offset'))
+        const startPosition = startIndex + startOffset;
+        const endPosition = endIndex + endOffset;
+        if ( !this.props.currentUser || Boolean(startPosition) === false || Boolean(endPosition) === false || endPosition <= startPosition) {
+            this.closeAnnotation()
+        } else {  
+            this.setState({
+                startIndex: startPosition,
+                endIndex: endPosition,
+                annotation: true,
+            }
+        )}
+    }
 
 The annotation functionality of the app was challenging to implement. In order
 to work correctly, it required the unannotated paragraph element to be split 
