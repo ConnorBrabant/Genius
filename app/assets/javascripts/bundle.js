@@ -1683,6 +1683,7 @@ var AnnotatedJoke = /*#__PURE__*/function (_React$Component) {
     //     return formattedJoke
     // }
     value: function render() {
+      console.log(this.props);
       var _this$props = this.props,
           joke = _this$props.joke,
           annotations = _this$props.annotations,
