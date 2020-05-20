@@ -3,6 +3,7 @@ import AnnotatedJoke from './joke_annotated'
 import AnnotationForm from '../annotation/new_annotation_container'
 import AnnotationShow from '../annotation/show_annotation_container'
 import CommentShow from '../comment/show_comment_container'
+import { Link } from 'react-router-dom'
 
 class Joke extends React.Component {
    
@@ -111,8 +112,10 @@ class Joke extends React.Component {
                     closeAnnotation={this.closeAnnotation}
                     annotation={this.state.showingAnnotation.id} />
     } else if (!this.props.currentUser)  {
-        comments = <p>
-            Please Sign in or Sign up to create annotations!
+        comments = <p>Please   
+            <Link to='/login'> Sign in </Link>or 
+            <Link to='/signup'> Sign up </Link> 
+            to create annotations!
         </p>
     }
     else {

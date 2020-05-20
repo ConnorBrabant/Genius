@@ -1,6 +1,7 @@
 import React from 'react';
 import CommentForm from './new_comment_container'
 import LikesShow from '../likes/show_likes_container'
+import { Link } from 'react-router-dom'
 
 class CommentShow extends React.Component {
     constructor (props) {
@@ -85,7 +86,10 @@ class CommentShow extends React.Component {
                     commentableId={this.props.commentableId}
                 />
             ) : (
-                <span>Sign In or Sign Up to Comment!</span>
+                <span>
+                    <Link to='/login'>Sign In </Link>or 
+                    <Link to='/signup'> Sign Up </Link>to Comment!
+                </span>
             )
     return (
             <div className='comment-section'>
