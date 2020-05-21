@@ -110,6 +110,8 @@ on it. All three of methods are defined in the joke component which is rendering
 ### Comments
 Comments allow users to leave input on either a post or an annotation. 
 
+![](./readme_visuals/post_comment.gif)
+
 Comments were implemented via polymorphic associations. This allows the data of a comment whether its originating from a post or an annotation to be handled by one controller as well as all comments be stored in one table in the database. 
 
 ```ruby 
