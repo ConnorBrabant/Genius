@@ -1,26 +1,33 @@
-Ludicrous is a clone of the website Genius.com. It's core functionality is allowing
-users to upload joke transcripts and then add annotations 
-that can be utilized to expand on jokes and explain them. Along with this, the 
-app allows for users to leave comments on the jokes and annotations, and has an
-upvote system for comments and annotations.
+# Ludicrous
 
-https://ludicrous.herokuapp.com/#/
+Ludicrous is a single page web application where users can share jokes with one another. Additionally, users can annotate, comment, and upvote on posts made by others. Based on the website Genius.
 
-### Technologies 
+[Live Site](https://ludicrous.herokuapp.com/#/)
+
+## Table of Contents
+* [Technologies](#technologies)
+* [Features](#features)
+    * [Annotations](#annotations)
+    * [Comments](#comments)
+    * [Jokes](#jokes)
+    * [Votes](#votes)
+* [Installation](#installation)
+
+## Technologies 
 
 The app is structured using Ruby on Rails with PostgreSQL for the backend processes
 with React/Redux to perform frontend functionality. The site is hosted on Heroku 
 and images are stored via AWS S3.
 
-### Features
+## Features
 
 Fundamental features to the app include: 
-* Annotations
-* Jokes
-* Comments
-* Votes
+* [Annotations](#annotations)
+* [Comments](#comments)
+* [Jokes](#jokes)
+* [Votes](#votes)
 
-#### Annotations
+### Annotations
 Annotations are the core of the app. Users that are signed in are able to click and drag
 their mouse to select what part of the transcript they wish to annotation. Upon releasing the mouse,
 a text area is rendered where the user can input what they desire about the selected text and then
@@ -100,14 +107,7 @@ first set of code explained above. Both of these are set DisplayAnnotation is an
 annotations that through an onClick event allows users to render the description of the annotation along with comments made
 on it. All three of methods are defined in the joke component which is rendering the annotations as it allows for a rerender of said component depending on the content of the props. In this code, annotations that previously existed are sorted based on their starting index in the joke transcipt. This sorting enables the comments to be looped through and determine their offset value that accounts for the annotations and text before it as well determine the actual text itself that comes before it. The sorting also allows the know what annotation comes last in the text and thus properly add all remaining text left in the transcript to come after it. 
 
-#### Jokes 
-Jokes are the primary data of the app. Users can post joke transcripts as long as the title of the transcript, the author, and an image that correlates to it. 
-
-![](./readme_visuals/posts.gif)
-
-When clicked, the Load More button sends a request to the backend to receive the next 7 jokes in the database based on time of creation of the joke.
-
-#### Comments
+### Comments
 Comments allow users to leave input on either a post or an annotation. 
 
 ![](./readme_visuals/post_commment.gif)
@@ -126,7 +126,14 @@ The commentableType refers to the table of the data that the comment is being as
 
 ![](./readme_visuals/annotation_comment.gif)
 
-#### Votes 
+### Jokes 
+Jokes are the primary data of the app. Users can post joke transcripts as long as the title of the transcript, the author, and an image that correlates to it. 
+
+![](./readme_visuals/posts.gif)
+
+When clicked, the Load More button sends a request to the backend to receive the next 7 jokes in the database based on time of creation of the joke.
+
+### Votes 
 
 Votes are utilized to allow users to give their input on annotation or comment not made by them. An upvote gives the associated data a value of one while a downvote gives it a value -1. By calculating the sum of the values of votes on a comment, comments can be rendered to used based on most upvoted. 
 
@@ -134,7 +141,7 @@ Votes are utilized to allow users to give their input on annotation or comment n
 
 Votes were also implemented via polymorphic association.
 
-### Installion
+## Installation
 1. Run Bundle Install
 2. Run NPM Install
 3. Run bundle exec rails s to start backend server 
