@@ -15,9 +15,14 @@ Ludicrous is a single page web application where users can share jokes with one 
 
 ## Technologies 
 
-The app is structured using Ruby on Rails with PostgreSQL for the backend processes
-with React/Redux to perform frontend functionality. The site is hosted on Heroku 
-and images are stored via AWS S3.
+* Ruby on Rails (version 5.2.4)
+* PostgreSQL (version 12.1)
+* React (version 16.13.1)
+* Redux (version 4.0.5)
+* HTML 5
+* CSS 3
+* Heroku for hosting the app
+* AWS S3 for storing images
 
 ## Features
 
