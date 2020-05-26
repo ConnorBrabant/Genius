@@ -39,7 +39,7 @@ class Homepage extends React.Component {
                     pathname: `/${route}`,
                     state: { id: joke.id}
                 }}>
-                    <ul className='chart-jokes'>
+                    <ul key={i} className='chart-jokes'>
                         <li key={`${i}-id`} className='chart-element'>{i + 1 + idx}</li>
                         <li key={`${i}-img`}><img className='chart-image' src={joke.image} alt='homepage pics'></img>
                         </li>

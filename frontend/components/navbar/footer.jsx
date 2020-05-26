@@ -17,16 +17,16 @@ export default (props) => {
                     </div>
                     <div>
                         <ul className='footerlist'>
-                            <li className='footer-nav'>
+                            <li key={1} className='footer-nav'>
                                 <a target='_blank' href='https://github.com/ConnorBrabant/'>GitHub</a>
                             </li>
-                            <li className='footer-nav'>
+                            <li key={2} className='footer-nav'>
                                 <a target='_blank' href='https://www.linkedin.com/in/connor-brabant-81b1a1168/'>LinkedIn</a>
                             </li>
-                            <li className='footer-nav'>
+                            <li key={3} className='footer-nav'>
                                 <a target='_blank' href='https://angel.co/u/connor-brabant'>AngelList</a>
                             </li>
-                            <li className='footer-nav'>
+                            <li key={4} className='footer-nav'>
                                 <a target='_blank' href='https://connorbrabant.github.io/'>Personal Site</a>
                             </li>
                         </ul>
