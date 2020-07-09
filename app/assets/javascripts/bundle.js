@@ -945,6 +945,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state, ownProps) {
+  debugger;
   return {
     annotation: state.entities.annotations[ownProps.annotation] ? state.entities.annotations[ownProps.annotation] : '',
     currentUser: state.session.id,
@@ -1260,7 +1261,7 @@ var CommentShow = /*#__PURE__*/function (_React$Component) {
         commentableType: this.props.commentableType
       };
       this.props.fetchComments(commentInfo, 0).then(function (comments) {
-        var generatedComments = _this2.generateComments(Object.values(comments.comments));
+        var generatedComments = _this2.generateComments(Object.values(comments.comments), _this2.props.currentUser);
 
         _this2.setState({
           comments: generatedComments
@@ -1270,7 +1271,7 @@ var CommentShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      if (this.props.comments !== prevProps.comments) {
+      if (JSON.stringify(this.props.comments) !== JSON.stringify(prevProps.comments)) {
         var generatedComments;
 
         if (Object.keys(prevProps.comments).length) {
@@ -1285,9 +1286,9 @@ var CommentShow = /*#__PURE__*/function (_React$Component) {
             }
           }
 
-          generatedComments = this.generateComments(Object.values(newCommentsSorted));
+          generatedComments = this.generateComments(Object.values(newCommentsSorted), this.props.currentUser);
         } else {
-          generatedComments = this.generateComments(Object.values(this.props.comments));
+          generatedComments = this.generateComments(Object.values(this.props.comments), this.props.currentUser);
         }
 
         this.setState({
@@ -1297,7 +1298,7 @@ var CommentShow = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "generateComments",
-    value: function generateComments(comments) {
+    value: function generateComments(comments, currentUser) {
       var _this3 = this;
 
       var scopedComments = [];
@@ -1307,6 +1308,12 @@ var CommentShow = /*#__PURE__*/function (_React$Component) {
         }
       });
       var commentsLI = scopedComments.map(function (comment, idx) {
+        var deleteable = currentUser !== comment.user_id ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "comment-delete",
+          onClick: function onClick() {
+            return _this3.props.deleteComment(comment);
+          }
+        }, "Delete");
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: idx
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -1319,12 +1326,7 @@ var CommentShow = /*#__PURE__*/function (_React$Component) {
           likableType: "Comment",
           likableId: comment.id,
           likes: comment.likes
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "comment-delete",
-          onClick: function onClick() {
-            return _this3.props.deleteComment(comment);
-          }
-        }, "Delete")));
+        }), deleteable));
       });
       return commentsLI;
     }
@@ -3956,6 +3958,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
   return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root__WEBPACK_IMPORTED_MODULE_1__["default"], preloadedState, redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"].apply(void 0, _toConsumableArray(middleware)));
 });
+1;
 
 /***/ }),
 

@@ -10,4 +10,4 @@ export default (preloadedState = {}) => {
         middleware = [thunk];
     }
    return createStore(RootReducer, preloadedState, applyMiddleware(...middleware));
-};
+};1

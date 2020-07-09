@@ -18,13 +18,13 @@ class CommentShow extends React.Component {
             commentableType: this.props.commentableType
         }
         this.props.fetchComments(commentInfo, 0).then((comments) => {
-            let generatedComments = this.generateComments(Object.values(comments.comments));
+            let generatedComments = this.generateComments(Object.values(comments.comments), this.props.currentUser);
             this.setState({ comments: generatedComments })
         })
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.comments !== prevProps.comments) {
+        if (JSON.stringify(this.props.comments) !== JSON.stringify(prevProps.comments)) {
             let generatedComments;
             if (Object.keys(prevProps.comments).length) {
                 let newCommentsSorted = [];
@@ -36,22 +36,25 @@ class CommentShow extends React.Component {
                         newCommentsSorted.unshift(this.props.comments[i])
                     }
                 }
-                generatedComments = this.generateComments(Object.values(newCommentsSorted));
+                generatedComments = this.generateComments(Object.values(newCommentsSorted), this.props.currentUser);
             } else {
-                generatedComments = this.generateComments(Object.values(this.props.comments));
+                generatedComments = this.generateComments(Object.values(this.props.comments), this.props.currentUser);
             }
             this.setState({ comments: generatedComments})
         }
     }
 
-    generateComments(comments) {
+    generateComments(comments, currentUser) {
         let scopedComments = [];
         comments.map(comment => {
             if (comment.commentable_type === this.props.commentableType) {
                 scopedComments.push(comment)
             }
         });
-        const commentsLI = scopedComments.map((comment, idx) => (
+        const commentsLI = scopedComments.map((comment, idx) => {
+            let deleteable = currentUser !== comment.user_id ? 
+                null : <button className='comment-delete' onClick={() => this.props.deleteComment(comment)}>Delete</button>
+            return (
             <li key={idx}>
                 <span className='comment-username'>{comment.username.username}</span>
                 <p className='comment-content'>{comment.content}</p>
@@ -61,10 +64,11 @@ class CommentShow extends React.Component {
                         likableId={comment.id}
                         likes={comment.likes} 
                     />
-                    <button className='comment-delete' onClick={() => this.props.deleteComment(comment)}>Delete</button>
+                {deleteable}
                 </div>
             </li>
-        ));
+            )
+        });
         return commentsLI;
     }
 
