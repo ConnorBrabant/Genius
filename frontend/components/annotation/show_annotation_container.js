@@ -3,7 +3,6 @@ import AnnotationShow from './show_annotation'
 import { deleteAnnotation, updateAnnotation } from '../../actions/annotations_actions' 
 
 const msp = (state, ownProps) => {
-    debugger
     return ({
         annotation: state.entities.annotations[ownProps.annotation] ? state.entities.annotations[ownProps.annotation] : '',
         currentUser: state.session.id,

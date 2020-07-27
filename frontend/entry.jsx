@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         store = configureStore();
     }
-    console.log(React.version)
     const root = document.getElementById('root');
     ReactDOM.render(<Root store={store} />, root)
 })

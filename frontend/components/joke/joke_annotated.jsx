@@ -18,7 +18,6 @@ class AnnotatedJoke extends React.Component {
     // }
 
     render() {
-        console.log(this.props)
         const { joke, annotations, startAnnotation, annotation, displayAnnotation } = this.props;
         let annotatedJoke = [];
         let prevIndex = 0;
